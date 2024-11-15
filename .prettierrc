@@ -1,0 +1,17 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "plugins": [
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "importOrder": [
+    "^react$",
+    "<THIRD_PARTY_MODULES>",
+    "^@/components/(.*)$",
+    "^@/utils/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
