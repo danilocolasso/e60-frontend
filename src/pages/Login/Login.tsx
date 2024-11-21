@@ -1,7 +1,7 @@
-import { Button } from '@/components/Button'
-import { Checkbox, CheckboxField } from '@/components/Checkbox'
-import { Field, Fieldset, Label } from '@/components/Fieldset'
-import { Input } from '@/components/Input'
+import { Button } from '@/components/ui/Button'
+import { Checkbox, CheckboxField } from '@/components/ui/Checkbox'
+import { Field, Fieldset, Label } from '@/components/ui/Fieldset'
+import { Input } from '@/components/ui/Input'
 import { useLogin } from '@/pages/Login/useLogin'
 import React from 'react'
 
