@@ -8,11 +8,9 @@ interface loginData {
 
 export const login = async (data: loginData, setUser: (user: User) => void) => {
   await getCsrfToken()
-  const response = api.post('/login', data)
-  const userResponse: { data: User } = await fetchUser()
-  setUser(userResponse.data)
-
-  return response
+  await api
+    .post(import.meta.env.VITE_API_URL.replace('/api', '') + '/login', data)
+    .then((response) => setUser(response.data))
 }
 
 export const logout = async (setUser: (user: null) => void) => {
