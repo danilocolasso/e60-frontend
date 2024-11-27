@@ -1,8 +1,10 @@
 import axios from 'axios'
 
+axios.defaults.withCredentials = true
+axios.defaults.withXSRFToken = true
+
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
-  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
@@ -14,16 +16,16 @@ api.interceptors.response.use(
     return response
   },
   async (error) => {
-    if (error.response?.status === 401) { // TODO use response constants
+    if (error.response?.status === 401) {
+      // TODO use response constants
       // TODO redirect to login page
     }
     return Promise.reject(error)
-  }
+  },
 )
 
 export const getCsrfToken = async () => {
-  const { data } = await api.get('/sanctum/csrf-cookie')
-  return data
+  await api.get(import.meta.env.VITE_BASE_URL + '/sanctum/csrf-cookie')
 }
 
 export default api

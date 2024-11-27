@@ -12,11 +12,12 @@ export const useLogin = () => {
     e.preventDefault()
     try {
       await login(credentials, setUser)
-      const userResponse = await fetchUser()
-      setUser(userResponse.data)
-      navigate('/dashboard')
-      setCredentials({ email: '', password: '' }) // TODO - remove this line
+      // const userResponse = await fetchUser()
+      // setUser(userResponse.data)
+      // navigate('/dashboard')
+      // setCredentials({ email: '', password: '' }) // TODO - remove this line
     } catch (error) {
+      console.log(error)
       // Handle login error
     }
   }
