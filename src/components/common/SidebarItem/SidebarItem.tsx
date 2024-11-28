@@ -7,17 +7,22 @@ import {
 } from '@headlessui/react'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import React from 'react'
+import { Link } from '@/components/ui/Link'
 
 export interface SidebarItemProps extends NavigationItem {}
 
-export const SidebarItem: React.FC<SidebarItemProps> = (
-  { name, href, icon: Icon, current, children },
-  props,
-) => {
+export const SidebarItem: React.FC<SidebarItemProps> = ({
+  name,
+  href,
+  icon: Icon,
+  current,
+  children,
+  ...props
+}) => {
   return (
     <li {...props}>
       {!children ? (
-        <a
+        <Link
           href={href}
           className={classNames(
             current
@@ -28,7 +33,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = (
         >
           {Icon && <Icon aria-hidden="true" className="size-6 shrink-0" />}
           {name}
-        </a>
+        </Link>
       ) : (
         <Disclosure as="div">
           <DisclosureButton
@@ -50,7 +55,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = (
             {children.map((child) => (
               <li key={child.name}>
                 <DisclosureButton
-                  as="a"
+                  as={Link}
                   href={child.href}
                   className={classNames(
                     child.current
