@@ -56,7 +56,7 @@ export function StackedLayout({
         {sidebar}
       </MobileSidebar>
 
-      {/* Navbar */}
+      {/* Sidebar */}
       <header className="flex items-center px-4">
         <div className="py-2.5 lg:hidden">
           <NavbarItem onClick={() => setShowSidebar(true)} aria-label="Open navigation">
