@@ -6,4 +6,8 @@ export const privateRoutes: RouteObject[] = [
     path: '/',
     Component: lazy(() => import('@/App')),
   },
+  {
+    path: '/clientes',
+    Component: lazy(() => import('@/pages/Customer')),
+  }
 ]
