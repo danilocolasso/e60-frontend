@@ -16,7 +16,7 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
   const { sidebarOpen, setSidebarOpen } = useSidebar()
 
   return (
-    <aside {...props}>
+    <aside {...props} className={'scrollbar'}>
       <Dialog
         open={sidebarOpen}
         onClose={setSidebarOpen}

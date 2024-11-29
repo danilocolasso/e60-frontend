@@ -5,7 +5,7 @@ function App() {
   return (
     <MainLayout>
       <div className={'flex flex-1 flex-col gap-4 items-center justify-center'}>
-        <Text>Hello World</Text>
+        <Text>Home page</Text>
       </div>
     </MainLayout>
   )

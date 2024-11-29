@@ -33,7 +33,7 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
         </li>
         <SidebarItem
           className={'mt-auto'}
-          name="Settings"
+          name="Configurações"
           href="#"
           icon={Cog6ToothIcon}
         />
