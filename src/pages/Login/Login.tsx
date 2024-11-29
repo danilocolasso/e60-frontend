@@ -14,12 +14,12 @@ export const Login: React.FC = () => {
         <img
           alt="Escape 60'"
           src="logo.svg"
-          className="mx-auto h-20 w-auto dark:hidden"
+          className="mx-auto h-12 w-auto dark:hidden"
         />
         <img
           alt="Escape 60'"
           src="logo-white.svg"
-          className="mx-auto hidden h-20 w-auto dark:flex"
+          className="mx-auto hidden h-12 w-auto dark:flex"
         />
       </div>
 

@@ -47,8 +47,8 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
             <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4 dark:bg-gray-900">
               <div className="flex h-16 shrink-0 items-center">
                 <img
-                  alt="Your Company"
-                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=white"
+                  alt="Escape 60'"
+                  src="logo-white.svg"
                   className="h-8 w-auto"
                 />
               </div>
@@ -61,11 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
         <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4 dark:bg-gray-900">
           <div className="flex h-16 shrink-0 items-center">
-            <img
-              alt="Your Company"
-              src="https://tailwindui.com/plus/img/logos/mark.svg?color=white"
-              className="h-8 w-auto"
-            />
+            <img alt="Escape 60'" src="logo-white.svg" className="h-8 w-auto" />
           </div>
           <SidebarNavigation navigation={navigation} />
         </div>
