@@ -1,7 +1,6 @@
-import {
-  SidebarNavigation,
-  SidebarNavigationProps,
-} from '@/components/common/SidebarNavigation'
+import { SidebarNavigation } from '@/components/common/SidebarNavigation'
+import { useSidebar } from '@/contexts/SidebarContext'
+import { navigation } from '@/data/navigationData.ts'
 import {
   Dialog,
   DialogBackdrop,
@@ -10,11 +9,10 @@ import {
 } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import React from 'react'
-import { useSidebar } from '@/contexts/SidebarContext'
 
-interface SidebarProps extends SidebarNavigationProps {}
+interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Sidebar: React.FC<SidebarProps> = ({ navigation, ...props }) => {
+export const Sidebar: React.FC<SidebarProps> = (props) => {
   const { sidebarOpen, setSidebarOpen } = useSidebar()
 
   return (
