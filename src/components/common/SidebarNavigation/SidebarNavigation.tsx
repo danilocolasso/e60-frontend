@@ -12,6 +12,15 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
   navigation,
   ...props
 }) => {
+  navigation = navigation.map((item: NavigationItem) => ({
+    ...item,
+    current: item.href === location.pathname,
+    children: item.children?.map((child: NavigationItem) => ({
+      ...child,
+      current: child.href === location.pathname,
+    })),
+  }))
+
   return (
     <nav className="flex flex-1 flex-col" {...props}>
       <ul role="list" className="flex flex-1 flex-col gap-y-7">

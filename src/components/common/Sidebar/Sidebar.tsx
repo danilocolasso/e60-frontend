@@ -10,20 +10,15 @@ import {
 } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import React from 'react'
+import { useSidebar } from '@/contexts/SidebarContext'
 
-interface SidebarProps extends SidebarNavigationProps {
-  sidebarOpen: boolean
-  setSidebarOpen: (isOpen: boolean) => void
-}
+interface SidebarProps extends SidebarNavigationProps {}
 
-export const Sidebar: React.FC<SidebarProps> = ({
-  navigation,
-  sidebarOpen,
-  setSidebarOpen,
-  ...props
-}) => {
+export const Sidebar: React.FC<SidebarProps> = ({ navigation, ...props }) => {
+  const { sidebarOpen, setSidebarOpen } = useSidebar()
+
   return (
-    <div {...props}>
+    <aside {...props}>
       <Dialog
         open={sidebarOpen}
         onClose={setSidebarOpen}
@@ -77,6 +72,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <SidebarNavigation navigation={navigation} />
         </div>
       </div>
-    </div>
+    </aside>
   )
 }
