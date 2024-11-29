@@ -6,16 +6,16 @@ interface loginData {
   password: string
 }
 
-export const login = async (data: loginData, setUser: (user: User) => void) => {
+export const login = async (data: loginData) => {
   await getCsrfToken()
-  await api
-    .post(import.meta.env.VITE_API_URL.replace('/api', '') + '/login', data)
-    .then((response) => setUser(response.data))
+  return await api.post(
+    import.meta.env.VITE_API_URL.replace('/api', '') + '/login',
+    data,
+  )
 }
 
-export const logout = async (setUser: (user: null) => void) => {
-  await api.post('/logout')
-  setUser(null)
+export const logout = async () => {
+  return await api.post('/logout')
 }
 
 export const fetchUser = async (): Promise<{ data: User }> => {

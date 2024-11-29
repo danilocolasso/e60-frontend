@@ -11,11 +11,12 @@ export const useLogin = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
-      await login(credentials, setUser)
+      const response = await login(credentials)
+      setUser(response.data.user)
       navigate('/')
     } catch (error) {
       console.log(error)
-      // Handle login error
+      // TODO Handle login error
     }
   }
 
