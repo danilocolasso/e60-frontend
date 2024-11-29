@@ -1,6 +1,5 @@
 import { NavigationItem } from '@/types/NavigationItem'
 import {
-  ArrowLeftEndOnRectangleIcon,
   ArrowTrendingUpIcon,
   ArrowUpTrayIcon,
   BookOpenIcon,
@@ -34,7 +33,7 @@ export const navigation: NavigationItem[] = [
   { name: 'Clientes', href: '/clientes', icon: UserGroupIcon, current: false },
   {
     name: 'e60 Play',
-    href: '/e60-play',
+    href: '#',
     icon: PlayIcon,
     current: false,
     children: [
@@ -69,7 +68,7 @@ export const navigation: NavigationItem[] = [
   { name: 'Conteúdo', href: '/conteudo', icon: BookOpenIcon, current: false },
   {
     name: 'Workshops',
-    href: '/workshops',
+    href: '#',
     icon: BriefcaseIcon,
     current: false,
     children: [
@@ -83,7 +82,7 @@ export const navigation: NavigationItem[] = [
   },
   {
     name: 'Financeiro',
-    href: '/financeiro',
+    href: '#',
     icon: CreditCardIcon,
     current: false,
     children: [
@@ -102,7 +101,7 @@ export const navigation: NavigationItem[] = [
   },
   {
     name: 'Administração',
-    href: '/administracao',
+    href: '#',
     icon: CogIcon,
     current: false,
     children: [
@@ -127,7 +126,7 @@ export const navigation: NavigationItem[] = [
   },
   {
     name: 'Relatórios',
-    href: '/relatorios',
+    href: '#',
     icon: ChartBarIcon,
     current: false,
     children: [
@@ -162,5 +161,4 @@ export const navigation: NavigationItem[] = [
 
 export const userNavigation: NavigationItem[] = [
   { name: 'Editar perfil', href: '/perfil', icon: UserIcon },
-  { name: 'Logout', href: '/logout', icon: ArrowLeftEndOnRectangleIcon },
 ]

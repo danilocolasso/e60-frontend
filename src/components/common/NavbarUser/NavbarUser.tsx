@@ -1,14 +1,30 @@
+import { Link } from '@/components/ui/Link'
 import { Text } from '@/components/ui/Text'
 import { useAuth } from '@/contexts/AuthContext.tsx'
+import { userNavigation as navigation } from '@/data/navigationData.ts'
+import { logout } from '@/services/authService.ts'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { ArrowLeftEndOnRectangleIcon } from '@heroicons/react/24/outline'
 import React from 'react'
-import { userNavigation as navigation } from '@/data/navigationData.ts'
+import { useNavigate } from 'react-router-dom'
 
 interface NavbarUserProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const NavbarUser: React.FC<NavbarUserProps> = ({ ...props }) => {
-  const { user } = useAuth()
+  const { user, setUser } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    try {
+      await logout()
+      setUser(null)
+      navigate('/login')
+    } catch (error) {
+      // TODO handle error
+      console.log(error)
+    }
+  }
 
   return (
     <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
@@ -16,7 +32,7 @@ export const NavbarUser: React.FC<NavbarUserProps> = ({ ...props }) => {
         <Menu as="div" className="relative" {...props}>
           <MenuButton className="-m-1.5 flex items-center p-1.5">
             <img
-              alt=""
+              alt="User"
               src="user.png"
               className="size-8 rounded-full bg-gray-50"
             />
@@ -36,15 +52,29 @@ export const NavbarUser: React.FC<NavbarUserProps> = ({ ...props }) => {
           >
             {navigation.map((item) => (
               <MenuItem key={item.name}>
-                <a
+                <Link
                   href={item.href}
-                  className="flex gap-x-3 items-center px-3 py-1 text-sm/6 text-gray-900 data-[focus]:bg-gray-50 data-[focus]:outline-none dark:text-white dark:data-[focus]:bg-gray-800"
+                  className="flex cursor-pointer items-center gap-x-3 px-3 py-1 text-sm/6 text-gray-900 data-[focus]:bg-gray-50 data-[focus]:outline-none dark:text-white dark:data-[focus]:bg-gray-800"
                 >
-                  {item.icon && <item.icon aria-hidden="true" className="size-4 shrink-0" />}
+                  {item.icon && (
+                    <item.icon aria-hidden="true" className="size-4 shrink-0" />
+                  )}
                   {item.name}
-                </a>
+                </Link>
               </MenuItem>
             ))}
+            <MenuItem>
+              <button
+                onClick={handleLogout}
+                className="flex w-full cursor-pointer items-center gap-x-3 px-3 py-1 text-sm/6 text-gray-900 data-[focus]:bg-gray-50 data-[focus]:outline-none dark:text-white dark:data-[focus]:bg-gray-800"
+              >
+                <ArrowLeftEndOnRectangleIcon
+                  aria-hidden="true"
+                  className="size-4 shrink-0"
+                />
+                Logout
+              </button>
+            </MenuItem>
           </MenuItems>
         </Menu>
       </div>
