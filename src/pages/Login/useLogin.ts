@@ -1,28 +1,53 @@
 import { useAuth } from '@/contexts/AuthContext.tsx'
 import { login } from '@/services/authService.ts'
-import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { z } from 'zod'
+
+const loginSchema = z.object({
+  email: z.string().email({ message: 'Por favor, insira um email válido' }),
+  password: z
+    .string()
+    .min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
+  remember: z.boolean().optional(),
+})
+
+type loginFormData = z.infer<typeof loginSchema>
 
 export const useLogin = () => {
   const { setUser } = useAuth()
   const navigate = useNavigate()
-  const [credentials, setCredentials] = useState({ email: '', password: '' })
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<loginFormData>({
+    resolver: zodResolver(loginSchema),
+  })
+
+  const onSubmit = async (data: loginFormData) => {
     try {
-      const response = await login(credentials)
+      const response = await login(data)
       setUser(response.data.user)
       navigate('/')
-    } catch (error) {
+    } catch (error: any) {
       console.log(error)
-      // TODO Handle login error
+      toast.error(
+        error.response?.data?.message ||
+          'Ocorreu um error inesperado ao tentar realizar login. Por favor, tente novamente mais tarde.',
+      )
     }
   }
 
   return {
-    credentials,
-    setCredentials,
-    handleSubmit,
+    register,
+    control,
+    handleSubmit: handleSubmit(onSubmit),
+    errors,
   }
 }

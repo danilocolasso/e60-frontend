@@ -1,13 +1,16 @@
-import { Text } from '@/components/ui/Text'
-import { MainLayout } from '@/components/layouts/MainLayout.tsx'
+import { AuthProvider } from '@/contexts/AuthContext.tsx'
+import { useTheme } from '@/hooks/useTheme.ts'
+import { Routes } from '@/routes'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
+  const { isDarkMode } = useTheme()
+
   return (
-    <MainLayout>
-      <div className={'flex flex-1 flex-col gap-4 items-center justify-center'}>
-        <Text>Home page</Text>
-      </div>
-    </MainLayout>
+    <AuthProvider>
+      <ToastContainer theme={isDarkMode ? 'dark' : 'light'} />
+      <Routes />
+    </AuthProvider>
   )
 }
 

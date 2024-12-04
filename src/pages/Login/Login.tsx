@@ -1,84 +1,81 @@
+import { LoginLayout } from '@/components/layouts/LoginLayout.tsx'
 import { Button } from '@/components/ui/Button'
 import { Checkbox, CheckboxField } from '@/components/ui/Checkbox'
 import { Field, Fieldset, Label } from '@/components/ui/Fieldset'
 import { Input } from '@/components/ui/Input'
 import { useLogin } from '@/pages/Login/useLogin'
 import React from 'react'
+import { Controller } from 'react-hook-form'
 
 export const Login: React.FC = () => {
-  const { handleSubmit, credentials, setCredentials } = useLogin()
+  const { register, control, handleSubmit, errors } = useLogin()
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 dark:bg-gray-900">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <img
-          alt="Escape 60'"
-          src="logo.svg"
-          className="mx-auto h-12 w-auto dark:hidden"
-        />
-        <img
-          alt="Escape 60'"
-          src="logo-white.svg"
-          className="mx-auto hidden h-12 w-auto dark:flex"
-        />
-      </div>
-
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-[480px]">
-        <div className="sm:bg-white px-6 py-12 sm:shadow sm:rounded-lg sm:px-12 sm:dark:bg-slate-800">
-          <form onSubmit={handleSubmit} className={'space-y-6'}>
-            <Fieldset className={'space-y-6'}>
-              <Field>
-                <Label htmlFor={'email'}>Email</Label>
-                <Input
-                  id={'email'}
-                  name={'email'}
-                  type={'email'}
-                  required
-                  autoComplete={'email'}
-                  value={credentials.email}
-                  onChange={(e) =>
-                    setCredentials({ ...credentials, email: e.target.value })
-                  }
-                />
-              </Field>
-              <Field>
-                <Label htmlFor={'password'}>Senha</Label>
-                <Input
-                  id={'password'}
-                  name={'password'}
-                  type={'password'}
-                  required
-                  autoComplete={'current-password'}
-                  value={credentials.password}
-                  onChange={(e) =>
-                    setCredentials({ ...credentials, password: e.target.value })
-                  }
-                />
-              </Field>
-              <Field>
-                <div className={'flex items-center justify-between'}>
+    <LoginLayout>
+      <form onSubmit={handleSubmit} className={'space-y-6'}>
+        <Fieldset className={'space-y-6'}>
+          <Field>
+            <Label htmlFor={'email'}>Email</Label>
+            <Input
+              id={'email'}
+              type={'email'}
+              required
+              autoComplete={'email'}
+              {...register('email')}
+            />
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.email.message}
+              </p>
+            )}
+          </Field>
+          <Field>
+            <Label htmlFor={'password'}>Senha</Label>
+            <Input
+              id={'password'}
+              type={'password'}
+              required
+              autoComplete={'current-password'}
+              {...register('password')}
+            />
+            {errors.password && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.password.message}
+              </p>
+            )}
+          </Field>
+          <Field>
+            <div className={'flex items-center justify-between'}>
+              <Controller
+                name={'remember'}
+                control={control}
+                render={({ field }) => (
                   <CheckboxField>
-                    <Checkbox id={'remember-me'} name={'remember-me'} />
+                    <Checkbox
+                      id={'remember-me'}
+                      checked={field.value}
+                      onChange={field.onChange}
+                    />
                     <Label htmlFor={'remember-me'}>Lembrar-me</Label>
                   </CheckboxField>
+                )}
+              />
 
-                  <div className="text-sm/6">
-                    <a
-                      href="#"
-                      className="font-semibold text-indigo-600 hover:text-indigo-500"
-                    >
-                      Esqueci minha senha
-                    </a>
-                  </div>
-                </div>
-              </Field>
-            </Fieldset>
-            <Button className={'w-full'} type={'submit'} color={'blue'}>
-              Sign in
-            </Button>
-          </form>
-        </div>
-      </div>
-    </div>
+              <div className="text-sm/6">
+                <a
+                  href="#"
+                  className="font-semibold text-indigo-600 hover:text-indigo-500"
+                >
+                  Esqueci minha senha
+                </a>
+              </div>
+            </div>
+          </Field>
+        </Fieldset>
+        <Button className={'w-full'} type={'submit'} color={'blue'}>
+          Sign in
+        </Button>
+      </form>
+    </LoginLayout>
   )
 }
