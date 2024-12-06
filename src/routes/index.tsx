@@ -1,3 +1,4 @@
+import { PrivateRoutes } from '@/contexts/PrivateRoutes.tsx'
 import { privateRoutes } from '@/routes/privateRoutes.tsx'
 import { publicRoutes } from '@/routes/publicRoutes.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -12,7 +13,16 @@ const options = {
   },
 }
 
-const router = createBrowserRouter([...publicRoutes, ...privateRoutes], options)
+const router = createBrowserRouter(
+  [
+    ...publicRoutes,
+    {
+      element: <PrivateRoutes />, // The guard
+      children: privateRoutes, // Your private routes as children
+    },
+  ],
+  options,
+)
 
 export function Routes() {
   return (
