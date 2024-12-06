@@ -6,6 +6,7 @@ import { Table } from '@/components/ui/Table'
 import { PaginatedPayload } from '@/types/PaginatedPayload.ts'
 import { PaginatedResponse } from '@/types/PaginatedResponse.ts'
 import React, { ComponentType, SVGProps, useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export interface DataTableColumn<T> {
@@ -37,16 +38,19 @@ export const DataTable = <T,>({
   service,
   columns,
   actions,
-  sort: defautlSort,
+  sort: defaultSort,
   order: defaultOrder,
   pagination = true,
 }: DataTableProps<T>) => {
+  const [searchParams] = useSearchParams()
+  const page = Number(searchParams.get('page') || 1)
+
   const [data, setData] = useState<T[]>([])
   const [loading, setLoading] = useState(false)
   const [perPage, setPerPage] = useState(10)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(page)
   const [lastPage, setLastPage] = useState(1)
-  const [sort, setSort] = useState<keyof T | undefined>(defautlSort)
+  const [sort, setSort] = useState<keyof T | undefined>(defaultSort)
   const [order, setOrder] = useState<'asc' | 'desc' | undefined>(defaultOrder)
 
   const fetch = async () => {
@@ -75,12 +79,15 @@ export const DataTable = <T,>({
     const toggleOrder = sort === key && order === 'asc' ? 'desc' : 'asc'
     setSort(key)
     setOrder(toggleOrder)
-    fetch() // TODO debounce (and cancel previous request) (and check if it is necessary, because it is in the useEffect)
   }
 
   useEffect(() => {
     fetch()
   }, [currentPage, sort, order])
+
+  useEffect(() => {
+    setCurrentPage(page)
+  }, [page])
 
   if (loading) {
     return <DataTableLoading />

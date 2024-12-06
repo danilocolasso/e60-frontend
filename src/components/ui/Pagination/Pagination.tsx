@@ -10,6 +10,34 @@ export function Pagination({
   return <nav aria-label={ariaLabel} {...props} className={clsx(className, 'flex gap-x-2')} />
 }
 
+export function PaginationFirst({
+  href = null,
+  className,
+  children = 'First',
+}: React.PropsWithChildren<{ href?: string | null; className?: string }>) {
+  return (
+    <span className={clsx(className, 'grow-0')}>
+      <Button {...(href === null ? { disabled: true } : { href })} plain aria-label="First page">
+        {children}
+      </Button>
+    </span>
+  )
+}
+
+export function PaginationLast({
+  href = null,
+  className,
+  children = 'Last',
+}: React.PropsWithChildren<{ href?: string | null; className?: string }>) {
+  return (
+    <span className={clsx(className, 'grow-0')}>
+      <Button {...(href === null ? { disabled: true } : { href })} plain aria-label="Last page">
+        {children}
+      </Button>
+    </span>
+  )
+}
+
 export function PaginationPrevious({
   href = null,
   className,
