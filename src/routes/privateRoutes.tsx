@@ -9,5 +9,13 @@ export const privateRoutes: RouteObject[] = [
   {
     path: '/clientes',
     Component: lazy(() => import('@/pages/Customer')),
+  },
+  {
+    path: '/usuarios',
+    Component: lazy(() => import('@/pages/User/List')),
+  },
+  {
+    path: '/perfil',
+    Component: lazy(() => import('@/pages/User/Profile')),
   }
 ]

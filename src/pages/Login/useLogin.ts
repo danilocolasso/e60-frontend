@@ -1,5 +1,5 @@
 import { useAuth } from '@/contexts/AuthContext.tsx'
-import { login } from '@/services/authService.ts'
+import { login } from '@/services/auth.service.ts'
 import { useForm } from 'react-hook-form'
 
 import { zodResolver } from '@hookform/resolvers/zod'

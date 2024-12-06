@@ -4,6 +4,7 @@ import { User } from '@/types/User.ts'
 interface loginData {
   email: string
   password: string
+  remember?: boolean
 }
 
 export const login = async (data: loginData) => {
