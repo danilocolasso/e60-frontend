@@ -20,23 +20,33 @@ export const DataTablePagination = ({
   currentPage,
   lastPage,
 }: DataTablePaginationProps) => {
+  const createPageUrl = (pageNumber: number) => {
+    const searchParams = new URLSearchParams(location.search)
+    searchParams.set('page', pageNumber.toString())
+    return `${location.pathname}?${searchParams.toString()}`
+  }
+
   if (lastPage <= 6) {
     const pages = Array.from({ length: lastPage }, (_, i) => i + 1)
     return (
       <Pagination className="mt-6">
-        <PaginationPrevious href={`?page=${Math.max(1, currentPage - 1)}`} />
+        <PaginationPrevious
+          href={createPageUrl(Math.max(1, currentPage - 1))}
+        />
         <PaginationList>
           {pages.map((page) => (
             <PaginationPage
               key={page}
               current={page === currentPage}
-              href={`?page=${page}`}
+              href={createPageUrl(page)}
             >
               {page}
             </PaginationPage>
           ))}
         </PaginationList>
-        <PaginationNext href={`?page=${Math.min(lastPage, currentPage + 1)}`} />
+        <PaginationNext
+          href={createPageUrl(Math.min(lastPage, currentPage + 1))}
+        />
       </Pagination>
     )
   }
@@ -55,12 +65,12 @@ export const DataTablePagination = ({
   return (
     <Pagination className="mt-6">
       {currentPage > 1 ? (
-        <PaginationFirst href={`?page=1`}>Primeira</PaginationFirst>
+        <PaginationFirst href={createPageUrl(1)}>Primeira</PaginationFirst>
       ) : (
         <PaginationFirst>Primeira</PaginationFirst>
       )}
       {currentPage > 1 ? (
-        <PaginationPrevious href={`?page=${Math.max(1, currentPage - 1)}`}>
+        <PaginationPrevious href={createPageUrl(Math.max(1, currentPage - 1))}>
           Anterior
         </PaginationPrevious>
       ) : (
@@ -71,33 +81,35 @@ export const DataTablePagination = ({
           <PaginationPage
             key={page}
             current={page === currentPage}
-            href={`?page=${page}`}
+            href={createPageUrl(page)}
           >
             {page}
           </PaginationPage>
         ))}
 
-        <PaginationGap />
+        {currentPage < lastPage - 3 && <PaginationGap />}
 
         {rightPages.map((page) => (
           <PaginationPage
             key={page}
             current={page === currentPage}
-            href={`?page=${page}`}
+            href={createPageUrl(page)}
           >
             {page}
           </PaginationPage>
         ))}
       </PaginationList>
       {currentPage < lastPage ? (
-        <PaginationNext href={`?page=${Math.min(lastPage, currentPage + 1)}`}>
+        <PaginationNext
+          href={createPageUrl(Math.min(lastPage, currentPage + 1))}
+        >
           Próxima
         </PaginationNext>
       ) : (
         <PaginationNext>Próxima</PaginationNext>
       )}
       {currentPage < lastPage ? (
-        <PaginationLast href={`?page=${lastPage}`}>Última</PaginationLast>
+        <PaginationLast href={createPageUrl(lastPage)}>Última</PaginationLast>
       ) : (
         <PaginationLast>Última</PaginationLast>
       )}
