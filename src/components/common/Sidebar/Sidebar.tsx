@@ -1,71 +1,98 @@
-import { SidebarNavigation } from '@/components/common/SidebarNavigation'
-import { useSidebar } from '@/contexts/SidebarContext'
-import { navigation } from '@/data/navigationData.ts'
+import { SidebarUser } from '@/components/common/SidebarUser'
 import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  TransitionChild,
+  Sidebar as SidebarUi,
+  SidebarBody,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarItem,
+  SidebarLabel,
+  SidebarSection,
+  SidebarSpacer,
+} from '@/components/ui/Sidebar'
+import { navigation } from '@/data/navigationData.ts'
+import { NavigationItem } from '@/types/NavigationItem.ts'
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
 } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { ChevronRightIcon } from '@heroicons/react/16/solid'
 import React from 'react'
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Sidebar: React.FC<SidebarProps> = (props) => {
-  const { sidebarOpen, setSidebarOpen } = useSidebar()
+export const Sidebar = ({ children, ...props }: SidebarProps) => {
+  const data = navigation.map((item: NavigationItem) => ({
+    ...item,
+    current: item.href === location.pathname,
+    children: item.children?.map((child: NavigationItem) => ({
+      ...child,
+      current: child.href === location.pathname,
+    })),
+  }))
 
   return (
-    <aside {...props} className={'scrollbar'}>
-      <Dialog
-        open={sidebarOpen}
-        onClose={setSidebarOpen}
-        className="relative z-50 lg:hidden"
-      >
-        <DialogBackdrop
-          transition
-          className="fixed inset-0 bg-gray-900/80 transition-opacity duration-300 ease-linear data-[closed]:opacity-0"
+    <SidebarUi {...props}>
+      <SidebarHeader>
+        <img
+          src={'/logo.svg'}
+          className={'h-8 dark:hidden'}
+          alt={'Company Logo'}
         />
-
-        <div className="fixed inset-0 flex">
-          <DialogPanel
-            transition
-            className="relative mr-16 flex w-full max-w-xs flex-1 transform transition duration-300 ease-in-out data-[closed]:-translate-x-full"
-          >
-            <TransitionChild>
-              <div className="absolute left-full top-0 flex w-16 justify-center pt-5 duration-300 ease-in-out data-[closed]:opacity-0">
-                <button
-                  type="button"
-                  onClick={() => setSidebarOpen(false)}
-                  className="-m-2.5 p-2.5"
+        <img
+          src={'/logo-white.svg'}
+          className={'hidden h-8 dark:block'}
+          alt={'Company Logo'}
+        />
+      </SidebarHeader>
+      <SidebarBody>
+        <SidebarSection>
+          {data.map((item: NavigationItem) => (
+            <>
+              {item.children ? (
+                <Disclosure as="div" className={'group'}>
+                  <DisclosureButton
+                    className={'cursor-pointer'}
+                    as={SidebarItem}
+                  >
+                    {item.icon && <item.icon />}
+                    {item.name}
+                    <ChevronRightIcon
+                      aria-hidden="true"
+                      className="ml-auto size-5 shrink-0 group-data-[open]:rotate-90 group-data-[open]:text-white"
+                    />
+                  </DisclosureButton>
+                  <DisclosurePanel as="ul" className={'ml-2 border-l-2 pl-2'}>
+                    {item.children.map((child: NavigationItem) => (
+                      <SidebarItem
+                        key={child.name}
+                        href={child.href}
+                        current={child.current}
+                      >
+                        {child.icon && <child.icon />}
+                        <SidebarLabel>{child.name}</SidebarLabel>
+                      </SidebarItem>
+                    ))}
+                  </DisclosurePanel>
+                </Disclosure>
+              ) : (
+                <SidebarItem
+                  key={item.name}
+                  href={item.href}
+                  current={item.current}
                 >
-                  <span className="sr-only">Close sidebar</span>
-                  <XMarkIcon aria-hidden="true" className="size-6 text-white" />
-                </button>
-              </div>
-            </TransitionChild>
-            <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4 dark:bg-gray-900">
-              <div className="flex h-16 shrink-0 items-center">
-                <img
-                  alt="Escape 60'"
-                  src="/logo-white.svg"
-                  className="h-8 w-auto"
-                />
-              </div>
-              <SidebarNavigation navigation={navigation} />
-            </div>
-          </DialogPanel>
-        </div>
-      </Dialog>
-
-      <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4 dark:bg-gray-900">
-          <div className="flex h-16 shrink-0 items-center">
-            <img alt="Escape 60'" src="/logo-white.svg" className="h-8 w-auto" />
-          </div>
-          <SidebarNavigation navigation={navigation} />
-        </div>
-      </div>
-    </aside>
+                  {item.icon && <item.icon />}
+                  <SidebarLabel>{item.name}</SidebarLabel>
+                </SidebarItem>
+              )}
+            </>
+          ))}
+        </SidebarSection>
+        <SidebarSpacer />
+      </SidebarBody>
+      <SidebarFooter className="max-lg:hidden">
+        <SidebarUser />
+      </SidebarFooter>
+    </SidebarUi>
   )
 }

@@ -1,10 +1,10 @@
-import { DataTableBody } from '@/components/common/DataTable/DataTableBody.tsx'
-import { DataTableHead } from '@/components/common/DataTable/DataTableHead.tsx'
-import { DataTableLoading } from '@/components/common/DataTable/DataTableLoading.tsx'
-import { DataTablePagination } from '@/components/common/DataTable/DataTablePagination.tsx'
+import { DataTableBody } from '@/components/common/DataTable/DataTableBody'
+import { DataTableHead } from '@/components/common/DataTable/DataTableHead'
+import { DataTableLoading } from '@/components/common/DataTable/DataTableLoading'
+import { DataTablePagination } from '@/components/common/DataTable/DataTablePagination'
 import { Table } from '@/components/ui/Table'
-import { PaginatedPayload } from '@/types/PaginatedPayload.ts'
-import { PaginatedResponse } from '@/types/PaginatedResponse.ts'
+import { PaginatedPayload } from '@/types/PaginatedPayload'
+import { PaginatedResponse } from '@/types/PaginatedResponse'
 import React, { ComponentType, SVGProps, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
@@ -92,11 +92,7 @@ export const DataTable = <T,>({
 
   return (
     <>
-      <Table
-        striped
-        bleed
-        className="[--gutter:theme(spacing.6)] sm:[--gutter:theme(spacing.8)]"
-      >
+      <Table striped className="sm:[--gutter:theme(spacing.8)]">
         <DataTableHead<T>
           columns={columns}
           actions={actions}

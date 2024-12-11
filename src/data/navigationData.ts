@@ -12,7 +12,7 @@ import {
   ChatBubbleLeftIcon,
   ClipboardDocumentListIcon,
   ClockIcon,
-  CogIcon,
+  Cog6ToothIcon,
   CreditCardIcon,
   DocumentTextIcon,
   FlagIcon,
@@ -26,7 +26,7 @@ import {
   UserGroupIcon,
   UserIcon,
   UsersIcon,
-} from '@heroicons/react/24/outline'
+} from '@heroicons/react/16/solid'
 
 export const navigation: NavigationItem[] = [
   { name: 'Home', href: '/', icon: HomeIcon, current: true },
@@ -102,7 +102,7 @@ export const navigation: NavigationItem[] = [
   {
     name: 'Administração',
     href: '#',
-    icon: CogIcon,
+    icon: Cog6ToothIcon,
     current: false,
     children: [
       { name: 'Desafios', href: '/administracao/desafios', icon: FlagIcon },

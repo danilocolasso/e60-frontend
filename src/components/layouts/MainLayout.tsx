@@ -1,23 +1,26 @@
-import { Content } from '@/components/common/Content/Content.tsx'
-import { Navbar } from '@/components/common/Navbar'
 import { Sidebar } from '@/components/common/Sidebar'
-import { SidebarProvider } from '@/contexts/SidebarContext.tsx'
+import { SidebarUser } from '@/components/common/SidebarUser'
+import { Navbar, NavbarSection, NavbarSpacer } from '@/components/ui/Navbar'
+import { SidebarLayout } from '@/components/ui/SidebarLayout'
 import React from 'react'
 
-interface MainLayoutProps {
-  children: React.ReactNode
-}
+interface FooLayoutProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+export const MainLayout = ({ children, ...props }: FooLayoutProps) => {
   return (
-    <>
-      <SidebarProvider>
-        <Sidebar />
-        <div className="flex flex-1 flex-col lg:pl-72">
-          <Navbar />
-          <Content>{children}</Content>
-        </div>
-      </SidebarProvider>
-    </>
+    <SidebarLayout
+      {...props}
+      navbar={
+        <Navbar>
+          <NavbarSpacer />
+          <NavbarSection>
+            <SidebarUser />
+          </NavbarSection>
+        </Navbar>
+      }
+      sidebar={<Sidebar />}
+    >
+      {children}
+    </SidebarLayout>
   )
 }

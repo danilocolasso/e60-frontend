@@ -1,7 +1,17 @@
+import { MainLayout } from '@/components/layouts/MainLayout.tsx'
+import { User } from '@/types/User.ts'
+
+export const roles: Record<User['role'], string> = {
+  admin: 'ADMINISTRADOR',
+  user: 'USUÁRIO',
+  agency: 'AGÊNCIA',
+  reception: 'RECEPÇÃO',
+}
+
 export const UserProfile = () => {
   return (
-    <div>
-      <h1>Perfil</h1>
-    </div>
+    <MainLayout>
+      <h1>Doing...</h1>
+    </MainLayout>
   )
 }

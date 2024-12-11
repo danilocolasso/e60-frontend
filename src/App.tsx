@@ -1,5 +1,5 @@
-import { AuthProvider } from '@/contexts/AuthContext.tsx'
-import { useTheme } from '@/hooks/useTheme.ts'
+import { AuthProvider } from '@/contexts/AuthContext'
+import { useTheme } from '@/hooks/useTheme'
 import { Routes } from '@/routes'
 import { ToastContainer } from 'react-toastify'
 

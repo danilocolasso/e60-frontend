@@ -25,7 +25,11 @@ export const DataTableHead = <T,>({
         {columns.map((column) => (
           <TableHeader
             key={String(column.key)}
-            className={column.sortable ? 'hover:bg-gray-500/5 rounded-t-md' : ''}
+            className={
+              column.sortable
+                ? 'cursor-default rounded-t-md hover:bg-gray-500/5'
+                : ''
+            }
             onClick={() => column.sortable && onSort(column.key)}
           >
             {column.label}

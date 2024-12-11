@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/Button'
 import { Checkbox, CheckboxField } from '@/components/ui/Checkbox'
 import { Field, Fieldset, Label } from '@/components/ui/Fieldset'
 import { Input } from '@/components/ui/Input'
+import { Link } from '@/components/ui/Link'
 import { useLogin } from '@/pages/Login/useLogin'
 import React from 'react'
 import { Controller } from 'react-hook-form'
@@ -62,17 +63,12 @@ export const Login: React.FC = () => {
               />
 
               <div className="text-sm/6">
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                >
-                  Esqueci minha senha
-                </a>
+                <Link href="/esqueci-senha">Esqueci minha senha</Link>
               </div>
             </div>
           </Field>
         </Fieldset>
-        <Button className={'w-full'} type={'submit'} color={'blue'}>
+        <Button className={'w-full'} type={'submit'}>
           Sign in
         </Button>
       </form>

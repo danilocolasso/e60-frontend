@@ -16,7 +16,12 @@ export const Link = forwardRef(function Link(
 ) {
   return (
     <Headless.DataInteractive>
-      <RouterLink to={props.href} {...props} ref={ref} />
+      <RouterLink
+        to={props.href}
+        className={'dark:text-white'}
+        {...props}
+        ref={ref}
+      />
     </Headless.DataInteractive>
   )
 })
