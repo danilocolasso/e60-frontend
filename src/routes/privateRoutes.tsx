@@ -11,11 +11,15 @@ export const privateRoutes: RouteObject[] = [
     Component: lazy(() => import('@/pages/Customer')),
   },
   {
-    path: '/usuarios',
+    path: '/administracao/usuarios',
     Component: lazy(() => import('@/pages/User/List')),
+  },
+  {
+    path: '/administracao/usuarios/:id',
+    Component: lazy(() => import('@/pages/User/Show')),
   },
   {
     path: '/perfil',
     Component: lazy(() => import('@/pages/User/Profile')),
-  }
+  },
 ]

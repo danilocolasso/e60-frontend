@@ -160,5 +160,5 @@ export const navigation: NavigationItem[] = [
 ]
 
 export const userNavigation: NavigationItem[] = [
-  { name: 'Editar perfil', href: '/usuarios', icon: UserIcon },
+  { name: 'Editar perfil', href: '/perfil', icon: UserIcon },
 ]

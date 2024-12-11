@@ -33,7 +33,7 @@ export const NavbarUser: React.FC<NavbarUserProps> = ({ ...props }) => {
           <MenuButton className="-m-1.5 flex items-center p-1.5">
             <img
               alt="User"
-              src="user.png"
+              src="/user.png"
               className="size-8 rounded-full bg-gray-50"
             />
             <span className="hidden lg:flex lg:items-center">

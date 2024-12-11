@@ -10,12 +10,12 @@ export const LoginLayout = ({ children }: LoginLayoutProps) => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
           alt="Escape 60'"
-          src="logo.svg"
+          src="/logo.svg"
           className="mx-auto h-12 w-auto dark:hidden"
         />
         <img
           alt="Escape 60'"
-          src="logo-white.svg"
+          src="/logo-white.svg"
           className="mx-auto hidden h-12 w-auto dark:flex"
         />
       </div>

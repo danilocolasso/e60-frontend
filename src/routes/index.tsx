@@ -17,8 +17,8 @@ const router = createBrowserRouter(
   [
     ...publicRoutes,
     {
-      element: <PrivateRoutes />, // The guard
-      children: privateRoutes, // Your private routes as children
+      element: <PrivateRoutes />,
+      children: privateRoutes,
     },
   ],
   options,
