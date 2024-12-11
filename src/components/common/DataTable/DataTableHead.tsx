@@ -25,10 +25,13 @@ export const DataTableHead = <T,>({
         {columns.map((column) => (
           <TableHeader
             key={String(column.key)}
-            onClick={() => onSort(column.key)}
+            className={column.sortable ? 'hover:bg-gray-500/5 rounded-t-md' : ''}
+            onClick={() => column.sortable && onSort(column.key)}
           >
             {column.label}
-            {sort === column.key && <span>{order === 'asc' ? '↑' : '↓'}</span>}
+            {sort === column.key && (
+              <span className={'ml-1'}>{order === 'asc' ? '↑' : '↓'}</span>
+            )}
           </TableHeader>
         ))}
         {actions && (

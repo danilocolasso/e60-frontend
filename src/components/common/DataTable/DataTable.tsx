@@ -6,7 +6,6 @@ import { Table } from '@/components/ui/Table'
 import { PaginatedPayload } from '@/types/PaginatedPayload.ts'
 import { PaginatedResponse } from '@/types/PaginatedResponse.ts'
 import React, { ComponentType, SVGProps, useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export interface DataTableColumn<T> {
@@ -42,13 +41,10 @@ export const DataTable = <T,>({
   order: defaultOrder,
   pagination = true,
 }: DataTableProps<T>) => {
-  const [searchParams] = useSearchParams()
-  const page = Number(searchParams.get('page') || 1)
-
   const [data, setData] = useState<T[]>([])
   const [loading, setLoading] = useState(false)
   const [perPage, setPerPage] = useState(10)
-  const [currentPage, setCurrentPage] = useState(page)
+  const [currentPage, setCurrentPage] = useState(1)
   const [lastPage, setLastPage] = useState(1)
   const [sort, setSort] = useState<keyof T | undefined>(defaultSort)
   const [order, setOrder] = useState<'asc' | 'desc' | undefined>(defaultOrder)
@@ -60,6 +56,7 @@ export const DataTable = <T,>({
         current_page: currentPage,
         per_page: perPage,
         sort: sort ? String(sort) : undefined,
+        order,
       })
 
       setData(response.data)
@@ -81,13 +78,13 @@ export const DataTable = <T,>({
     setOrder(toggleOrder)
   }
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+  }
+
   useEffect(() => {
     fetch()
   }, [currentPage, sort, order])
-
-  useEffect(() => {
-    setCurrentPage(page)
-  }, [page])
 
   if (loading) {
     return <DataTableLoading />
@@ -110,7 +107,11 @@ export const DataTable = <T,>({
         <DataTableBody data={data} columns={columns} actions={actions} />
       </Table>
       {pagination && (
-        <DataTablePagination currentPage={currentPage} lastPage={lastPage} />
+        <DataTablePagination
+          currentPage={currentPage}
+          lastPage={lastPage}
+          onPageChange={handlePageChange}
+        />
       )}
     </>
   )

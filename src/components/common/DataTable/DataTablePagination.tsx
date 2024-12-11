@@ -14,38 +14,34 @@ import {
 interface DataTablePaginationProps {
   currentPage: number
   lastPage: number
+  onPageChange: (page: number) => void
 }
 
 export const DataTablePagination = ({
   currentPage,
   lastPage,
+  onPageChange,
 }: DataTablePaginationProps) => {
-  const createPageUrl = (pageNumber: number) => {
-    const searchParams = new URLSearchParams(location.search)
-    searchParams.set('page', pageNumber.toString())
-    return `${location.pathname}?${searchParams.toString()}`
-  }
-
   if (lastPage <= 6) {
     const pages = Array.from({ length: lastPage }, (_, i) => i + 1)
     return (
       <Pagination className="mt-6">
         <PaginationPrevious
-          href={createPageUrl(Math.max(1, currentPage - 1))}
+          onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         />
         <PaginationList>
           {pages.map((page) => (
             <PaginationPage
               key={page}
               current={page === currentPage}
-              href={createPageUrl(page)}
+              onClick={() => onPageChange(page)}
             >
               {page}
             </PaginationPage>
           ))}
         </PaginationList>
         <PaginationNext
-          href={createPageUrl(Math.min(lastPage, currentPage + 1))}
+          onClick={() => onPageChange(Math.min(lastPage, currentPage + 1))}
         />
       </Pagination>
     )
@@ -64,24 +60,29 @@ export const DataTablePagination = ({
 
   return (
     <Pagination className="mt-6">
-      {currentPage > 1 ? (
-        <PaginationFirst href={createPageUrl(1)}>Primeira</PaginationFirst>
-      ) : (
-        <PaginationFirst>Primeira</PaginationFirst>
-      )}
-      {currentPage > 1 ? (
-        <PaginationPrevious href={createPageUrl(Math.max(1, currentPage - 1))}>
-          Anterior
-        </PaginationPrevious>
-      ) : (
-        <PaginationPrevious>Anterior</PaginationPrevious>
-      )}
+      <PaginationFirst
+        className={'hidden sm:block'}
+        onClick={currentPage > 1 ? () => onPageChange(1) : undefined}
+      >
+        Primeira
+      </PaginationFirst>
+
+      <PaginationPrevious
+        onClick={
+          currentPage > 1
+            ? () => onPageChange(Math.max(1, currentPage - 1))
+            : undefined
+        }
+      >
+        Anterior
+      </PaginationPrevious>
+
       <PaginationList>
         {leftPages.map((page) => (
           <PaginationPage
             key={page}
             current={page === currentPage}
-            href={createPageUrl(page)}
+            onClick={() => onPageChange(page)}
           >
             {page}
           </PaginationPage>
@@ -93,26 +94,31 @@ export const DataTablePagination = ({
           <PaginationPage
             key={page}
             current={page === currentPage}
-            href={createPageUrl(page)}
+            onClick={() => onPageChange(page)}
           >
             {page}
           </PaginationPage>
         ))}
       </PaginationList>
-      {currentPage < lastPage ? (
-        <PaginationNext
-          href={createPageUrl(Math.min(lastPage, currentPage + 1))}
-        >
-          Próxima
-        </PaginationNext>
-      ) : (
-        <PaginationNext>Próxima</PaginationNext>
-      )}
-      {currentPage < lastPage ? (
-        <PaginationLast href={createPageUrl(lastPage)}>Última</PaginationLast>
-      ) : (
-        <PaginationLast>Última</PaginationLast>
-      )}
+
+      <PaginationNext
+        onClick={
+          currentPage < lastPage
+            ? () => onPageChange(Math.min(lastPage, currentPage + 1))
+            : undefined
+        }
+      >
+        Próxima
+      </PaginationNext>
+
+      <PaginationLast
+        className={'hidden sm:block'}
+        onClick={
+          currentPage < lastPage ? () => onPageChange(lastPage) : undefined
+        }
+      >
+        Última
+      </PaginationLast>
     </Pagination>
   )
 }
