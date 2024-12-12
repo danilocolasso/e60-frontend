@@ -7,3 +7,10 @@ export interface User {
   updated_at?: string;
   email_verified_at?: string;
 }
+
+export const roles: Record<User['role'], string> = {
+  admin: 'ADMINISTRADOR',
+  user: 'USUÁRIO',
+  agency: 'AGÊNCIA',
+  reception: 'RECEPÇÃO',
+}

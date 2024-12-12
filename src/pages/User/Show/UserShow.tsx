@@ -6,9 +6,8 @@ import {
   DescriptionList,
   DescriptionTerm,
 } from '@/components/ui/DescriptionList'
-import { roles } from '@/pages/User/Profile'
 import { userShowService } from '@/services/user/user-show.service.ts'
-import { User } from '@/types/User.ts'
+import { roles, User } from '@/types/User.ts'
 import { dateTimeFormat } from '@/util/dateTimeFormat.ts'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'

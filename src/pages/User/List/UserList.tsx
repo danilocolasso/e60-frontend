@@ -5,9 +5,8 @@ import {
 } from '@/components/common/DataTable'
 import { MainLayout } from '@/components/layouts/MainLayout.tsx'
 import { Badge } from '@/components/ui/Badge'
-import { roles } from '@/pages/User/Profile'
 import { userListService } from '@/services/user/user-list.service.ts'
-import { User } from '@/types/User.ts'
+import { roles, User } from '@/types/User.ts'
 import { useNavigate } from 'react-router-dom'
 import { Title } from '@/components/common/Title'
 
