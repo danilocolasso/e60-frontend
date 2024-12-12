@@ -69,7 +69,7 @@ export const SidebarUser = ({ children, ...props }: SidebarUserProps) => {
       </DropdownButton>
       <DropdownMenu className="min-w-64" anchor="top start">
         {userNavigation.map((item: NavigationItem) => (
-          <DropdownItem href={item.href}>
+          <DropdownItem key={item.name} href={item.href}>
             {item.icon && <item.icon />}
             <DropdownLabel>{item.name}</DropdownLabel>
           </DropdownItem>

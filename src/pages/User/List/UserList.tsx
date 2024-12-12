@@ -9,6 +9,7 @@ import { roles } from '@/pages/User/Profile'
 import { userListService } from '@/services/user/user-list.service.ts'
 import { User } from '@/types/User.ts'
 import { useNavigate } from 'react-router-dom'
+import { Title } from '@/components/common/Title'
 
 const columns: DataTableColumn<User>[] = [
   {
@@ -55,18 +56,7 @@ export const UserList = () => {
 
   return (
     <MainLayout>
-      <h1
-        className={
-          'text-2xl/8 font-semibold text-zinc-950 sm:text-xl/8 dark:text-white'
-        }
-      >
-        Usuários
-      </h1>
-      <hr
-        className={
-          'my-6 w-full border-t border-zinc-950/10 dark:border-white/10'
-        }
-      />
+      <Title>Usuários</Title>
       <DataTable
         service={userListService}
         columns={columns}

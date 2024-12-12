@@ -48,7 +48,7 @@ export const Sidebar = ({ children, ...props }: SidebarProps) => {
       <SidebarBody>
         <SidebarSection>
           {data.map((item: NavigationItem) => (
-            <>
+            <div key={item.name}>
               {item.children ? (
                 <Disclosure as="div" className={'group'}>
                   <DisclosureButton
@@ -85,7 +85,7 @@ export const Sidebar = ({ children, ...props }: SidebarProps) => {
                   <SidebarLabel>{item.name}</SidebarLabel>
                 </SidebarItem>
               )}
-            </>
+            </div>
           ))}
         </SidebarSection>
         <SidebarSpacer />
