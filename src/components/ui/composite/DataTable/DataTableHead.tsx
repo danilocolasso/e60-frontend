@@ -1,8 +1,12 @@
 import {
   DataTableAction,
   DataTableColumn,
-} from '@/components/common/DataTable/DataTable'
-import { TableHead, TableHeader, TableRow } from '@/components/ui/Table'
+} from '@/components/ui/composite/DataTable/DataTable.tsx'
+import {
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/primitives/Table'
 
 interface DataTableHeadProps<T> {
   columns: DataTableColumn<T>[]

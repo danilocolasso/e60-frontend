@@ -1,5 +1,5 @@
 import { MainLayout } from '@/components/layouts/MainLayout.tsx'
-import { Text } from '@/components/ui/Text'
+import { Text } from '@/components/ui/primitives/Text'
 import React from 'react'
 
 export const Customer: React.FC = () => {

@@ -1,4 +1,4 @@
-import { Text } from '@/components/ui/Text'
+import { Text } from '@/components/ui/primitives/Text'
 import React from 'react'
 
 interface DataTableLoadingProps extends React.HTMLAttributes<HTMLDivElement> {}

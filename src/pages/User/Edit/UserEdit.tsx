@@ -1,6 +1,6 @@
 import { MainLayout } from '@/components/layouts/MainLayout'
-import { Button } from '@/components/ui/Button'
-import { Title } from '@/components/ui/Title'
+import { Button } from '@/components/ui/primitives/Button'
+import { Title } from '@/components/ui/primitives/Title'
 import { useNavigate } from 'react-router-dom'
 
 export const UserEdit = () => {

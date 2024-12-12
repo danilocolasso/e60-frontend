@@ -1,9 +1,14 @@
 import { LoginLayout } from '@/components/layouts/LoginLayout.tsx'
-import { Button } from '@/components/ui/Button'
-import { Checkbox, CheckboxField } from '@/components/ui/Checkbox'
-import { Field, Fieldset, Label } from '@/components/ui/Fieldset'
-import { Input } from '@/components/ui/Input'
-import { Link } from '@/components/ui/Link'
+import { Button } from '@/components/ui/primitives/Button'
+import { Checkbox, CheckboxField } from '@/components/ui/primitives/Checkbox'
+import {
+  ErrorMessage,
+  Field,
+  FieldGroup,
+  Label,
+} from '@/components/ui/primitives/Fieldset'
+import { Input } from '@/components/ui/primitives/Input'
+import { Link } from '@/components/ui/primitives/Link'
 import { useLogin } from '@/pages/Login/useLogin'
 import React from 'react'
 import { Controller } from 'react-hook-form'
@@ -13,8 +18,8 @@ export const Login: React.FC = () => {
 
   return (
     <LoginLayout>
-      <form onSubmit={handleSubmit} className={'space-y-6'}>
-        <Fieldset className={'space-y-6'}>
+      <form onSubmit={handleSubmit}>
+        <FieldGroup>
           <Field>
             <Label htmlFor={'email'}>Email</Label>
             <Input
@@ -25,9 +30,7 @@ export const Login: React.FC = () => {
               {...register('email')}
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-500">
-                {errors.email.message}
-              </p>
+              <ErrorMessage>{errors.email.message}</ErrorMessage>
             )}
           </Field>
           <Field>
@@ -40,9 +43,7 @@ export const Login: React.FC = () => {
               {...register('password')}
             />
             {errors.password && (
-              <p className="mt-1 text-sm text-red-500">
-                {errors.password.message}
-              </p>
+              <ErrorMessage>{errors.password.message}</ErrorMessage>
             )}
           </Field>
           <Field>
@@ -67,8 +68,8 @@ export const Login: React.FC = () => {
               </div>
             </div>
           </Field>
-        </Fieldset>
-        <Button className={'w-full'} type={'submit'}>
+        </FieldGroup>
+        <Button className={'mt-8 w-full'} type={'submit'}>
           Sign in
         </Button>
       </form>

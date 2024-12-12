@@ -1,5 +1,5 @@
-import { Divider } from '@/components/ui/Divider'
-import { Text } from '@/components/ui/Text'
+import { Divider } from '@/components/ui/primitives/Divider'
+import { Text } from '@/components/ui/primitives/Text'
 import clsx from 'clsx'
 import React from 'react'
 
@@ -20,7 +20,7 @@ export const Title: React.FC<TitleProps> = ({
       <h1
         className={clsx(
           className,
-          'flex items-center gap-2 text-2xl/8 font-semibold text-zinc-950 sm:text-xl/8 dark:text-white',
+          'h-8 flex items-center gap-2 text-2xl/8 font-semibold text-zinc-950 sm:text-xl/8 dark:text-white',
         )}
         {...props}
       >

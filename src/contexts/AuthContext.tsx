@@ -1,5 +1,5 @@
 import { fetchUser } from '@/services/auth.service.ts'
-import { User } from '@/types/User.ts'
+import { User } from '@/types/User'
 import React, { useContext, useEffect, useState } from 'react'
 
 interface AuthContextProps {

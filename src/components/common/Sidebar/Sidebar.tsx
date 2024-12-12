@@ -1,6 +1,6 @@
 import { SidebarUser } from '@/components/common/SidebarUser'
 import {
-  Sidebar as SidebarUi,
+  Sidebar as SidebarPrimitive,
   SidebarBody,
   SidebarFooter,
   SidebarHeader,
@@ -8,7 +8,7 @@ import {
   SidebarLabel,
   SidebarSection,
   SidebarSpacer,
-} from '@/components/ui/Sidebar'
+} from '@/components/ui/primitives/Sidebar'
 import { navigation } from '@/data/navigationData.ts'
 import { NavigationItem } from '@/types/NavigationItem.ts'
 import {
@@ -32,7 +32,7 @@ export const Sidebar = ({ children, ...props }: SidebarProps) => {
   }))
 
   return (
-    <SidebarUi {...props}>
+    <SidebarPrimitive {...props}>
       <SidebarHeader>
         <img
           src={'/logo.svg'}
@@ -98,6 +98,6 @@ export const Sidebar = ({ children, ...props }: SidebarProps) => {
       <SidebarFooter className="max-lg:hidden">
         <SidebarUser />
       </SidebarFooter>
-    </SidebarUi>
+    </SidebarPrimitive>
   )
 }

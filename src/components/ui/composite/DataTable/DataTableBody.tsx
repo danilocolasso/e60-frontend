@@ -1,6 +1,6 @@
-import { DataTableAction, DataTableColumn } from '@/components/common/DataTable'
-import { DataTableActions } from '@/components/common/DataTable/DataTableActions'
-import { TableBody, TableCell, TableRow } from '@/components/ui/Table'
+import { DataTableAction, DataTableColumn } from '@/components/ui/composite/DataTable/index.ts'
+import { DataTableActions } from '@/components/ui/composite/DataTable/DataTableActions.tsx'
+import { TableBody, TableCell, TableRow } from '@/components/ui/primitives/Table'
 
 interface DataTableBodyProps<T> {
   data: T[]

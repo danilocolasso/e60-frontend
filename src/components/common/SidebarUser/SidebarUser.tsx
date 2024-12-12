@@ -1,4 +1,4 @@
-import { Avatar } from '@/components/ui/Avatar'
+import { Avatar } from '@/components/ui/primitives/Avatar'
 import {
   Dropdown,
   DropdownButton,
@@ -6,8 +6,8 @@ import {
   DropdownItem,
   DropdownLabel,
   DropdownMenu,
-} from '@/components/ui/Dropdown'
-import { SidebarItem } from '@/components/ui/Sidebar'
+} from '@/components/ui/primitives/Dropdown'
+import { SidebarItem } from '@/components/ui/primitives/Sidebar'
 import { useAuth } from '@/contexts/AuthContext'
 import { userNavigation } from '@/data/navigationData'
 import { logout } from '@/services/auth.service'

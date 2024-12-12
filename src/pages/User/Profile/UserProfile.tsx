@@ -1,5 +1,5 @@
 import { MainLayout } from '@/components/layouts/MainLayout.tsx'
-import { User } from '@/types/User.ts'
+import { User } from '@/types/User'
 
 export const UserProfile = () => {
   return (

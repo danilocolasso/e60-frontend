@@ -1,14 +1,14 @@
 import { MainLayout } from '@/components/layouts/MainLayout.tsx'
-import { Badge } from '@/components/ui/Badge'
-import { Button } from '@/components/ui/Button'
+import { Badge } from '@/components/ui/primitives/Badge'
+import { Button } from '@/components/ui/primitives/Button'
 import {
   DescriptionDetails,
   DescriptionList,
   DescriptionTerm,
-} from '@/components/ui/DescriptionList'
-import { Title } from '@/components/ui/Title'
+} from '@/components/ui/primitives/DescriptionList'
+import { Title } from '@/components/ui/primitives/Title'
 import { userShowService } from '@/services/user/user-show.service.ts'
-import { roles, User } from '@/types/User.ts'
+import { roles, User } from '@/types/User'
 import { dateTimeFormat } from '@/util/dateTimeFormat.ts'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'

@@ -117,11 +117,16 @@ const colors = {
 
 type Color = keyof typeof colors
 
+export interface RadioProps extends Omit<Headless.RadioProps, 'as' | 'className' | 'children'> {
+  color?: Color
+  className?: string
+}
+
 export function Radio({
   color = 'dark/zinc',
   className,
   ...props
-}: { color?: Color; className?: string } & Omit<Headless.RadioProps, 'as' | 'className' | 'children'>) {
+}: RadioProps) {
   return (
     <Headless.Radio data-slot="control" {...props} className={clsx(className, 'group inline-flex focus:outline-none')}>
       <span className={clsx([base, colors[color]])}>

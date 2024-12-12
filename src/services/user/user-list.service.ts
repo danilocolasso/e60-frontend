@@ -1,7 +1,7 @@
 import api from '@/services/api.ts'
 import { PaginatedPayload } from '@/types/PaginatedPayload.ts'
 import { PaginatedResponse } from '@/types/PaginatedResponse.ts'
-import { User } from '@/types/User.ts'
+import { User } from '@/types/User'
 
 export interface UserListPayload extends PaginatedPayload {}
 

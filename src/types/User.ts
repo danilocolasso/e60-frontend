@@ -9,6 +9,7 @@ export interface User {
 }
 
 export const roles: Record<User['role'], string> = {
+  master: 'MASTER',
   admin: 'ADMINISTRADOR',
   user: 'USUÁRIO',
   agency: 'AGÊNCIA',

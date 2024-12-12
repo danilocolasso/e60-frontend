@@ -1,11 +1,11 @@
-import { DataTableAction } from '@/components/common/DataTable/DataTable'
+import { DataTableAction } from '@/components/ui/composite/DataTable/DataTable.tsx'
 import {
   Dropdown,
   DropdownButton,
   DropdownItem,
   DropdownMenu,
-} from '@/components/ui/Dropdown'
-import { TableCell } from '@/components/ui/Table'
+} from '@/components/ui/primitives/Dropdown'
+import { TableCell } from '@/components/ui/primitives/Table'
 import { EllipsisHorizontalIcon } from '@heroicons/react/16/solid'
 
 interface DataTableActionsProps<T> {

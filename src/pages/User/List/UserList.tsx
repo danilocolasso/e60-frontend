@@ -2,14 +2,14 @@ import {
   DataTable,
   DataTableAction,
   DataTableColumn,
-} from '@/components/common/DataTable'
+} from '@/components/ui/composite/DataTable'
 import { MainLayout } from '@/components/layouts/MainLayout.tsx'
-import { Badge } from '@/components/ui/Badge'
-import { Button } from '@/components/ui/Button'
-import { Divider } from '@/components/ui/Divider'
-import { Title } from '@/components/ui/Title'
+import { Badge } from '@/components/ui/primitives/Badge'
+import { Button } from '@/components/ui/primitives/Button'
+import { Divider } from '@/components/ui/primitives/Divider'
+import { Title } from '@/components/ui/primitives/Title'
 import { userListService } from '@/services/user/user-list.service.ts'
-import { roles, User } from '@/types/User.ts'
+import { roles, User } from '@/types/User'
 import {
   MagnifyingGlassIcon,
   PencilSquareIcon,

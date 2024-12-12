@@ -1,7 +1,7 @@
 import { Sidebar } from '@/components/common/Sidebar'
 import { SidebarUser } from '@/components/common/SidebarUser'
-import { Navbar, NavbarSection, NavbarSpacer } from '@/components/ui/Navbar'
-import { SidebarLayout } from '@/components/ui/SidebarLayout'
+import { Navbar, NavbarSection, NavbarSpacer } from '@/components/ui/primitives/Navbar'
+import { SidebarLayout } from '@/components/ui/primitives/SidebarLayout'
 import React from 'react'
 
 interface MainLayoutProps extends React.HTMLAttributes<HTMLDivElement> {}

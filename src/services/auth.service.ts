@@ -1,5 +1,5 @@
 import api, { getCsrfToken } from '@/services/api.ts'
-import { User } from '@/types/User.ts'
+import { User } from '@/types/User'
 
 interface loginData {
   email: string

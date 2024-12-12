@@ -5,11 +5,11 @@ import {
   PaginationNext,
   PaginationPage,
   PaginationPrevious,
-} from '@/components/ui/Pagination'
+} from '@/components/ui/primitives/Pagination'
 import {
   PaginationFirst,
   PaginationLast,
-} from '@/components/ui/Pagination/Pagination'
+} from '@/components/ui/primitives/Pagination/Pagination.tsx'
 
 interface DataTablePaginationProps {
   currentPage: number
