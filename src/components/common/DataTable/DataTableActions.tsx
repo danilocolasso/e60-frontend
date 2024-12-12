@@ -18,7 +18,7 @@ export const DataTableActions = <T,>({
   item,
 }: DataTableActionsProps<T>) => (
   <TableCell>
-    <div className="-mx-3 -my-1.5 sm:-mx-2.5">
+    <div className="-my-1.5">
       <Dropdown>
         <DropdownButton plain aria-label="More options">
           <EllipsisHorizontalIcon />
