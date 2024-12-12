@@ -1,3 +1,4 @@
+import { Title } from '@/components/common/Title'
 import { MainLayout } from '@/components/layouts/MainLayout.tsx'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
@@ -37,6 +38,7 @@ export const UserShow = () => {
 
   return (
     <MainLayout>
+      <Title>Usuários</Title>
       <div className={'flex h-full flex-col justify-between'}>
         <DescriptionList>
           <DescriptionTerm>Nome</DescriptionTerm>

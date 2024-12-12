@@ -20,7 +20,7 @@ export const MainLayout = ({ children, ...props }: FooLayoutProps) => {
       }
       sidebar={<Sidebar />}
     >
-      {children}
+      <div className={'flex flex-1 flex-col'}>{children}</div>
     </SidebarLayout>
   )
 }
