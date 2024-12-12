@@ -62,7 +62,12 @@ export const Sidebar = ({ children, ...props }: SidebarProps) => {
                       className="ml-auto size-5 shrink-0 group-data-[open]:rotate-90 group-data-[open]:text-white"
                     />
                   </DisclosureButton>
-                  <DisclosurePanel as="ul" className={'ml-2 border-l-2 pl-2'}>
+                  <DisclosurePanel
+                    as="ul"
+                    className={
+                      'ml-2 border-l-2 border-black/10 pl-2 dark:border-white/10'
+                    }
+                  >
                     {item.children.map((child: NavigationItem) => (
                       <SidebarItem
                         key={child.name}
