@@ -5,10 +5,18 @@ import {
 } from '@/components/common/DataTable'
 import { MainLayout } from '@/components/layouts/MainLayout.tsx'
 import { Badge } from '@/components/ui/Badge'
+import { Button } from '@/components/ui/Button'
+import { Divider } from '@/components/ui/Divider'
+import { Title } from '@/components/ui/Title'
 import { userListService } from '@/services/user/user-list.service.ts'
 import { roles, User } from '@/types/User.ts'
+import {
+  MagnifyingGlassIcon,
+  PencilSquareIcon,
+  PlusIcon,
+  TrashIcon,
+} from '@heroicons/react/16/solid'
 import { useNavigate } from 'react-router-dom'
-import { Title } from '@/components/common/Title'
 
 const columns: DataTableColumn<User>[] = [
   {
@@ -35,18 +43,21 @@ export const UserList = () => {
   const actions: DataTableAction<User>[] = [
     {
       label: 'Visualizar',
+      icon: MagnifyingGlassIcon,
       onClick: (item: User) => {
-        navigate(`/administracao/usuarios/${item.id}`)
+        navigate(`/administracao/usuarios/visualizar/${item.id}`)
       },
     },
     {
       label: 'Editar',
+      icon: PencilSquareIcon,
       onClick: (item: User) => {
-        console.log('Edit', item)
+        navigate(`/administracao/usuarios/editar/${item.id}`)
       },
     },
     {
       label: 'Excluir',
+      icon: TrashIcon,
       onClick: (item: User) => {
         console.log('Delete', item)
       },
@@ -55,7 +66,16 @@ export const UserList = () => {
 
   return (
     <MainLayout>
-      <Title>Usuários</Title>
+      <div className={'flex justify-between'}>
+        <Title divider={false} subtitle={'Listar'}>
+          Usuários
+        </Title>
+        <Button href={'criar'}>
+          Criar
+          <PlusIcon />
+        </Button>
+      </div>
+      <Divider />
       <DataTable
         service={userListService}
         columns={columns}

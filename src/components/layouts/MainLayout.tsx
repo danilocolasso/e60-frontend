@@ -4,9 +4,9 @@ import { Navbar, NavbarSection, NavbarSpacer } from '@/components/ui/Navbar'
 import { SidebarLayout } from '@/components/ui/SidebarLayout'
 import React from 'react'
 
-interface FooLayoutProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface MainLayoutProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const MainLayout = ({ children, ...props }: FooLayoutProps) => {
+export const MainLayout = ({ children, ...props }: MainLayoutProps) => {
   return (
     <SidebarLayout
       {...props}
@@ -20,7 +20,7 @@ export const MainLayout = ({ children, ...props }: FooLayoutProps) => {
       }
       sidebar={<Sidebar />}
     >
-      <div className={'flex flex-1 flex-col'}>{children}</div>
+      <div className={'flex flex-1 flex-col gap-4'}>{children}</div>
     </SidebarLayout>
   )
 }

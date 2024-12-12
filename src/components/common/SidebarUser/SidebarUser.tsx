@@ -8,10 +8,10 @@ import {
   DropdownMenu,
 } from '@/components/ui/Dropdown'
 import { SidebarItem } from '@/components/ui/Sidebar'
-import { useAuth } from '@/contexts/AuthContext.tsx'
-import { userNavigation } from '@/data/navigationData.ts'
-import { logout } from '@/services/auth.service.ts'
-import { NavigationItem } from '@/types/NavigationItem.ts'
+import { useAuth } from '@/contexts/AuthContext'
+import { userNavigation } from '@/data/navigationData'
+import { logout } from '@/services/auth.service'
+import { NavigationItem } from '@/types/NavigationItem'
 import {
   ArrowRightStartOnRectangleIcon,
   ChevronUpIcon,

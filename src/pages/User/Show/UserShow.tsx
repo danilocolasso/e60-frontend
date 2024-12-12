@@ -1,4 +1,3 @@
-import { Title } from '@/components/common/Title'
 import { MainLayout } from '@/components/layouts/MainLayout.tsx'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
@@ -7,6 +6,7 @@ import {
   DescriptionList,
   DescriptionTerm,
 } from '@/components/ui/DescriptionList'
+import { Title } from '@/components/ui/Title'
 import { userShowService } from '@/services/user/user-show.service.ts'
 import { roles, User } from '@/types/User.ts'
 import { dateTimeFormat } from '@/util/dateTimeFormat.ts'
@@ -38,8 +38,8 @@ export const UserShow = () => {
 
   return (
     <MainLayout>
-      <Title>Usuários</Title>
-      <div className={'flex h-full flex-col justify-between'}>
+      <Title subtitle={'Visualizar'}>Usuários</Title>
+      <div className={'flex flex-1 flex-col justify-between'}>
         <DescriptionList>
           <DescriptionTerm>Nome</DescriptionTerm>
           <DescriptionDetails>{user?.name}</DescriptionDetails>

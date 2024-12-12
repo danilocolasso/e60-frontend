@@ -1,5 +1,5 @@
 import { DataTableAction, DataTableColumn } from '@/components/common/DataTable'
-import { DataTableActions } from '@/components/common/DataTable/DataTableActions.tsx'
+import { DataTableActions } from '@/components/common/DataTable/DataTableActions'
 import { TableBody, TableCell, TableRow } from '@/components/ui/Table'
 
 interface DataTableBodyProps<T> {

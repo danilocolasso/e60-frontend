@@ -9,7 +9,7 @@ import {
 import {
   PaginationFirst,
   PaginationLast,
-} from '@/components/ui/Pagination/Pagination.tsx'
+} from '@/components/ui/Pagination/Pagination'
 
 interface DataTablePaginationProps {
   currentPage: number

@@ -1,1 +1,1 @@
-export { SidebarUser } from './SidebarUser.tsx'
+export { SidebarUser } from './SidebarUser'

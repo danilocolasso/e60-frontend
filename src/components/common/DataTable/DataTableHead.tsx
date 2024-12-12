@@ -1,7 +1,7 @@
 import {
   DataTableAction,
   DataTableColumn,
-} from '@/components/common/DataTable/DataTable.tsx'
+} from '@/components/common/DataTable/DataTable'
 import { TableHead, TableHeader, TableRow } from '@/components/ui/Table'
 
 interface DataTableHeadProps<T> {

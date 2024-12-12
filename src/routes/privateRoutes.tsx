@@ -15,7 +15,15 @@ export const privateRoutes: RouteObject[] = [
     Component: lazy(() => import('@/pages/User/List')),
   },
   {
-    path: '/administracao/usuarios/:id',
+    path: '/administracao/usuarios/criar',
+    Component: lazy(() => import('@/pages/User/Create')),
+  },
+  {
+    path: '/administracao/usuarios/editar/:id',
+    Component: lazy(() => import('@/pages/User/Edit')),
+  },
+  {
+    path: '/administracao/usuarios/visualizar/:id',
     Component: lazy(() => import('@/pages/User/Show')),
   },
   {

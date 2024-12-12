@@ -1,6 +1,6 @@
-import { PrivateRoutes } from '@/contexts/PrivateRoutes.tsx'
-import { privateRoutes } from '@/routes/privateRoutes.tsx'
-import { publicRoutes } from '@/routes/publicRoutes.tsx'
+import { PrivateRoutes } from '@/contexts/PrivateRoutes'
+import { privateRoutes } from '@/routes/privateRoutes'
+import { publicRoutes } from '@/routes/publicRoutes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const options = {

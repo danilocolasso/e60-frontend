@@ -1,4 +1,4 @@
-import { DataTableAction } from '@/components/common/DataTable/DataTable.tsx'
+import { DataTableAction } from '@/components/common/DataTable/DataTable'
 import {
   Dropdown,
   DropdownButton,
@@ -26,6 +26,7 @@ export const DataTableActions = <T,>({
         <DropdownMenu anchor="bottom end">
           {actions.map((action, index) => (
             <DropdownItem key={index} onClick={() => action.onClick(item)}>
+              {action.icon && <action.icon />}
               {action.label}
             </DropdownItem>
           ))}
