@@ -8,10 +8,8 @@ import { toast } from 'react-toastify'
 import { z } from 'zod'
 
 const loginSchema = z.object({
-  email: z.string().email({ message: 'Por favor, insira um email válido' }),
-  password: z
-    .string()
-    .min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
+  email: z.string().email(),
+  password: z.string().min(6),
   remember: z.boolean().optional(),
 })
 
