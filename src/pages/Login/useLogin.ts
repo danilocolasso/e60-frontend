@@ -1,5 +1,5 @@
 import { useAuth } from '@/contexts/AuthContext'
-import { LoginPayload, loginSchema } from '@/schemas/login/loginSchema'
+import { LoginPayload, loginSchema } from '@/schemas/auth/loginSchema'
 import { login } from '@/services/auth.service'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -28,7 +28,7 @@ export const useLogin = () => {
       console.log(error)
       toast.error(
         error.response?.data?.message ||
-          'Ocorreu um error inesperado ao tentar realizar login. Por favor, tente novamente mais tarde.',
+          'Ocorreu um error inesperado ao tentar realizar auth. Por favor, tente novamente mais tarde.',
       )
     }
   }

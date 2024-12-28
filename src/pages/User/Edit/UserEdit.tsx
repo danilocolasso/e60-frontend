@@ -1,20 +1,20 @@
 import { MainLayout } from '@/components/layouts/MainLayout'
-import { Button } from '@/components/ui/primitives/Button'
-import { Title } from '@/components/ui/primitives/Title'
-import { useNavigate } from 'react-router-dom'
-import { FieldGroup } from '@/components/ui/primitives/Fieldset'
-import { Input } from '@/components/ui/composite/Input'
-import { Select } from '@/components/ui/composite/Select'
-import { recordToOptions } from '@/util/recordToOptions.ts'
-import { roles } from '@/types/User.ts'
-import { Radio } from '@/components/ui/composite/Radio'
 import { CheckboxRemote } from '@/components/ui/composite/CheckboxRemote'
-import { branchOptionsService } from '@/services/branch/branch-options.service.ts'
-import { useUserCreate } from '@/pages/User/Create/useUserCreate.tsx'
+import { Input } from '@/components/ui/composite/Input'
+import { Radio } from '@/components/ui/composite/Radio'
+import { Select } from '@/components/ui/composite/Select'
+import { Button } from '@/components/ui/primitives/Button'
+import { FieldGroup } from '@/components/ui/primitives/Fieldset'
+import { Title } from '@/components/ui/primitives/Title'
+import { useUserEdit } from '@/pages/User/Edit/useUserEdit'
+import { branchOptionsService } from '@/services/branch/branch-options.service'
+import { roles } from '@/types/User'
+import { recordToOptions } from '@/util/recordToOptions'
+import { useNavigate } from 'react-router-dom'
 
 export const UserEdit = () => {
   const navigate = useNavigate()
-  const { register, control, handleSubmit, errors } = useUserCreate()
+  const { register, control, handleSubmit, errors } = useUserEdit()
 
   return (
     <MainLayout>

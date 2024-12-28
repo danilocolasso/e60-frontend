@@ -1,4 +1,4 @@
-import { LoginPayload } from '@/schemas/login/loginSchema'
+import { LoginPayload } from '@/schemas/auth/loginSchema'
 import api, { getCsrfToken } from '@/services/api'
 import { User } from '@/types/User'
 
