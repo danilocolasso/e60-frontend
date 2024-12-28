@@ -20,7 +20,7 @@ export const MainLayout = ({ children, ...props }: MainLayoutProps) => {
       }
       sidebar={<Sidebar />}
     >
-      <div className={'flex flex-1 flex-col gap-4'}>{children}</div>
+      <div className={'flex w-full flex-col gap-4'}>{children}</div>
     </SidebarLayout>
   )
 }

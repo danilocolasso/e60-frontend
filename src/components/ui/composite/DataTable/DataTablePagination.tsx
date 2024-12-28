@@ -61,7 +61,7 @@ export const DataTablePagination = ({
   return (
     <Pagination className="mt-6">
       <PaginationFirst
-        className={'hidden sm:block'}
+        className={'hidden md:block'}
         onClick={currentPage > 1 ? () => onPageChange(1) : undefined}
       >
         Primeira
@@ -112,7 +112,7 @@ export const DataTablePagination = ({
       </PaginationNext>
 
       <PaginationLast
-        className={'hidden sm:block'}
+        className={'hidden md:block'}
         onClick={
           currentPage < lastPage ? () => onPageChange(lastPage) : undefined
         }

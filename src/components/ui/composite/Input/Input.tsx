@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Label } from '@/components/ui/primitives/Fieldset'
 import { Input as InputPrimitive } from '@/components/ui/primitives/Input'
 import React from 'react'
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string
   error?: string
 }

@@ -1,85 +1,55 @@
-import {
-  DataTable,
-  DataTableAction,
-  DataTableColumn,
-} from '@/components/ui/composite/DataTable'
-import { MainLayout } from '@/components/layouts/MainLayout.tsx'
-import { Badge } from '@/components/ui/primitives/Badge'
+import { MainLayout } from '@/components/layouts/MainLayout'
+import { DataTable } from '@/components/ui/composite/DataTable'
+import { InputSearch } from '@/components/ui/composite/InputSearch'
 import { Button } from '@/components/ui/primitives/Button'
 import { Divider } from '@/components/ui/primitives/Divider'
 import { Title } from '@/components/ui/primitives/Title'
-import { userListService } from '@/services/user/user-list.service.ts'
-import { roles, User } from '@/types/User'
-import {
-  MagnifyingGlassIcon,
-  PencilSquareIcon,
-  PlusIcon,
-  TrashIcon,
-} from '@heroicons/react/16/solid'
-import { useNavigate } from 'react-router-dom'
+import { useUserList } from '@/pages/User/List/useUserList'
+import { userListService } from '@/services/user/user-list.service'
+import { PlusIcon } from '@heroicons/react/16/solid'
+import { useState } from 'react'
+import { useDebouncedCallback } from 'use-debounce'
 
-const columns: DataTableColumn<User>[] = [
-  {
-    key: 'name',
-    label: 'Nome',
-    sortable: true,
-  },
-  {
-    key: 'email',
-    label: 'Email',
-    sortable: true,
-  },
-  {
-    key: 'role',
-    label: 'Perfil',
-    sortable: true,
-    value: (row: User) => <Badge>{roles[row.role]}</Badge>,
-  },
-]
+interface Filters {
+  query?: string
+}
 
 export const UserList = () => {
-  const navigate = useNavigate()
+  const { columns, actions } = useUserList()
+  const [filters, setFilters] = useState<Filters>({ query: '' })
 
-  const actions: DataTableAction<User>[] = [
-    {
-      label: 'Visualizar',
-      icon: MagnifyingGlassIcon,
-      onClick: (item: User) => {
-        navigate(`/administracao/usuarios/visualizar/${item.id}`)
-      },
-    },
-    {
-      label: 'Editar',
-      icon: PencilSquareIcon,
-      onClick: (item: User) => {
-        navigate(`/administracao/usuarios/editar/${item.id}`)
-      },
-    },
-    {
-      label: 'Excluir',
-      icon: TrashIcon,
-      onClick: (item: User) => {
-        console.log('Delete', item)
-      },
-    },
-  ]
+  const debounced = useDebouncedCallback((value) => {
+    setFilters({ ...filters, query: value })
+  }, 500)
 
   return (
     <MainLayout>
-      <div className={'flex justify-between'}>
-        <Title divider={false} subtitle={'Listar'}>
-          Usuários
-        </Title>
-        <Button href={'criar'}>
-          Criar
-          <PlusIcon />
-        </Button>
+      <div
+        className={'flex flex-col justify-between gap-4 md:flex-row md:gap-0'}
+      >
+        <div className={'flex justify-between'}>
+          <Title divider={false} subtitle={'Listar'}>
+            Usuários
+          </Title>
+          <Button href={'criar'} className={'md:hidden'}>
+            Criar
+            <PlusIcon />
+          </Button>
+        </div>
+        <div className={'flex flex-col gap-2 md:flex-row'}>
+          <InputSearch onChange={(e) => debounced(e.target.value)} />
+          <Button href={'criar'} className={'hidden md:flex'}>
+            Criar
+            <PlusIcon />
+          </Button>
+        </div>
       </div>
       <Divider />
       <DataTable
         service={userListService}
         columns={columns}
         actions={actions}
+        filters={filters}
       />
     </MainLayout>
   )

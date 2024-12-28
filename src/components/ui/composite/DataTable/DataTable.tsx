@@ -26,6 +26,7 @@ export interface DataTableProps<T> {
   service: (params: PaginatedPayload) => Promise<PaginatedResponse<T>>
   columns: DataTableColumn<T>[]
   actions?: DataTableAction<T>[]
+  filters?: Record<string, any>
   sort?: keyof T | undefined
   order?: 'asc' | 'desc' | undefined
   pagination?: boolean
@@ -37,6 +38,7 @@ export const DataTable = <T,>({
   service,
   columns,
   actions,
+  filters,
   sort: defaultSort,
   order: defaultOrder,
   pagination = true,
@@ -57,6 +59,7 @@ export const DataTable = <T,>({
         per_page: perPage,
         sort: sort ? String(sort) : undefined,
         order,
+        ...filters,
       })
 
       setData(response.data)
@@ -84,7 +87,7 @@ export const DataTable = <T,>({
 
   useEffect(() => {
     fetch()
-  }, [currentPage, sort, order])
+  }, [currentPage, sort, order, filters])
 
   if (loading) {
     return <DataTableLoading />
@@ -92,7 +95,7 @@ export const DataTable = <T,>({
 
   return (
     <>
-      <Table striped className="sm:[--gutter:theme(spacing.8)]">
+      <Table striped>
         <DataTableHead<T>
           columns={columns}
           actions={actions}

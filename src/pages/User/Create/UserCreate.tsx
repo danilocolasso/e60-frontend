@@ -1,15 +1,16 @@
 import { MainLayout } from '@/components/layouts/MainLayout'
+import { CheckboxRemote } from '@/components/ui/composite/CheckboxRemote'
 import { Input } from '@/components/ui/composite/Input'
 import { Radio } from '@/components/ui/composite/Radio'
 import { Select } from '@/components/ui/composite/Select'
 import { Button } from '@/components/ui/primitives/Button'
 import { FieldGroup } from '@/components/ui/primitives/Fieldset'
 import { Title } from '@/components/ui/primitives/Title'
-import { useUserCreate } from '@/pages/User/Create/useUserCreate'
+import { useUserCreate } from '@/pages/User/Create/useUserCreate.tsx'
+import { branchOptionsService } from '@/services/branch/branch-options.service.ts'
 import { roles } from '@/types/User'
 import { recordToOptions } from '@/util/recordToOptions'
 import { useNavigate } from 'react-router-dom'
-import { Checkbox } from '@/components/ui/composite/Checkbox/Checkbox.tsx'
 
 export const UserCreate = () => {
   const navigate = useNavigate()
@@ -65,21 +66,17 @@ export const UserCreate = () => {
               label={'Exibir relatório de gestão'}
               control={control}
               name={'management_report_show'}
-              values={[
+              options={[
                 { label: 'Sim', value: 'true' },
                 { label: 'Não', value: 'false' },
               ]}
             />
-            <Checkbox
+            <CheckboxRemote
               label={'Filiais'}
               name={'branches'}
+              service={branchOptionsService}
               control={control}
               error={errors.branches?.message}
-              values={[
-                { label: 'Test 1', value: 1 },
-                { label: 'Test 2', value: 2 },
-                { label: 'Test 3', value: 3 },
-              ]}
             />
           </FieldGroup>
         </form>

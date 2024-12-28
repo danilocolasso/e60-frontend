@@ -1,10 +1,6 @@
-import api from '@/services/api.ts'
+import { UserCreatePayload } from '@/schemas/user/userCreateSchema'
+import api from '@/services/api'
 import { User } from '@/types/User'
-
-export interface UserCreatePayload extends User {
-  password: string
-  password_confirmation: string
-}
 
 export interface UserCreateResponse extends User {}
 

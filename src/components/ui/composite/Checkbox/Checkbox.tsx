@@ -4,18 +4,14 @@ import {
   CheckboxGroup,
 } from '@/components/ui/primitives/Checkbox'
 import { ErrorMessage, Field, Label } from '@/components/ui/primitives/Fieldset'
+import { Option } from '@/types/Option'
 import { Control, Controller, FieldValues, Path } from 'react-hook-form'
 
-export interface CheckboxOption<T> {
-  label: string
-  value: T
-}
-
-interface CheckboxProps<T, F extends FieldValues = FieldValues> {
+export interface CheckboxProps<T, F extends FieldValues = FieldValues> {
   label?: string
   name: Path<F>
   control: Control<F>
-  values: CheckboxOption<T>[]
+  options: Option<T>[]
   error?: string
 }
 
@@ -28,7 +24,7 @@ export const Checkbox = <T, F extends FieldValues = FieldValues>({
   label,
   name,
   control,
-  values,
+  options,
   error,
 }: CheckboxProps<T, F>) => {
   return (
@@ -41,7 +37,7 @@ export const Checkbox = <T, F extends FieldValues = FieldValues>({
           const selectedValues: T[] = field.value || []
           return (
             <CheckboxGroup>
-              {values.map((option: CheckboxOption<T>, index: number) => {
+              {options.map((option: Option<T>, index: number) => {
                 const isChecked = selectedValues.includes(option.value)
                 return (
                   <CheckboxField key={option.value + '-' + index}>
