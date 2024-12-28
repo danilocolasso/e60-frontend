@@ -1,13 +1,8 @@
-import api, { getCsrfToken } from '@/services/api.ts'
+import { LoginPayload } from '@/schemas/login/loginSchema'
+import api, { getCsrfToken } from '@/services/api'
 import { User } from '@/types/User'
 
-interface loginData {
-  email: string
-  password: string
-  remember?: boolean
-}
-
-export const login = async (data: loginData) => {
+export const login = async (data: LoginPayload) => {
   await getCsrfToken()
   return await api.post(
     import.meta.env.VITE_API_URL.replace('/api', '') + '/login',

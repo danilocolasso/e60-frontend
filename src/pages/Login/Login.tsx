@@ -21,16 +21,15 @@ export const Login: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <FieldGroup>
           <Field>
-            <Label htmlFor={'email'}>Email</Label>
+            <Label htmlFor={'email'}>Usuário</Label>
             <Input
-              id={'email'}
-              type={'email'}
+              id={'username'}
               required
-              autoComplete={'email'}
-              {...register('email')}
+              autoComplete={'username'}
+              {...register('username')}
             />
-            {errors.email && (
-              <ErrorMessage>{errors.email.message}</ErrorMessage>
+            {errors.username && (
+              <ErrorMessage>{errors.username.message}</ErrorMessage>
             )}
           </Field>
           <Field>
