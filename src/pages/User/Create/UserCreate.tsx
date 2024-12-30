@@ -66,6 +66,7 @@ export const UserCreate = () => {
               label={'Exibir relatório de gestão'}
               control={control}
               name={'management_report_show'}
+              defaultValue={'true'}
               options={[
                 { label: 'Sim', value: 'true' },
                 { label: 'Não', value: 'false' },

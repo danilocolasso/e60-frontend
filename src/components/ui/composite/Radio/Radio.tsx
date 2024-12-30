@@ -41,11 +41,13 @@ export const Radio = <
       <Controller
         name={name}
         control={control}
-        defaultValue={
-          (defaultValue || options[0].value) as PathValue<F, Path<F>>
-        }
+        defaultValue={defaultValue as PathValue<F, Path<F>>}
         render={({ field }) => (
-          <RadioGroup value={String(field.value)} onChange={field.onChange} {...props}>
+          <RadioGroup
+            value={String(field.value)}
+            onChange={field.onChange}
+            {...props}
+          >
             {options.map((option: Option<T>, index: number) => (
               <RadioField key={option.value + '-' + index}>
                 <RadioPrimitive
