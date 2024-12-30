@@ -94,7 +94,7 @@ export const DataTable = <T,>({
   }
 
   return (
-    <>
+    <div className={'flex flex-1 flex-col justify-between gap-4'}>
       <Table striped>
         <DataTableHead<T>
           columns={columns}
@@ -112,6 +112,6 @@ export const DataTable = <T,>({
           onPageChange={handlePageChange}
         />
       )}
-    </>
+    </div>
   )
 }

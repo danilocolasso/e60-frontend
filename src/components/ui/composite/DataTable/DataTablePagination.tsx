@@ -25,7 +25,7 @@ export const DataTablePagination = ({
   if (lastPage <= 6) {
     const pages = Array.from({ length: lastPage }, (_, i) => i + 1)
     return (
-      <Pagination className="mt-6">
+      <Pagination>
         <PaginationPrevious
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         />
