@@ -19,8 +19,8 @@ export const UserCreate = () => {
   return (
     <MainLayout>
       <Title subtitle={'Criar'}>Usuários</Title>
-      <div className={'flex flex-1 flex-col justify-between'}>
-        <form id={'new-user'} onSubmit={handleSubmit} className={'mb-12'}>
+      <div className={'flex flex-1 flex-col gap-4 justify-between'}>
+        <form id={'new-user'} onSubmit={handleSubmit}>
           <FieldGroup className={'max-w-4xl'}>
             <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
               <Input

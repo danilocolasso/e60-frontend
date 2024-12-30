@@ -7,34 +7,14 @@ import {
   DescriptionTerm,
 } from '@/components/ui/primitives/DescriptionList'
 import { Title } from '@/components/ui/primitives/Title'
-import { userShowService } from '@/services/user/user-show.service.ts'
-import { roles, User } from '@/types/User'
+import { useUserShow } from '@/pages/User/Show/useUserShow.ts'
+import { roles } from '@/types/User'
 import { dateTimeFormat } from '@/util/dateTimeFormat.ts'
-import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 export const UserShow = () => {
-  const [user, setUser] = useState<User | null>(null)
-  const { id } = useParams()
   const navigate = useNavigate()
-
-  const fetch = async () => {
-    try {
-      const data = await userShowService({
-        id: Number(id),
-      })
-      setUser(data)
-    } catch (error) {
-      toast.error(
-        'Ocorreu um erro ao buscar o usuário. Por favor, tente novamente mais tarde',
-      )
-    }
-  }
-
-  useEffect(() => {
-    fetch()
-  }, [])
+  const { user } = useUserShow()
 
   return (
     <MainLayout>

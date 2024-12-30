@@ -33,8 +33,9 @@ export const useUserCreate = () => {
       navigate('/administracao/usuarios')
     } catch (error: any) {
       toast.update(id, {
-        render: 'Ocorreu um erro ao criar o usuário. Por favor, tente novamente mais tarde',
-        // error.response?.data?.message ?? 'Ocorreu um erro ao criar o usuário. Por favor, tente novamente mais tarde',
+        render:
+          error.response?.data?.message ??
+          'Ocorreu um erro ao criar o usuário. Por favor, tente novamente mais tarde',
         type: 'error',
         isLoading: false,
         autoClose: 3000,
