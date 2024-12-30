@@ -10,5 +10,5 @@ createRoot(document.getElementById('root')!).render(
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
       <App />
     </ErrorBoundary>
-  </StrictMode>,
+  </StrictMode>
 )

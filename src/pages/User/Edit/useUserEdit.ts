@@ -53,8 +53,8 @@ export const useUserEdit = () => {
     } catch (error: any) {
       toast.update(id, {
         render:
+          error.response?.data?.message ??
           'Ocorreu um erro ao salvar o usuário. Por favor, tente novamente mais tarde',
-        // error.response?.data?.message ?? 'Ocorreu um erro ao salvar o usuário. Por favor, tente novamente mais tarde',
         type: 'error',
         isLoading: false,
         autoClose: 3000,
