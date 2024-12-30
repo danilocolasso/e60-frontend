@@ -7,20 +7,9 @@ import { Title } from '@/components/ui/primitives/Title'
 import { useUserList } from '@/pages/User/List/useUserList'
 import { userListService } from '@/services/user/user-list.service'
 import { PlusIcon } from '@heroicons/react/16/solid'
-import { useState } from 'react'
-import { useDebouncedCallback } from 'use-debounce'
-
-interface Filters {
-  query?: string
-}
 
 export const UserList = () => {
-  const { columns, actions } = useUserList()
-  const [filters, setFilters] = useState<Filters>({ query: '' })
-
-  const debounced = useDebouncedCallback((value) => {
-    setFilters({ ...filters, query: value })
-  }, 500)
+  const { columns, actions, filters, handleDebouncedFilter } = useUserList()
 
   return (
     <MainLayout>
@@ -37,7 +26,7 @@ export const UserList = () => {
           </Button>
         </div>
         <div className={'flex flex-col gap-2 md:flex-row'}>
-          <InputSearch onChange={(e) => debounced(e.target.value)} />
+          <InputSearch name={'query'} onChange={handleDebouncedFilter} />
           <Button href={'criar'} className={'hidden md:flex'}>
             Criar
             <PlusIcon />

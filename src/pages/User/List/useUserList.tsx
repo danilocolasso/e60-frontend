@@ -4,7 +4,8 @@ import {
   DataTableColumn,
 } from '@/components/ui/composite/DataTable'
 import { Badge } from '@/components/ui/primitives/Badge'
-import { userDeleteService } from '@/services/user/user-delete.service.ts'
+import { useFilters } from '@/hooks/useFilters'
+import { userDeleteService } from '@/services/user/user-delete.service'
 import { roles, User } from '@/types/User'
 import {
   MagnifyingGlassIcon,
@@ -14,7 +15,15 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+interface Filters {
+  query?: string
+}
+
 export const useUserList = () => {
+  const { filters, setFilters, handleDebouncedFilter } = useFilters<Filters>({
+    query: '',
+  })
+
   const columns: DataTableColumn<User>[] = [
     {
       key: 'name',
@@ -92,7 +101,7 @@ export const useUserList = () => {
         isLoading: false,
         autoClose: 3000,
       })
-      navigate('/administracao/usuarios')
+      setFilters({ ...filters })
     } catch (error: any) {
       toast.update(toastId, {
         render:
@@ -108,5 +117,7 @@ export const useUserList = () => {
   return {
     columns,
     actions,
+    filters,
+    handleDebouncedFilter,
   }
 }
