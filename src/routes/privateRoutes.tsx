@@ -30,4 +30,20 @@ export const privateRoutes: RouteObject[] = [
     path: '/perfil',
     Component: lazy(() => import('@/pages/User/Profile')),
   },
+  {
+    path: '/administracao/filiais',
+    Component: lazy(() => import('@/pages/Branch/List')),
+  },
+  {
+    path: '/administracao/filiais/criar',
+    Component: lazy(() => import('@/pages/Branch/Create')),
+  },
+  {
+    path: '/administracao/filiais/editar/:id',
+    Component: lazy(() => import('@/pages/Branch/Edit')),
+  },
+  {
+    path: '/administracao/filiais/visualizar/:id',
+    Component: lazy(() => import('@/pages/Branch/Show')),
+  }
 ]
