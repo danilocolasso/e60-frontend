@@ -81,7 +81,7 @@ export const UserProfile = () => {
           </FieldGroup>
         </form>
         <div className={'flex justify-between'}>
-          <Button onClick={() => navigate('/administracao/usuarios')}>
+          <Button onClick={() => navigate(-1)}>
             Voltar
           </Button>
           <Button type={'submit'} form={'new-user'}>
