@@ -114,7 +114,7 @@ export const navigation: NavigationItem[] = [
       },
       {
         name: 'Interessados franquias',
-        href: '/administracao/interessados-franquias',
+        href: '/administracao/interessados-franquia',
         icon: InboxIcon,
       },
       {

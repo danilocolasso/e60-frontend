@@ -1,3 +1,4 @@
+import { useSidebar } from '@/components/common/Sidebar/useSidebar'
 import { SidebarUser } from '@/components/common/SidebarUser'
 import {
   Sidebar as SidebarPrimitive,
@@ -9,27 +10,20 @@ import {
   SidebarSection,
   SidebarSpacer,
 } from '@/components/ui/primitives/Sidebar'
-import { navigation } from '@/data/navigationData.ts'
-import { NavigationItem } from '@/types/NavigationItem.ts'
+import { NavigationItem } from '@/types/NavigationItem'
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
 } from '@headlessui/react'
 import { ChevronRightIcon } from '@heroicons/react/16/solid'
+import { motion } from 'framer-motion'
 import React from 'react'
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const Sidebar = ({ children, ...props }: SidebarProps) => {
-  const data = navigation.map((item: NavigationItem) => ({
-    ...item,
-    current: item.href === location.pathname,
-    children: item.children?.map((child: NavigationItem) => ({
-      ...child,
-      current: child.href === location.pathname,
-    })),
-  }))
+  const { data } = useSidebar()
 
   return (
     <SidebarPrimitive {...props}>
@@ -50,11 +44,17 @@ export const Sidebar = ({ children, ...props }: SidebarProps) => {
           {data.map((item: NavigationItem) => (
             <div key={item.name}>
               {item.children ? (
-                <Disclosure as="div" className={'group'}>
+                <Disclosure as="div" className={'group relative'}>
                   <DisclosureButton
                     className={'cursor-pointer'}
                     as={SidebarItem}
                   >
+                    {item.current && (
+                      <motion.span
+                        layoutId="current-parent-indicator"
+                        className="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-zinc-950 dark:bg-white"
+                      />
+                    )}
                     {item.icon && <item.icon />}
                     {item.name}
                     <ChevronRightIcon

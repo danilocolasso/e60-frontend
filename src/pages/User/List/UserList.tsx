@@ -1,8 +1,8 @@
+import { Content } from '@/components/common/Content'
 import { MainLayout } from '@/components/layouts/MainLayout'
 import { DataTable } from '@/components/ui/composite/DataTable'
 import { InputSearch } from '@/components/ui/composite/InputSearch'
 import { Button } from '@/components/ui/primitives/Button'
-import { Divider } from '@/components/ui/primitives/Divider'
 import { Title } from '@/components/ui/primitives/Title'
 import { useUserList } from '@/pages/User/List/useUserList'
 import { userListService } from '@/services/user/user-list.service'
@@ -17,7 +17,7 @@ export const UserList = () => {
         className={'flex flex-col justify-between gap-4 md:flex-row md:gap-0'}
       >
         <div className={'flex justify-between'}>
-          <Title divider={false} subtitle={'Listar'}>
+          <Title subtitle={'Listar'}>
             Usuários
           </Title>
           <Button href={'criar'} className={'md:hidden'}>
@@ -33,13 +33,14 @@ export const UserList = () => {
           </Button>
         </div>
       </div>
-      <Divider />
-      <DataTable
-        service={userListService}
-        columns={columns}
-        actions={actions}
-        filters={filters}
-      />
+      <Content>
+        <DataTable
+          service={userListService}
+          columns={columns}
+          actions={actions}
+          filters={filters}
+        />
+      </Content>
     </MainLayout>
   )
 }

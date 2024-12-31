@@ -8,7 +8,19 @@ export const privateRoutes: RouteObject[] = [
   },
   {
     path: '/clientes',
-    Component: lazy(() => import('@/pages/Customer')),
+    Component: lazy(() => import('@/pages/Customer/List')),
+  },
+  {
+    path: '/clientes/criar',
+    Component: lazy(() => import('@/pages/Customer/Create')),
+  },
+  {
+    path: '/clientes/editar/:id',
+    Component: lazy(() => import('@/pages/Customer/Edit')),
+  },
+  {
+    path: '/clientes/visualizar/:id',
+    Component: lazy(() => import('@/pages/Customer/Show')),
   },
   {
     path: '/administracao/usuarios',
@@ -45,5 +57,21 @@ export const privateRoutes: RouteObject[] = [
   {
     path: '/administracao/filiais/visualizar/:id',
     Component: lazy(() => import('@/pages/Branch/Show')),
-  }
+  },
+  {
+    path: '/administracao/interessados-franquia',
+    Component: lazy(() => import('@/pages/ProspectiveFranchisees/List')),
+  },
+  {
+    path: '/administracao/interessados-franquia/criar',
+    Component: lazy(() => import('@/pages/ProspectiveFranchisees/Create')),
+  },
+  {
+    path: '/administracao/interessados-franquia/editar/:id',
+    Component: lazy(() => import('@/pages/ProspectiveFranchisees/Edit')),
+  },
+  {
+    path: '/administracao/interessados-franquia/visualizar/:id',
+    Component: lazy(() => import('@/pages/ProspectiveFranchisees/Show')),
+  },
 ]

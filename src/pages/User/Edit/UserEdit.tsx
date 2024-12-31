@@ -11,6 +11,7 @@ import { branchOptionsService } from '@/services/branch/branch-options.service'
 import { roles } from '@/types/User'
 import { recordToOptions } from '@/util/recordToOptions'
 import { useNavigate } from 'react-router-dom'
+import { Content } from '@/components/common/Content'
 
 export const UserEdit = () => {
   const navigate = useNavigate()
@@ -19,7 +20,7 @@ export const UserEdit = () => {
   return (
     <MainLayout>
       <Title subtitle={'Editar'}>Usuários</Title>
-      <div className={'flex flex-1 flex-col justify-between'}>
+      <Content>
         <form id={'new-user'} onSubmit={handleSubmit} className={'mb-12'}>
           <FieldGroup className={'max-w-4xl'}>
             <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
@@ -68,7 +69,7 @@ export const UserEdit = () => {
               name={'management_report_show'}
               options={[
                 { label: 'Sim', value: 'true' },
-                { label: 'Não', value: 'false' },
+                { label: 'Não', value: 'false' }
               ]}
             />
             <CheckboxRemote
@@ -88,7 +89,7 @@ export const UserEdit = () => {
             Salvar
           </Button>
         </div>
-      </div>
+      </Content>
     </MainLayout>
   )
 }

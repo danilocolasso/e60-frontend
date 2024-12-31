@@ -16,7 +16,7 @@ export const BranchList = () => {
         className={'flex flex-col justify-between gap-4 md:flex-row md:gap-0'}
       >
         <div className={'flex justify-between'}>
-          <Title divider={false} subtitle={'Listar'}>
+          <Title subtitle={'Listar'}>
             Filiais
           </Title>
           <Button href={'criar'} className={'md:hidden'}>

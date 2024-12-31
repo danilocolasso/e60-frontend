@@ -1,7 +1,7 @@
-import { PrivateRoutes } from '@/contexts/PrivateRoutes'
 import { privateRoutes } from '@/routes/privateRoutes'
 import { publicRoutes } from '@/routes/publicRoutes'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
+import { useAuth } from '@/contexts/AuthContext.tsx'
 
 const options = {
   future: {
@@ -11,6 +11,11 @@ const options = {
     v7_partialHydration: true,
     v7_skipActionErrorRevalidation: true,
   },
+}
+
+export const PrivateRoutes = () => {
+  const { isAuthenticated, loading } = useAuth()
+  return loading || isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />
 }
 
 const router = createBrowserRouter(

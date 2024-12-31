@@ -1,16 +1,13 @@
 import { MainLayout } from '@/components/layouts/MainLayout.tsx'
 import { Badge } from '@/components/ui/primitives/Badge'
 import { Button } from '@/components/ui/primitives/Button'
-import {
-  DescriptionDetails,
-  DescriptionList,
-  DescriptionTerm,
-} from '@/components/ui/primitives/DescriptionList'
+import { DescriptionDetails, DescriptionList, DescriptionTerm } from '@/components/ui/primitives/DescriptionList'
 import { Title } from '@/components/ui/primitives/Title'
 import { useUserShow } from '@/pages/User/Show/useUserShow.ts'
 import { roles } from '@/types/User'
 import { dateTimeFormat } from '@/util/dateTimeFormat.ts'
 import { useNavigate } from 'react-router-dom'
+import { Content } from '@/components/common/Content'
 
 export const UserShow = () => {
   const navigate = useNavigate()
@@ -19,7 +16,7 @@ export const UserShow = () => {
   return (
     <MainLayout>
       <Title subtitle={'Visualizar'}>Usuários</Title>
-      <div className={'flex flex-1 flex-col justify-between'}>
+      <Content>
         <DescriptionList>
           <DescriptionTerm>Nome</DescriptionTerm>
           <DescriptionDetails>{user?.name}</DescriptionDetails>
@@ -42,7 +39,7 @@ export const UserShow = () => {
             Voltar
           </Button>
         </div>
-      </div>
+      </Content>
     </MainLayout>
   )
 }

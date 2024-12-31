@@ -1,3 +1,4 @@
+import { Content } from '@/components/common/Content'
 import { MainLayout } from '@/components/layouts/MainLayout'
 import { CheckboxRemote } from '@/components/ui/composite/CheckboxRemote'
 import { Input } from '@/components/ui/composite/Input'
@@ -19,7 +20,7 @@ export const UserCreate = () => {
   return (
     <MainLayout>
       <Title subtitle={'Criar'}>Usuários</Title>
-      <div className={'flex flex-1 flex-col gap-4 justify-between'}>
+      <Content>
         <form id={'new-user'} onSubmit={handleSubmit}>
           <FieldGroup className={'max-w-4xl'}>
             <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
@@ -89,7 +90,7 @@ export const UserCreate = () => {
             Salvar
           </Button>
         </div>
-      </div>
+      </Content>
     </MainLayout>
   )
 }
