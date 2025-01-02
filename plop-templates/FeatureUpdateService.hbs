@@ -1,12 +1,12 @@
-import { {{pascalCase featureName}}UpdatePayload } from '@/schemas/{{kebab featureName}}/{{camelCase featureName}}UpdateSchema'
+import { {{pascalCase featureName}}UpdatePayload } from '@/schemas/{{kebabCase featureName}}/{{camelCase featureName}}UpdateSchema'
 import api from '@/services/api'
-import { {{pascalCase featureName}} } from '@/types/{{pascalCase featureName}}'
+import { {{pascalCase featureName}} } from '@/types/{{kebabCase featureName}}'
 
 interface {{pascalCase featureName}}UpdateResponse extends {{pascalCase featureName}} {}
 
 export const {{camelCase featureName}}UpdateService = async (
   payload: {{pascalCase featureName}}UpdatePayload,
 ): Promise<{{pascalCase featureName}}UpdateResponse> => {
-  const response = await api.put(`/{{kebabCase featureName}}/${payload.id}`, payload)
+  const response = await api.put(`/{{apiRoute}}/${payload.id}`, payload)
   return response.data
 }

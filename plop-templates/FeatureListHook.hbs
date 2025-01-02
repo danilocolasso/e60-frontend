@@ -1,0 +1,109 @@
+import { Confirm } from '@/components/common/Confirm'
+import {
+  DataTableAction,
+  DataTableColumn,
+} from '@/components/ui/composite/DataTable'
+import { useFilters } from '@/hooks/useFilters'
+import { {{camelCase featureName}}DeleteService } from '@/services/{{kebabCase featureName}}/{{kebabCase featureName}}-delete.service'
+import { {{pascalCase featureName}} } from '@/types/{{kebabCase featureName}}'
+import {
+  MagnifyingGlassIcon,
+  PencilSquareIcon,
+  TrashIcon,
+} from '@heroicons/react/16/solid'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
+interface Filters {
+  query?: string
+}
+
+export const use{{pascalCase featureName}}List = () => {
+  const navigate = useNavigate()
+
+  const { filters, setFilters, handleDebouncedFilter } = useFilters<Filters>({
+    query: '',
+  })
+
+  const columns: DataTableColumn<{{pascalCase featureName}}>[] = [
+    // {
+    //   key: 'name',
+    //   label: 'Nome',
+    //   sortable: true,
+    // },
+  ]
+
+  const actions: DataTableAction<{{pascalCase featureName}}>[] = [
+    {
+      label: 'Visualizar',
+      icon: MagnifyingGlassIcon,
+      onClick: (item: {{pascalCase featureName}}) => {
+        navigate(`/{{routeName}}/visualizar/${item.id}`)
+      },
+    },
+    {
+      label: 'Editar',
+      icon: PencilSquareIcon,
+      onClick: (item: {{pascalCase featureName}}) => {
+        navigate(`/{{routeName}}/editar/${item.id}`)
+      },
+    },
+    {
+      label: 'Excluir',
+      icon: TrashIcon,
+      onClick: async (item: {{pascalCase featureName}}) => {
+        const id = toast.warning(
+          ({ closeToast }) => (
+            <Confirm
+              title={`Tem certeza que deseja excluir {{article}} {{lowerCase displayName}} ${item.name}?`}
+              confirm={{"{{"}}
+                label: 'Excluir',
+                color: 'red',
+                onClick: () => handleDelete(id, item),
+              {{"}}"}}
+              cancel={{"{{"}}
+                label: 'Cancelar',
+                onClick: closeToast,
+              {{"}}"}}
+            />
+          ),
+          {
+            autoClose: false,
+          },
+        )
+      },
+    },
+  ]
+
+  const handleDelete = async (toastId: any, item: {{pascalCase featureName}}) => {
+    toast.update(toastId, {
+      render: 'Excluindo {{lowerCase displayName}}...',
+      isLoading: true,
+    })
+
+    try {
+      await {{camelCase featureName}}DeleteService(item)
+      toast.update(toastId, {
+        render: '{{capitalize displayName}} excluíd{{article}} com sucesso',
+        type: 'success',
+        isLoading: false,
+        autoClose: 3000,
+      })
+      setFilters({ ...filters })
+    } catch (error: any) {
+      toast.update(toastId, {
+        render: 'Erro ao excluir {{lowerCase displayName}}',
+        type: 'error',
+        isLoading: false,
+        autoClose: 3000,
+      })
+    }
+  }
+
+  return {
+    columns,
+    actions,
+    filters,
+    handleDebouncedFilter,
+  }
+}

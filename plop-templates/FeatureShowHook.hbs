@@ -1,0 +1,31 @@
+import { toast } from 'react-toastify'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { {{camelCase featureName}}ShowService } from '@/services/{{kebabCase featureName}}/{{kebabCase featureName}}-show.service'
+import { {{pascalCase featureName}} } from '@/types/{{kebabCase featureName}}'
+
+export const use{{pascalCase featureName}}Show = () => {
+  const { id } = useParams()
+  const [{{camelCase featureName}}, set{{pascalCase featureName}}] = useState<{{pascalCase featureName}} | null>(null)
+
+  const fetch = async () => {
+    try {
+      const data = await {{camelCase featureName}}ShowService({
+        id: Number(id)
+      })
+      set{{pascalCase featureName}}(data)
+    } catch (error) {
+      toast.error(
+        'Ocorreu um erro ao buscar {{article}} {{lowerCase displayName}}. Por favor, tente novamente mais tarde'
+      )
+    }
+  }
+
+  useEffect(() => {
+    fetch()
+  }, [])
+
+  return {
+    {{camelCase featureName}},
+  }
+}

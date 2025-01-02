@@ -11,6 +11,6 @@ export interface {{pascalCase featureName}}DeleteResponse {
 export const {{camelCase featureName}}DeleteService = async (
   payload: {{pascalCase featureName}}DeletePayload,
 ): Promise<{{pascalCase featureName}}DeleteResponse> => {
-  const response = await api.delete(`/{{kebabCase featureName}}/${payload.id}`)
+  const response = await api.delete(`/{{apiRoute}}/${payload.id}`)
   return response.data
 }

@@ -5,6 +5,7 @@ module.exports = function (plop) {
   plop.setHelper('kebabCase', (text) => _.kebabCase(text))
   plop.setHelper('camelCase', (text) => _.camelCase(text))
   plop.setHelper('lowerCase', (text) => text.toLowerCase())
+  plop.setHelper('capitalize', (text) => _.capitalize(text))
 
   const operations = ['list', 'create', 'edit', 'show']
 
@@ -14,7 +15,7 @@ module.exports = function (plop) {
       {
         type: 'input',
         name: 'featureName',
-        message: 'Feature name (e.g., Users):',
+        message: 'Feature name (e.g., User):',
         validate: (value) => (value ? true : 'Feature name is required'),
       },
       {
@@ -28,6 +29,12 @@ module.exports = function (plop) {
         name: 'routeName',
         message: 'Route name (e.g., administracao/usuarios):',
         validate: (value) => (value ? true : 'Route name is required'),
+      },
+      {
+        type: 'input',
+        name: 'apiRoute',
+        message: 'API route (e.g., users):',
+        validate: (value) => (value ? true : 'API route is required'),
       },
       {
         type: 'list',
@@ -63,17 +70,13 @@ module.exports = function (plop) {
           type: 'add',
           path: 'src/pages/{{kebabCase featureName}}/{{operation}}/use{{pascalCase featureName}}{{pascalCase operation}}.ts',
           templateFile: 'plop-templates/Feature{{pascalCase operation}}Hook.hbs',
+          data: { operation },
         },
         {
           type: 'add',
           path: 'src/services/{{kebabCase featureName}}/{{kebabCase featureName}}-{{operation}}.service.ts',
           templateFile: 'plop-templates/Feature{{pascalCase operation}}Service.hbs',
-        },
-        {
-          type: 'add',
-          path: 'src/services/{{kebabCase featureName}}/{{kebabCase featureName}}-update.service.ts',
-          templateFile: 'plop-templates/FeatureUpdateService.hbs',
-          data: { operation: 'update' },
+          data: { operation },
         },
         {
           type: 'add',
@@ -82,6 +85,12 @@ module.exports = function (plop) {
           data: { operation },
         },
       ]),
+      {
+        type: 'add',
+        path: 'src/services/{{kebabCase featureName}}/{{kebabCase featureName}}-update.service.ts',
+        templateFile: 'plop-templates/FeatureUpdateService.hbs',
+        data: { operation: 'update' },
+      },
       {
         type: 'add',
         path: 'src/routes/private/{{camelCase featureName}}Routes.tsx',
