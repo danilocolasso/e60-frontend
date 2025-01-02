@@ -30,7 +30,7 @@ export const use{{pascalCase featureName}}Edit = () => {
       reset(data)
     } catch (error) {
       toast.error(
-        'Ocorreu um erro ao buscar {{article}} {{lowerCase displayName}}. Por favor, tente novamente mais tarde',
+        'Ocorreu um erro ao buscar {{article}} {{lowerCase displayNameSingular}}. Por favor, tente novamente mais tarde',
       )
     }
   }
@@ -44,7 +44,7 @@ export const use{{pascalCase featureName}}Edit = () => {
     try {
       await {{camelCase featureName}}UpdateService(data)
       toast.update(id, {
-        render: '{{capitalize displayName}} atualizad{{article}} com sucesso',
+        render: '{{capitalize displayNameSingular}} atualizad{{article}} com sucesso',
         type: 'success',
         isLoading: false,
         autoClose: 3000,
@@ -54,7 +54,7 @@ export const use{{pascalCase featureName}}Edit = () => {
       toast.update(id, {
         render:
           error.response?.data?.message ??
-          'Ocorreu um erro ao atualizar {{article}} {{lowerCase displayName}}. Por favor, tente novamente mais tarde',
+          'Ocorreu um erro ao atualizar {{article}} {{lowerCase displayNameSingular}}. Por favor, tente novamente mais tarde',
         type: 'error',
         isLoading: false,
         autoClose: 3000,

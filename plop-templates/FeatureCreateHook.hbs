@@ -21,11 +21,11 @@ export const use{{pascalCase featureName}}Create = () => {
   })
 
   const onSubmit = async (data: {{pascalCase featureName}}CreatePayload) => {
-    const id = toast.loading('Criando {{lowerCase displayName}}...')
+    const id = toast.loading('Criando {{lowerCase displayNameSingular}}...')
     try {
       await {{camelCase featureName}}CreateService(data)
       toast.update(id, {
-        render: '{{displayName}} criad{{article}} com sucesso',
+        render: '{{displayNameSingular}} criad{{article}} com sucesso',
         type: 'success',
         isLoading: false,
         autoClose: 3000,
@@ -35,7 +35,7 @@ export const use{{pascalCase featureName}}Create = () => {
       toast.update(id, {
         render:
           error.response?.data?.message ??
-          'Ocorreu um erro ao criar {{article}} {{lowerCase displayName}}. Por favor, tente novamente mais tarde',
+          'Ocorreu um erro ao criar {{article}} {{lowerCase displayNameSingular}}. Por favor, tente novamente mais tarde',
         type: 'error',
         isLoading: false,
         autoClose: 3000,

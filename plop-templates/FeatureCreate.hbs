@@ -3,7 +3,7 @@ import { MainLayout } from '@/components/layouts/MainLayout'
 import { Title } from '@/components/ui/primitives/Title'
 import { FieldGroup } from '@/components/ui/primitives/Fieldset'
 import { Button } from '@/components/ui/primitives/Button'
-import { use{{pascalCase featureName}}Create } from '@/pages/{{kebabCase featureName}}/Create/use{{pascalCase featureName}}Create'
+import { use{{pascalCase featureName}}Create } from '@/pages/{{kebabCase featureName}}/create/use{{pascalCase featureName}}Create'
 import { useNavigate } from 'react-router-dom'
 
 export const {{pascalCase featureName}}Create = () => {
@@ -12,7 +12,7 @@ export const {{pascalCase featureName}}Create = () => {
 
   return (
     <MainLayout>
-      <Title subtitle={'Criar'}>{{displayName}}</Title>
+      <Title subtitle={'Criar'}>{{displayNamePlural}}</Title>
       <Content>
         <form id={'new-{{kebabCase featureName}}'} onSubmit={handleSubmit}>
           <FieldGroup className={'max-w-4xl'}>

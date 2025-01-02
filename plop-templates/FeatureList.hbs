@@ -1,18 +1,23 @@
 import { Content } from '@/components/common/Content'
 import { MainLayout } from '@/components/layouts/MainLayout'
+import { DataTable } from '@/components/ui/composite/DataTable'
 import { InputSearch } from '@/components/ui/composite/InputSearch'
 import { Button } from '@/components/ui/primitives/Button'
 import { Title } from '@/components/ui/primitives/Title'
+import { use{{pascalCase featureName}}List } from '@/pages/{{kebabCase featureName}}/list/use{{pascalCase featureName}}List'
+import { {{camelCase featureName}}ListService } from '@/services/{{kebabCase featureName}}/{{kebabCase featureName}}-list.service'
 import { PlusIcon } from '@heroicons/react/16/solid'
 
 export const {{pascalCase featureName}}List = () => {
+  const { columns, actions, filters, handleDebouncedFilter } = use{{pascalCase featureName}}List()
+
   return (
     <MainLayout>
       <div
         className={'flex flex-col justify-between gap-4 md:flex-row md:gap-0'}
       >
         <div className={'flex justify-between'}>
-          <Title subtitle={'Listar'}>{{displayName}}</Title>
+          <Title subtitle={'Listar'}>{{displayNamePlural}}</Title>
           <Button href={'criar'} className={'md:hidden'}>
             Criar
             <PlusIcon />
@@ -26,7 +31,14 @@ export const {{pascalCase featureName}}List = () => {
           </Button>
         </div>
       </div>
-      <Content></Content>
+      <Content>
+        {/*<DataTable*/}
+        {/*  service={{"{"}}{{camelCase featureName}}ListService}*/}
+        {/*  columns={columns}*/}
+        {/*  actions={actions}*/}
+        {/*  filters={filters}*/}
+        {/*/>*/}
+      </Content>
     </MainLayout>
   )
 }

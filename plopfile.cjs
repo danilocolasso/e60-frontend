@@ -20,9 +20,15 @@ module.exports = function (plop) {
       },
       {
         type: 'input',
-        name: 'displayName',
-        message: 'Display name (e.g., Usuários):',
-        validate: (value) => (value ? true : 'Display name is required'),
+        name: 'displayNameSingular',
+        message: 'Singular display name (e.g., Usuário):',
+        validate: (value) => (value ? true : 'Singular display name is required'),
+      },
+      {
+        type: 'input',
+        name: 'displayNamePlural',
+        message: 'Plural display name (e.g., Usuários):',
+        validate: (value) => (value ? true : 'Plural display name is required'),
       },
       {
         type: 'input',

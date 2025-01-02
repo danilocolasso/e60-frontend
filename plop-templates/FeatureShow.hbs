@@ -7,14 +7,16 @@ import {
   DescriptionTerm,
 } from '@/components/ui/primitives/DescriptionList'
 import { Title } from '@/components/ui/primitives/Title'
+import { use{{pascalCase featureName}}Show } from '@/pages/{{kebabCase featureName}}/show/use{{pascalCase featureName}}Show'
 import { useNavigate } from 'react-router-dom'
 
 export const {{pascalCase featureName}}Show = () => {
   const navigate = useNavigate()
+  const { {{camelCase featureName}} } = use{{pascalCase featureName}}Show()
 
   return (
     <MainLayout>
-      <Title subtitle={'Visualizar'}>{{displayName}}</Title>
+      <Title subtitle={'Visualizar'}>{{displayNamePlural}}</Title>
       <Content>
         <DescriptionList>
           <DescriptionTerm></DescriptionTerm>

@@ -55,7 +55,7 @@ export const use{{pascalCase featureName}}List = () => {
         const id = toast.warning(
           ({ closeToast }) => (
             <Confirm
-              title={`Tem certeza que deseja excluir {{article}} {{lowerCase displayName}} ${item.name}?`}
+              title={`Tem certeza que deseja excluir {{article}} {{lowerCase displayNameSingular}} ${item.name}?`}
               confirm={{"{{"}}
                 label: 'Excluir',
                 color: 'red',
@@ -77,14 +77,14 @@ export const use{{pascalCase featureName}}List = () => {
 
   const handleDelete = async (toastId: any, item: {{pascalCase featureName}}) => {
     toast.update(toastId, {
-      render: 'Excluindo {{lowerCase displayName}}...',
+      render: 'Excluindo {{lowerCase displayNameSingular}}...',
       isLoading: true,
     })
 
     try {
       await {{camelCase featureName}}DeleteService(item)
       toast.update(toastId, {
-        render: '{{capitalize displayName}} excluíd{{article}} com sucesso',
+        render: '{{capitalize displayNameSingular}} excluíd{{article}} com sucesso',
         type: 'success',
         isLoading: false,
         autoClose: 3000,
@@ -92,7 +92,7 @@ export const use{{pascalCase featureName}}List = () => {
       setFilters({ ...filters })
     } catch (error: any) {
       toast.update(toastId, {
-        render: 'Erro ao excluir {{lowerCase displayName}}',
+        render: 'Erro ao excluir {{lowerCase displayNameSingular}}',
         type: 'error',
         isLoading: false,
         autoClose: 3000,
