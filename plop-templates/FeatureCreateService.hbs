@@ -1,0 +1,12 @@
+import { {{pascalCase featureName}}CreatePayload } from '@/schemas/{{kebabCase featureName}}/{{camelCase featureName}}CreateSchema'
+import api from '@/services/api'
+import { {{pascalCase featureName}} } from '@/types/{{pascalCase featureName}}'
+
+interface {{pascalCase featureName}}CreateResponse extends {{pascalCase featureName}} {}
+
+export const {{camelCase featureName}}CreateService = async (
+  payload: {{pascalCase featureName}}CreatePayload,
+): Promise<{{pascalCase featureName}}CreateResponse> => {
+  const response = await api.post('/{{kebabCase featureName}}', payload)
+  return response.data
+}

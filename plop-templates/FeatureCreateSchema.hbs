@@ -1,0 +1,8 @@
+import { z } from 'zod'
+
+export const {{camelCase featureName}}CreateSchema = z
+  .object({
+
+  })
+
+export type {{pascalCase featureName}}CreatePayload = z.infer<typeof {{camelCase featureName}}CreateSchema>

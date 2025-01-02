@@ -1,0 +1,15 @@
+import api from '@/services/api'
+import { {{pascalCase featureName}} } from '@/types/{{pascalCase featureName}}'
+
+export interface {{pascalCase featureName}}EditPayload {
+  id: number
+}
+
+export interface {{pascalCase featureName}}EditResponse extends {{pascalCase featureName}} {}
+
+export const {{camelCase featureName}}EditService = async (
+  payload: {{pascalCase featureName}}EditPayload,
+): Promise<{{pascalCase featureName}}EditResponse> => {
+  const response = await api.get(`/{{kebabCase featureName}}/${payload.id}/edit`)
+  return response.data
+}

@@ -1,0 +1,15 @@
+import api from '@/services/api.ts'
+import { {{pascalCase featureName}} } from '@/types/{{pascalCase featureName}}'
+
+interface {{pascalCase featureName}}ShowPayload {
+  id: number
+}
+
+interface {{pascalCase featureName}}ShowResponse extends {{pascalCase featureName}} {}
+
+export const {{camelCase featureName}}ShowService = async (
+  payload: {{pascalCase featureName}}ShowPayload,
+): Promise<{{pascalCase featureName}}ShowResponse> => {
+  const response = await api.get(`/{{kebabCase featureName}}/${payload.id}`)
+  return response.data
+}

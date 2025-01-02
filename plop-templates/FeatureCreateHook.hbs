@@ -1,0 +1,52 @@
+import {
+  {{pascalCase featureName}}CreatePayload,
+  {{camelCase featureName}}CreateSchema,
+} from '@/schemas/{{kebabCase featureName}}/{{camelCase featureName}}CreateSchema'
+import { {{camelCase featureName}}CreateService } from '@/services/{{kebabCase featureName}}/{{kebabCase featureName}}-create.service'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
+export const use{{pascalCase featureName}}Create = () => {
+  const navigate = useNavigate()
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<{{pascalCase featureName}}CreatePayload>({
+    resolver: zodResolver({{camelCase featureName}}CreateSchema),
+  })
+
+  const onSubmit = async (data: {{pascalCase featureName}}CreatePayload) => {
+    const id = toast.loading('Criando {{lowerCase displayName}}...')
+    try {
+      await {{camelCase featureName}}CreateService(data)
+      toast.update(id, {
+        render: '{{displayName}} criad{{article}} com sucesso',
+        type: 'success',
+        isLoading: false,
+        autoClose: 3000,
+      })
+      navigate('/{{routeName}}')
+    } catch (error: any) {
+      toast.update(id, {
+        render:
+          error.response?.data?.message ??
+          'Ocorreu um erro ao criar {{article}} {{lowerCase displayName}}. Por favor, tente novamente mais tarde',
+        type: 'error',
+        isLoading: false,
+        autoClose: 3000,
+      })
+    }
+  }
+
+  return {
+    register,
+    control,
+    handleSubmit: handleSubmit(onSubmit),
+    errors,
+  }
+}

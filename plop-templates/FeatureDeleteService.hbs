@@ -1,0 +1,16 @@
+import api from '@/services/api'
+
+export interface {{pascalCase featureName}}DeletePayload {
+  id: number
+}
+
+export interface {{pascalCase featureName}}DeleteResponse {
+  message: string
+}
+
+export const {{camelCase featureName}}DeleteService = async (
+  payload: {{pascalCase featureName}}DeletePayload,
+): Promise<{{pascalCase featureName}}DeleteResponse> => {
+  const response = await api.delete(`/{{kebabCase featureName}}/${payload.id}`)
+  return response.data
+}

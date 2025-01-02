@@ -1,0 +1,21 @@
+import { lazy } from 'react'
+import { RouteObject } from 'react-router-dom'
+
+export const {{camelCase featureName}}Routes: RouteObject[] = [
+  {
+    path: '/{{routeName}}',
+    Component: lazy(() => import('@/pages/{{kebabCase featureName}}/list')),
+  },
+  {
+    path: '/{{routeName}}/criar',
+    Component: lazy(() => import('@/pages/{{kebabCase featureName}}/create')),
+  },
+  {
+    path: '/{{routeName}}/editar/:id',
+    Component: lazy(() => import('@/pages/{{kebabCase featureName}}/edit')),
+  },
+  {
+    path: '/{{routeName}}/visualizar/:id',
+    Component: lazy(() => import('@/pages/{{kebabCase featureName}}/show')),
+  },
+]

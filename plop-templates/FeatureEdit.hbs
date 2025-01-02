@@ -1,0 +1,31 @@
+import { Content } from '@/components/common/Content'
+import { MainLayout } from '@/components/layouts/MainLayout'
+import { Title } from '@/components/ui/primitives/Title'
+import { FieldGroup } from '@/components/ui/primitives/Fieldset'
+import { Button } from '@/components/ui/primitives/Button'
+import { useNavigate } from 'react-router-dom'
+
+export const {{pascalCase featureName}}Edit = () => {
+  const navigate = useNavigate()
+
+  return (
+    <MainLayout>
+      <Title subtitle={'Editar'}>{{displayName}}</Title>
+      <Content>
+        <form id={'edit-{{kebabCase featureName}}'}>
+          <FieldGroup className={'max-w-4xl'}>
+
+          </FieldGroup>
+        </form>
+        <div className={'flex justify-between'}>
+          <Button onClick={() => navigate('/{{routeName}}')}>
+            Voltar
+          </Button>
+          <Button type={'submit'} form={'edit-{{kebabCase featureName}}'}>
+            Salvar
+          </Button>
+        </div>
+      </Content>
+    </MainLayout>
+  )
+}

@@ -1,0 +1,7 @@
+import { z } from 'zod'
+
+export const {{camelCase featureName}}UpdateSchema = z.object({
+  id: z.number(),
+})
+
+export type {{pascalCase featureName}}UpdatePayload = z.infer<typeof {{camelCase featureName}}UpdateSchema>
