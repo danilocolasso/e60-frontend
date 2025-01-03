@@ -3,8 +3,8 @@ import { DataTableHead } from '@/components/ui/composite/DataTable/DataTableHead
 import { DataTableLoading } from '@/components/ui/composite/DataTable/DataTableLoading.tsx'
 import { DataTablePagination } from '@/components/ui/composite/DataTable/DataTablePagination.tsx'
 import { Table } from '@/components/ui/primitives/Table'
-import { PaginatedPayload } from '@/types/PaginatedPayload.ts'
-import { PaginatedResponse } from '@/types/PaginatedResponse.ts'
+import { PaginatedPayload } from '@/types/paginated-payload.ts'
+import { PaginatedResponse } from '@/types/paginated-response.ts'
 import React, { ComponentType, SVGProps, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 

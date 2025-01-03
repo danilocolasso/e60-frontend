@@ -1,5 +1,5 @@
 import { Checkbox, CheckboxProps } from '@/components/ui/composite/Checkbox'
-import { Option } from '@/types/Option'
+import { Option } from '@/types/option.ts'
 import { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { toast } from 'react-toastify'

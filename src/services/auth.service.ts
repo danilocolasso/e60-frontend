@@ -1,6 +1,6 @@
 import { LoginPayload } from '@/schemas/auth/loginSchema'
 import api, { getCsrfToken } from '@/services/api'
-import { User } from '@/types/User'
+import { User } from '@/types/user.ts'
 
 export const login = async (data: LoginPayload) => {
   await getCsrfToken()

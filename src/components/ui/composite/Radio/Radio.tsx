@@ -4,7 +4,7 @@ import {
   Radio as RadioPrimitive,
   RadioProps as RadioPropsPrimitive,
 } from '@/components/ui/primitives/Radio/Radio'
-import { Option } from '@/types/Option.ts'
+import { Option } from '@/types/option.ts'
 import {
   Control,
   Controller,

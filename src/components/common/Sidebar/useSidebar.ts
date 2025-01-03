@@ -1,5 +1,5 @@
 import { navigation } from '@/data/navigationData' // Adjust the import path as needed
-import { NavigationItem } from '@/types/NavigationItem'
+import { NavigationItem } from '@/types/navigation-item.ts'
 import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 

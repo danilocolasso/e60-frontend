@@ -4,18 +4,18 @@ import { RouteObject } from 'react-router-dom'
 export const customerRoutes: RouteObject[] = [
   {
     path: '/clientes',
-    Component: lazy(() => import('@/pages/Customer/List')),
+    Component: lazy(() => import('@/pages/customer/list')),
   },
   {
     path: '/clientes/criar',
-    Component: lazy(() => import('@/pages/Customer/Create')),
+    Component: lazy(() => import('@/pages/customer/create')),
   },
   {
     path: '/clientes/editar/:id',
-    Component: lazy(() => import('@/pages/Customer/Edit')),
+    Component: lazy(() => import('@/pages/customer/edit')),
   },
   {
     path: '/clientes/visualizar/:id',
-    Component: lazy(() => import('@/pages/Customer/Show')),
+    Component: lazy(() => import('@/pages/customer/show')),
   },
 ]

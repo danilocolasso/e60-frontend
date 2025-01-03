@@ -2,7 +2,7 @@ import { Radio, RadioProps } from '@/components/ui/composite/Radio'
 import { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { toast } from 'react-toastify'
-import { Option } from '@/types/Option'
+import { Option } from '@/types/option.ts'
 
 type ServiceType<T extends string> = () => Promise<Option<T>[]>
 

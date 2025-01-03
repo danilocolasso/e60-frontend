@@ -1,6 +1,6 @@
 import { BranchUpdatePayload } from '@/schemas/branch/branchUpdateSchema'
 import api from '@/services/api'
-import { Branch } from '@/types/Branch'
+import { Branch } from '@/types/branch.ts'
 
 interface BranchUpdateResponse extends Branch {}
 

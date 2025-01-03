@@ -1,6 +1,6 @@
 import { UserCreatePayload } from '@/schemas/user/userCreateSchema'
 import api from '@/services/api'
-import { User } from '@/types/User'
+import { User } from '@/types/user.ts'
 
 export interface UserCreateResponse extends User {}
 

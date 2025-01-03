@@ -1,4 +1,4 @@
-import { roles } from '@/types/User.ts'
+import { roles } from '@/types/user.ts'
 import { z } from 'zod'
 
 export const userCreateSchema = z

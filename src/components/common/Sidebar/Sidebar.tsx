@@ -10,7 +10,7 @@ import {
   SidebarSection,
   SidebarSpacer,
 } from '@/components/ui/primitives/Sidebar'
-import { NavigationItem } from '@/types/NavigationItem'
+import { NavigationItem } from '@/types/navigation-item.ts'
 import {
   Disclosure,
   DisclosureButton,

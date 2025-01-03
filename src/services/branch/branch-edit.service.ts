@@ -1,5 +1,5 @@
 import api from '@/services/api'
-import { Branch } from '@/types/Branch'
+import { Branch } from '@/types/branch.ts'
 
 export interface BranchEditPayload {
   id: number

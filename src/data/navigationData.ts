@@ -1,4 +1,4 @@
-import { NavigationItem } from '@/types/NavigationItem'
+import { NavigationItem } from '@/types/navigation-item.ts'
 import {
   ArrowTrendingUpIcon,
   ArrowUpTrayIcon,

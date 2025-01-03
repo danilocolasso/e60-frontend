@@ -1,0 +1,45 @@
+import { MainLayout } from '@/components/layouts/MainLayout.tsx'
+import { Badge } from '@/components/ui/primitives/Badge'
+import { Button } from '@/components/ui/primitives/Button'
+import { DescriptionDetails, DescriptionList, DescriptionTerm } from '@/components/ui/primitives/DescriptionList'
+import { Title } from '@/components/ui/primitives/Title'
+import { useUserShow } from '@/pages/user/show/useUserShow.ts'
+import { roles } from '@/types/user.ts'
+import { dateTimeFormat } from '@/util/dateTimeFormat.ts'
+import { useNavigate } from 'react-router-dom'
+import { Content } from '@/components/common/Content'
+
+export const UserShow = () => {
+  const navigate = useNavigate()
+  const { user } = useUserShow()
+
+  return (
+    <MainLayout>
+      <Title subtitle={'Visualizar'}>Usuários</Title>
+      <Content>
+        <DescriptionList>
+          <DescriptionTerm>Nome</DescriptionTerm>
+          <DescriptionDetails>{user?.name}</DescriptionDetails>
+          <DescriptionTerm>Email</DescriptionTerm>
+          <DescriptionDetails>{user?.email}</DescriptionDetails>
+          <DescriptionTerm>Perfil</DescriptionTerm>
+          <DescriptionDetails>
+            <Badge>{user && roles[user.role]}</Badge>
+          </DescriptionDetails>
+          <DescriptionTerm>Criado em</DescriptionTerm>
+          <DescriptionDetails>
+            {user?.created_at && dateTimeFormat(user.created_at)}
+          </DescriptionDetails>
+        </DescriptionList>
+        <div className={'flex justify-between'}>
+          <Button
+            type={'button'}
+            onClick={() => navigate('/administracao/usuarios')}
+          >
+            Voltar
+          </Button>
+        </div>
+      </Content>
+    </MainLayout>
+  )
+}

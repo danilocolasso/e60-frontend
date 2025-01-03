@@ -4,7 +4,7 @@ import {
   CheckboxGroup,
 } from '@/components/ui/primitives/Checkbox'
 import { ErrorMessage, Field, Label } from '@/components/ui/primitives/Fieldset'
-import { Option } from '@/types/Option'
+import { Option } from '@/types/option.ts'
 import { Control, Controller, FieldValues, Path } from 'react-hook-form'
 
 export interface CheckboxProps<T, F extends FieldValues = FieldValues> {

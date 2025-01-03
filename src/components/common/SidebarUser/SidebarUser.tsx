@@ -11,7 +11,7 @@ import { SidebarItem } from '@/components/ui/primitives/Sidebar'
 import { useAuth } from '@/contexts/AuthContext'
 import { userNavigation } from '@/data/navigationData'
 import { logout } from '@/services/auth.service'
-import { NavigationItem } from '@/types/NavigationItem'
+import { NavigationItem } from '@/types/navigation-item.ts'
 import {
   ArrowRightStartOnRectangleIcon,
   ChevronUpIcon,

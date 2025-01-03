@@ -1,5 +1,5 @@
 import api from '@/services/api.ts'
-import { User } from '@/types/User'
+import { User } from '@/types/user.ts'
 
 export interface UserShowPayload {
   id: number

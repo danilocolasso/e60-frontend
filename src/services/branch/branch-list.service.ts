@@ -1,7 +1,7 @@
 import api from '@/services/api'
-import { Branch } from '@/types/Branch'
-import { PaginatedPayload } from '@/types/PaginatedPayload'
-import { PaginatedResponse } from '@/types/PaginatedResponse'
+import { Branch } from '@/types/branch.ts'
+import { PaginatedPayload } from '@/types/paginated-payload.ts'
+import { PaginatedResponse } from '@/types/paginated-response.ts'
 
 export interface BranchListPayload extends PaginatedPayload {}
 

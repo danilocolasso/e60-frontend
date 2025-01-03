@@ -1,6 +1,6 @@
 import { UserUpdatePayload } from '@/schemas/user/userUpdateSchema'
 import api from '@/services/api'
-import { User } from '@/types/User'
+import { User } from '@/types/user.ts'
 
 export interface UserUpdateResponse extends User {}
 

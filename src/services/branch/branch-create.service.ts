@@ -1,6 +1,6 @@
 import { BranchCreatePayload } from '@/schemas/branch/branchCreateSchema'
 import api from '@/services/api'
-import { Branch } from '@/types/Branch'
+import { Branch } from '@/types/branch.ts'
 
 interface BranchCreateResponse extends Branch {}
 
