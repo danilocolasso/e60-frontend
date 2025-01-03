@@ -24,7 +24,7 @@ export const {{pascalCase featureName}}List = () => {
           </Button>
         </div>
         <div className={'flex flex-col gap-2 md:flex-row'}>
-          <InputSearch name={'query'} />
+          <InputSearch name={'query'} onChange={handleDebouncedFilter} />
           <Button href={'criar'} className={'hidden md:flex'}>
             Criar
             <PlusIcon />
