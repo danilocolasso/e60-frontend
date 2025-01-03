@@ -103,6 +103,12 @@ module.exports = function (plop) {
       },
       {
         type: 'add',
+        path: 'src/services/{{kebabCase featureName}}/{{kebabCase featureName}}-delete.service.ts',
+        templateFile: 'plop-templates/FeatureDeleteService.hbs',
+        data: { operation: 'delete' },
+      },
+      {
+        type: 'add',
         path: 'src/routes/private/{{camelCase featureName}}Routes.tsx',
         templateFile: 'plop-templates/FeatureRoutes.hbs',
       },
