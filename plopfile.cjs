@@ -15,7 +15,7 @@ module.exports = function (plop) {
       {
         type: 'input',
         name: 'featureName',
-        message: 'Feature name (e.g., user):',
+        message: 'Feature name (e.g., User):',
         validate: (value) => (value ? true : 'Feature name is required'),
       },
       {

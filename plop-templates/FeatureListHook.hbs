@@ -56,15 +56,15 @@ export const use{{pascalCase featureName}}List = () => {
           ({ closeToast }) => (
             <Confirm
               title={`Tem certeza que deseja excluir {{article}} {{lowerCase displayNameSingular}} ${item.name}?`}
-              confirm={{"{{"}}
+              confirm=\{{
                 label: 'Excluir',
                 color: 'red',
                 onClick: () => handleDelete(id, item),
-              {{"}}"}}
-              cancel={{"{{"}}
+              }}
+              cancel=\{{
                 label: 'Cancelar',
                 onClick: closeToast,
-              {{"}}"}}
+              }}
             />
           ),
           {
