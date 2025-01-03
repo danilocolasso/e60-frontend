@@ -9,6 +9,10 @@ module.exports = function (plop) {
 
   const operations = ['list', 'create', 'edit', 'show']
 
+  plop.setHelper('hookExtension', (operation) =>
+    operation === 'list' ? 'tsx' : 'ts',
+  )
+
   plop.setGenerator('feature', {
     description: 'Generate a new feature with private routes and components',
     prompts: [
@@ -74,7 +78,7 @@ module.exports = function (plop) {
         },
         {
           type: 'add',
-          path: 'src/pages/{{kebabCase featureName}}/{{operation}}/use{{pascalCase featureName}}{{pascalCase operation}}.ts',
+          path: 'src/pages/{{kebabCase featureName}}/{{operation}}/use{{pascalCase featureName}}{{pascalCase operation}}.{{hookExtension operation}}',
           templateFile: 'plop-templates/Feature{{pascalCase operation}}Hook.hbs',
           data: { operation },
         },
