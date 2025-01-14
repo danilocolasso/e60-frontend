@@ -1,4 +1,6 @@
+import { bookingRoutes } from '@/routes/private/bookingRoutes'
 import { branchRoutes } from '@/routes/private/branchRoutes'
+import { customerRoutes } from '@/routes/private/customerRoutes'
 import { userRoutes } from '@/routes/private/userRoutes'
 import { lazy } from 'react'
 import { RouteObject } from 'react-router-dom'
@@ -10,4 +12,6 @@ export const privateRoutes: RouteObject[] = [
   },
   ...userRoutes,
   ...branchRoutes,
+  ...bookingRoutes,
+  ...customerRoutes,
 ]

@@ -1,7 +1,7 @@
 import api from '@/services/api'
 import { {{pascalCase featureName}} } from '@/types/{{kebabCase featureName}}'
-import { PaginatedPayload } from '@/types/PaginatedPayload'
-import { PaginatedResponse } from '@/types/PaginatedResponse'
+import { PaginatedPayload } from '@/types/paginated-payload'
+import { PaginatedResponse } from '@/types/paginated-response'
 
 export interface {{pascalCase featureName}}ListPayload extends PaginatedPayload {}
 
@@ -10,6 +10,6 @@ export interface {{pascalCase featureName}}ListResponse extends PaginatedRespons
 export const {{camelCase featureName}}ListService = async (
   payload: {{pascalCase featureName}}ListPayload,
 ): Promise<{{pascalCase featureName}}ListResponse> => {
-  const response = await api.get('/{{routeName}}', { params: payload })
+  const response = await api.get('/{{apiName}}', { params: payload })
   return response.data
 }
