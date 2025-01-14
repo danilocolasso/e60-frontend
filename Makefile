@@ -9,7 +9,7 @@ install build:
 	@echo "$(YELLOW)Building containers...$(RESET)"
 	@docker compose up -d --build
 	@echo "$(YELLOW)Copying env files...$(RESET)"
-	@docker compose exec frontend cp .env.sample .env
+	@docker compose exec app cp .env.sample .env
 
 up start:
 	@echo "$(YELLOW)Starting containers...$(RESET)"
@@ -33,4 +33,4 @@ restart:
 
 feature:
 	@echo "$(YELLOW)Creating feature...$(RESET)"
-	@docker compose exec frontend npm run plop
+	@docker compose exec app npm run plop
