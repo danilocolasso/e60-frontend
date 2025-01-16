@@ -16,7 +16,7 @@ export const DataTableBody = ({
   return (
     <TableBody>
       {data.map((row, index) => (
-        <TableRow key={index}>
+        <TableRow key={index} className={'hover:bg-zinc-950/5 dark:hover:bg-white/5'}>
           {columns.map((column) => (
             <TableCell key={String(column.key)}>
               {column.value ? column.value(row) : (row[column.key] as string)}
