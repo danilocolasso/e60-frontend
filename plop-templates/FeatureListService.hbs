@@ -10,6 +10,6 @@ export interface {{pascalCase featureName}}ListResponse extends PaginatedRespons
 export const {{camelCase featureName}}ListService = async (
   payload: {{pascalCase featureName}}ListPayload,
 ): Promise<{{pascalCase featureName}}ListResponse> => {
-  const response = await api.get('/{{apiName}}', { params: payload })
+  const response = await api.get('/{{apiRoute}}', { params: payload })
   return response.data
 }
