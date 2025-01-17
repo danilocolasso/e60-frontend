@@ -1,8 +1,15 @@
+export interface CustomerContact {
+  id?: number
+  name: string
+  email: string
+  phone: string
+}
+
 export interface Customer {
   id: number
   name: string
   document_number: string
-  birth_date: Date
+  birth_date: Date | null
   street: string
   street_number: string
   neighborhood: string
@@ -18,4 +25,5 @@ export interface Customer {
   is_corporate: boolean
   image_url: string
   rd_station_data: string
+  contacts: CustomerContact[]
 }

@@ -7,8 +7,9 @@ import { SelectRemote } from '@/components/ui/composite/SelectRemote'
 import { Button } from '@/components/ui/primitives/Button'
 import { FieldGroup } from '@/components/ui/primitives/Fieldset'
 import { Title } from '@/components/ui/primitives/Title'
+import { CustomerContacts } from '@/pages/customer/edit/CustomerContacts'
 import { useCustomerEdit } from '@/pages/customer/edit/useCustomerEdit'
-import { branchOptionsService } from '@/services/branch/branch-options.service.ts'
+import { branchOptionsService } from '@/services/branch/branch-options.service'
 import { useNavigate } from 'react-router-dom'
 
 export const CustomerEdit = () => {
@@ -97,7 +98,10 @@ export const CustomerEdit = () => {
               <SelectRemote
                 label={'Filial'}
                 service={branchOptionsService}
-                {...register('branch_id')}
+                {...register('branch_id', {
+                  setValueAs: (value) => (value ? Number(value) : null),
+                })}
+                error={errors.branch_id?.message}
               />
               <Checkbox
                 name={'is_corporate'}
@@ -114,6 +118,12 @@ export const CustomerEdit = () => {
                 ]}
               />
             </div>
+
+            <CustomerContacts
+              register={register}
+              control={control}
+              errors={errors}
+            />
           </FieldGroup>
         </form>
         <div className={'flex justify-between'}>

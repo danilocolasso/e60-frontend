@@ -6,7 +6,7 @@ export const customerUpdateSchema = z.object({
   email: z.string().email(),
   phone: z.string().min(10),
   document_number: z.string().min(11).max(14),
-  birth_date: z.date(),
+  birth_date: z.date().nullable(),
   street: z.string().min(6),
   street_number: z.string().min(1),
   neighborhood: z.string().min(3),
@@ -19,6 +19,14 @@ export const customerUpdateSchema = z.object({
   branch_id: z.number(),
   newsletter: z.boolean(),
   is_corporate: z.boolean(),
+  contacts: z.array(
+    z.object({
+      id: z.number().optional(),
+      name: z.string().min(3),
+      email: z.string().email(),
+      phone: z.string().min(10),
+    }),
+  ).optional(),
 })
 
 export type CustomerUpdatePayload = z.infer<typeof customerUpdateSchema>

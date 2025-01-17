@@ -18,6 +18,13 @@ export const customerCreateSchema = z.object({
   branch_id: z.number(),
   newsletter: z.boolean(),
   is_corporate: z.boolean(),
+  contacts: z.array(
+    z.object({
+      name: z.string().min(3),
+      email: z.string().email(),
+      phone: z.string().min(10),
+    }),
+  ).optional(),
 })
 
 export type CustomerCreatePayload = z.infer<typeof customerCreateSchema>

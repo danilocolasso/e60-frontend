@@ -1,15 +1,16 @@
 import { Content } from '@/components/common/Content'
 import { MainLayout } from '@/components/layouts/MainLayout'
+import { Checkbox } from '@/components/ui/composite/Checkbox'
 import { Input } from '@/components/ui/composite/Input'
+import { Radio } from '@/components/ui/composite/Radio'
+import { SelectRemote } from '@/components/ui/composite/SelectRemote'
 import { Button } from '@/components/ui/primitives/Button'
 import { FieldGroup } from '@/components/ui/primitives/Fieldset'
 import { Title } from '@/components/ui/primitives/Title'
+import { CustomerContacts } from '@/pages/customer/create/CustomerContacts'
 import { useCustomerCreate } from '@/pages/customer/create/useCustomerCreate'
+import { branchOptionsService } from '@/services/branch/branch-options.service'
 import { useNavigate } from 'react-router-dom'
-import { Radio } from '@/components/ui/composite/Radio'
-import { SelectRemote } from '@/components/ui/composite/SelectRemote'
-import { branchOptionsService } from '@/services/branch/branch-options.service.ts'
-import { Checkbox } from '@/components/ui/composite/Checkbox'
 
 export const CustomerCreate = () => {
   const navigate = useNavigate()
@@ -55,7 +56,8 @@ export const CustomerCreate = () => {
               />
               <Input
                 label={'Data de Nascimento'}
-                {...register('birth_date')}
+                type={'date'}
+                {...register('birth_date', { valueAsDate: true })}
                 error={errors.birth_date?.message}
               />
               <Input
@@ -96,7 +98,10 @@ export const CustomerCreate = () => {
               <SelectRemote
                 label={'Filial'}
                 service={branchOptionsService}
-                {...register('branch_id')}
+                {...register('branch_id', {
+                  setValueAs: (value) => (value ? Number(value) : null),
+                })}
+                error={errors.branch_id?.message}
               />
               <Checkbox
                 name={'is_corporate'}
@@ -114,6 +119,12 @@ export const CustomerCreate = () => {
                 ]}
               />
             </div>
+
+            <CustomerContacts
+              register={register}
+              control={control}
+              errors={errors}
+            />
           </FieldGroup>
         </form>
         <div className={'flex justify-between'}>
