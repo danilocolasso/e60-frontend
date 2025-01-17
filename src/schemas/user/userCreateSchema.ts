@@ -9,7 +9,7 @@ export const userCreateSchema = z
     password: z.string().min(6),
     password_confirmation: z.string().min(6),
     role: z.enum(Object.keys(roles) as any),
-    management_report_show: z.coerce.boolean(),
+    management_report_show: z.boolean(),
     branches: z.array(z.number()).nonempty(),
   })
   .refine((data) => data.password === data.password_confirmation, {

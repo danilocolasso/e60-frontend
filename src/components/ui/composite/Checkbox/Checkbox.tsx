@@ -11,7 +11,7 @@ export interface CheckboxProps<T, F extends FieldValues = FieldValues> {
   label?: string
   name: Path<F>
   control: Control<F>
-  options: Option<T>[]
+  options?: Option<T>[]
   error?: string
 }
 
@@ -29,7 +29,7 @@ export const Checkbox = <T, F extends FieldValues = FieldValues>({
 }: CheckboxProps<T, F>) => {
   return (
     <Field>
-      {label && <Label>{label}</Label>}
+      {options && label && <Label>{label}</Label>}
       <Controller
         name={name}
         control={control}
@@ -37,22 +37,32 @@ export const Checkbox = <T, F extends FieldValues = FieldValues>({
           const selectedValues: T[] = field.value || []
           return (
             <CheckboxGroup>
-              {options.map((option: Option<T>, index: number) => {
-                const isChecked = selectedValues.includes(option.value)
-                return (
-                  <CheckboxField key={option.value + '-' + index}>
-                    <CheckboxPrimitive
-                      checked={isChecked}
-                      onChange={() =>
-                        field.onChange(
-                          toggleValue(selectedValues, option.value),
-                        )
-                      }
-                    />
-                    <Label>{option.label}</Label>
-                  </CheckboxField>
-                )
-              })}
+              {options ? (
+                options.map((option: Option<T>, index: number) => {
+                  const isChecked = selectedValues.includes(option.value)
+                  return (
+                    <CheckboxField key={option.value + '-' + index}>
+                      <CheckboxPrimitive
+                        checked={isChecked}
+                        onChange={() =>
+                          field.onChange(
+                            toggleValue(selectedValues, option.value),
+                          )
+                        }
+                      />
+                      <Label>{option.label}</Label>
+                    </CheckboxField>
+                  )
+                })
+              ) : (
+                <CheckboxField key={field.name} className={'md:mt-9 !gap-x-2'}>
+                  <CheckboxPrimitive
+                    checked={field.value || false}
+                    onChange={() => field.onChange(!field.value)}
+                  />
+                  {label && <Label>{label}</Label>}
+                </CheckboxField>
+              )}
             </CheckboxGroup>
           )
         }}

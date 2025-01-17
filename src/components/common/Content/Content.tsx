@@ -18,7 +18,7 @@ export const Content = ({
       <div
         {...props}
         className={clsx(
-          'flex flex-1 flex-col justify-between gap-4',
+          'flex flex-1 flex-col justify-between gap-8',
           className,
         )}
       >

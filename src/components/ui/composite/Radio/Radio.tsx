@@ -14,9 +14,9 @@ import {
 } from 'react-hook-form'
 
 export interface RadioProps<
-  T extends string = string,
+  T extends string | number | boolean = string,
   F extends FieldValues = FieldValues,
-> extends Omit<RadioPropsPrimitive, 'value' | 'onChange'> {
+> extends Omit<RadioPropsPrimitive, 'value' | 'onChange' | 'defaultValue'> {
   label?: string
   name: Path<F>
   control: Control<F>
@@ -25,7 +25,7 @@ export interface RadioProps<
 }
 
 export const Radio = <
-  T extends string = string,
+  T extends string | number | boolean = string,
   F extends FieldValues = FieldValues,
 >({
   label,
@@ -35,30 +35,46 @@ export const Radio = <
   defaultValue,
   ...props
 }: RadioProps<T, F>) => {
+  const valueMap = new Map<string, T>(
+    options.map((option) => [String(option.value), option.value]),
+  )
+
+  const serializedDefaultValue =
+    defaultValue !== undefined ? String(defaultValue) : ''
+
   return (
     <Field>
       {label && <Label>{label}</Label>}
       <Controller
         name={name}
         control={control}
-        defaultValue={defaultValue as PathValue<F, Path<F>>}
-        render={({ field }) => (
-          <RadioGroup
-            value={String(field.value)}
-            onChange={field.onChange}
-            {...props}
-          >
-            {options.map((option: Option<T>, index: number) => (
-              <RadioField key={option.value + '-' + index}>
-                <RadioPrimitive
-                  value={option.value}
-                  onChange={() => field.onChange(option.value)}
-                />
-                <Label>{option.label}</Label>
-              </RadioField>
-            ))}
-          </RadioGroup>
-        )}
+        defaultValue={serializedDefaultValue as PathValue<F, Path<F>>}
+        render={({ field }) => {
+          const serializedValue =
+            field.value !== undefined ? String(field.value) : ''
+
+          const handleChange = (value: string) => {
+            const newValue = valueMap.get(value)
+            if (newValue !== undefined) {
+              field.onChange(newValue)
+            }
+          }
+
+          return (
+            <RadioGroup
+              value={serializedValue}
+              onChange={handleChange}
+              {...props}
+            >
+              {options.map((option: Option<T>, index: number) => (
+                <RadioField key={`${option.value}-${index}`}>
+                  <RadioPrimitive value={String(option.value)} />
+                  <Label>{option.label}</Label>
+                </RadioField>
+              ))}
+            </RadioGroup>
+          )
+        }}
       />
     </Field>
   )

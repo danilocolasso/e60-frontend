@@ -1,3 +1,4 @@
+import { Content } from '@/components/common/Content'
 import { MainLayout } from '@/components/layouts/MainLayout'
 import { CheckboxRemote } from '@/components/ui/composite/CheckboxRemote'
 import { Input } from '@/components/ui/composite/Input'
@@ -11,7 +12,6 @@ import { branchOptionsService } from '@/services/branch/branch-options.service'
 import { roles } from '@/types/user.ts'
 import { recordToOptions } from '@/util/recordToOptions'
 import { useNavigate } from 'react-router-dom'
-import { Content } from '@/components/common/Content'
 
 export const UserEdit = () => {
   const navigate = useNavigate()
@@ -21,7 +21,7 @@ export const UserEdit = () => {
     <MainLayout>
       <Title subtitle={'Editar'}>Usuários</Title>
       <Content>
-        <form id={'new-user'} onSubmit={handleSubmit} className={'mb-12'}>
+        <form id={'new-user'} onSubmit={handleSubmit}>
           <FieldGroup className={'max-w-4xl'}>
             <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
               <Input
@@ -35,8 +35,6 @@ export const UserEdit = () => {
                 error={errors.email?.message}
                 {...register('email')}
               />
-            </div>
-            <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
               <Input
                 label={'Usuário'}
                 error={errors.username?.message}
@@ -48,8 +46,6 @@ export const UserEdit = () => {
                 options={recordToOptions(roles)}
                 {...register('role')}
               />
-            </div>
-            <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
               <Input
                 label={'Senha'}
                 type={'password'}
@@ -62,23 +58,23 @@ export const UserEdit = () => {
                 error={errors.password_confirmation?.message}
                 {...register('password_confirmation')}
               />
+              <CheckboxRemote
+                label={'Filiais'}
+                name={'branches'}
+                service={branchOptionsService}
+                control={control}
+                error={errors.branches?.message}
+              />
+              <Radio
+                label={'Exibir relatório de gestão'}
+                control={control}
+                name={'management_report_show'}
+                options={[
+                  { label: 'Sim', value: true },
+                  { label: 'Não', value: false },
+                ]}
+              />
             </div>
-            <Radio
-              label={'Exibir relatório de gestão'}
-              control={control}
-              name={'management_report_show'}
-              options={[
-                { label: 'Sim', value: 'true' },
-                { label: 'Não', value: 'false' }
-              ]}
-            />
-            <CheckboxRemote
-              label={'Filiais'}
-              name={'branches'}
-              service={branchOptionsService}
-              control={control}
-              error={errors.branches?.message}
-            />
           </FieldGroup>
         </form>
         <div className={'flex justify-between'}>

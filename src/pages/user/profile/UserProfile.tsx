@@ -20,7 +20,7 @@ export const UserProfile = () => {
     <MainLayout>
       <Title subtitle={'Editar'}>Perfil</Title>
       <div className={'flex flex-1 flex-col justify-between'}>
-        <form id={'new-user'} onSubmit={handleSubmit} className={'mb-12'}>
+        <form id={'new-user'} onSubmit={handleSubmit}>
           <FieldGroup className={'max-w-4xl'}>
             <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
               <Input
@@ -34,8 +34,6 @@ export const UserProfile = () => {
                 error={errors.email?.message}
                 {...register('email')}
               />
-            </div>
-            <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
               <Input
                 label={'Usuário'}
                 error={errors.username?.message}
@@ -47,8 +45,6 @@ export const UserProfile = () => {
                 options={recordToOptions(roles)}
                 {...register('role')}
               />
-            </div>
-            <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
               <Input
                 label={'Senha'}
                 type={'password'}
@@ -61,29 +57,27 @@ export const UserProfile = () => {
                 error={errors.password_confirmation?.message}
                 {...register('password_confirmation')}
               />
+              <CheckboxRemote
+                label={'Filiais'}
+                name={'branches'}
+                service={branchOptionsService}
+                control={control}
+                error={errors.branches?.message}
+              />
+              <Radio
+                label={'Exibir relatório de gestão'}
+                control={control}
+                name={'management_report_show'}
+                options={[
+                  { label: 'Sim', value: true },
+                  { label: 'Não', value: false },
+                ]}
+              />
             </div>
-            <Radio
-              label={'Exibir relatório de gestão'}
-              control={control}
-              name={'management_report_show'}
-              options={[
-                { label: 'Sim', value: 'true' },
-                { label: 'Não', value: 'false' },
-              ]}
-            />
-            <CheckboxRemote
-              label={'Filiais'}
-              name={'branches'}
-              service={branchOptionsService}
-              control={control}
-              error={errors.branches?.message}
-            />
           </FieldGroup>
         </form>
         <div className={'flex justify-between'}>
-          <Button onClick={() => navigate(-1)}>
-            Voltar
-          </Button>
+          <Button onClick={() => navigate(-1)}>Voltar</Button>
           <Button type={'submit'} form={'new-user'}>
             Salvar
           </Button>

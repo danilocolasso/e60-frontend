@@ -8,11 +8,9 @@ import { userUpdateService } from '@/services/user/user-update.service'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export const useUserProfile = () => {
-  const navigate = useNavigate()
   const { user } = useAuth()
 
   const {
@@ -54,7 +52,6 @@ export const useUserProfile = () => {
         isLoading: false,
         autoClose: 3000,
       })
-      navigate('/administracao/usuarios')
     } catch (error: any) {
       toast.update(id, {
         render:

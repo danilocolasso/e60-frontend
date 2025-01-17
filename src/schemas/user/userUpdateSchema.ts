@@ -10,7 +10,7 @@ export const userUpdateSchema = z
     password: z.string().min(6).optional().or(z.literal('')),
     password_confirmation: z.string().min(6).optional().or(z.literal('')),
     role: z.enum(Object.keys(roles) as any),
-    management_report_show: z.coerce.boolean(),
+    management_report_show: z.boolean(),
     branches: z.array(z.number()).nonempty(),
   })
   .refine(
