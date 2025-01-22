@@ -6,15 +6,19 @@ import { Radio } from '@/components/ui/composite/Radio'
 import { SelectRemote } from '@/components/ui/composite/SelectRemote'
 import { Button } from '@/components/ui/primitives/Button'
 import { FieldGroup } from '@/components/ui/primitives/Fieldset'
+import { InputGroup } from '@/components/ui/primitives/Input'
 import { Title } from '@/components/ui/primitives/Title'
-import { CustomerContacts } from '@/pages/customer/edit/CustomerContacts'
+import { CustomerContacts } from '@/pages/customer/contacts'
 import { useCustomerEdit } from '@/pages/customer/edit/useCustomerEdit'
+import { addressStateOptionsService } from '@/services/address/address-state-options.service'
 import { branchOptionsService } from '@/services/branch/branch-options.service'
+import { MagnifyingGlassIcon } from '@heroicons/react/16/solid'
 import { useNavigate } from 'react-router-dom'
 
 export const CustomerEdit = () => {
   const navigate = useNavigate()
-  const { register, control, handleSubmit, errors } = useCustomerEdit()
+  const { register, control, handleSubmit, errors, consultDocument } =
+    useCustomerEdit()
 
   return (
     <MainLayout>
@@ -49,11 +53,21 @@ export const CustomerEdit = () => {
                 {...register('phone')}
                 error={errors.phone?.message}
               />
-              <Input
-                label={'Documento'}
-                {...register('document_number')}
-                error={errors.document_number?.message}
-              />
+              <InputGroup className={'relative'}>
+                <Button
+                  onClick={consultDocument}
+                  className={'!absolute bottom-0 right-0 z-20'}
+                  title={'Consultar CNPJ'}
+                >
+                  <MagnifyingGlassIcon />
+                </Button>
+                <Input
+                  label={'Documento'}
+                  className={'pr-4'}
+                  {...register('document_number')}
+                  error={errors.document_number?.message}
+                />
+              </InputGroup>
               <Input
                 label={'Data de Nascimento'}
                 type={'date'}
@@ -66,6 +80,7 @@ export const CustomerEdit = () => {
                 error={errors.street?.message}
               />
               <Input
+                type={'number'}
                 label={'Número'}
                 {...register('street_number')}
                 error={errors.street_number?.message}
@@ -80,8 +95,9 @@ export const CustomerEdit = () => {
                 {...register('city')}
                 error={errors.city?.message}
               />
-              <Input
+              <SelectRemote
                 label={'Estado'}
+                service={addressStateOptionsService}
                 {...register('state')}
                 error={errors.state?.message}
               />
@@ -98,20 +114,20 @@ export const CustomerEdit = () => {
               <SelectRemote
                 label={'Filial'}
                 service={branchOptionsService}
-                {...register('branch_id', {
-                  setValueAs: (value) => (value ? Number(value) : null),
-                })}
+                {...register('branch_id')}
                 error={errors.branch_id?.message}
               />
               <Checkbox
                 name={'is_corporate'}
                 control={control}
                 label={'Corporativo'}
+                error={errors.is_corporate?.message}
               />
               <Radio
                 label={'Newsletter'}
                 control={control}
                 name={'newsletter'}
+                error={errors.newsletter?.message}
                 options={[
                   { label: 'Sim', value: true },
                   { label: 'Não', value: false },

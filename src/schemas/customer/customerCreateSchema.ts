@@ -15,14 +15,15 @@ export const customerCreateSchema = z.object({
   zip_code: z.string().min(8),
   username: z.string().min(3),
   password: z.string().min(6),
-  branch_id: z.number(),
+  branch_id: z.coerce.number(),
   newsletter: z.boolean(),
-  is_corporate: z.boolean(),
+  is_corporate: z.boolean().optional(),
   contacts: z.array(
     z.object({
-      name: z.string().min(3),
-      email: z.string().email(),
-      phone: z.string().min(10),
+      name: z.string().optional(),
+      department: z.string().optional(),
+      email: z.union([z.string().email(), z.string().length(0)]).optional(),
+      phone: z.string().optional(),
     }),
   ).optional(),
 })

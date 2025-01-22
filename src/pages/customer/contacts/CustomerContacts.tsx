@@ -2,37 +2,39 @@ import { Button } from '@/components/ui/primitives/Button'
 import { Fieldset, Legend } from '@/components/ui/primitives/Fieldset'
 import { SidebarItem } from '@/components/ui/primitives/Sidebar'
 import { Text } from '@/components/ui/primitives/Text'
-import { CustomerCreatePayload } from '@/schemas/customer/customerCreateSchema.ts'
+import { CustomerContact as Contact } from '@/types/customer-contact'
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
 } from '@headlessui/react'
 import { ChevronRightIcon } from '@heroicons/react/16/solid'
-import React from 'react'
 import {
+  ArrayPath,
   Control,
   FieldErrors,
+  FieldValues,
   useFieldArray,
   UseFormRegister,
 } from 'react-hook-form'
-import { CustomerContact } from './CustomerContact.tsx'
+import { CustomerContact } from './CustomerContact'
 
-interface CustomerContactsProps {
-  register: UseFormRegister<CustomerCreatePayload>
-  control: Control<CustomerCreatePayload>
-  errors: FieldErrors<CustomerCreatePayload>
+interface CustomerContactsProps<T extends FieldValues> {
+  register: UseFormRegister<T>
+  control: Control<T>
+  errors: FieldErrors<T>
 }
 
-export const CustomerContacts: React.FC<CustomerContactsProps> = ({
+export function CustomerContacts<T extends FieldValues>({
   register,
   control,
   errors,
-}) => {
-  const { fields, append, remove } = useFieldArray({
+}: CustomerContactsProps<T>) {
+  const { fields, append, remove } = useFieldArray<T>({
     control,
-    name: 'contacts',
+    name: 'contacts' as ArrayPath<T>,
   })
+
   return (
     <Fieldset>
       <Disclosure as="div" className={'group relative flex flex-col gap-2'}>
@@ -64,14 +66,18 @@ export const CustomerContacts: React.FC<CustomerContactsProps> = ({
           )}
           <Button
             className={'md:self-end'}
-            onClick={() => append({ name: '', email: '', phone: '' })}
+            onClick={() =>
+              append({
+                name: '',
+                department: '',
+                email: '',
+                phone: '',
+              } as ArrayPath<Contact>)
+            }
           >
             Novo Contato
           </Button>
         </DisclosurePanel>
-        {errors.contacts?.message && (
-          <span className="text-red-500">{errors.contacts.message}</span>
-        )}
       </Disclosure>
     </Fieldset>
   )

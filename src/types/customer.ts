@@ -1,9 +1,4 @@
-export interface CustomerContact {
-  id?: number
-  name: string
-  email: string
-  phone: string
-}
+import { CustomerContact } from '@/types/customer-contact'
 
 export interface Customer {
   id: number

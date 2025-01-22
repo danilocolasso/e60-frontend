@@ -1,3 +1,4 @@
+import { useConsultDocumentNumber } from '@/hooks/useConsultDocumentNumber.ts'
 import {
   CustomerCreatePayload,
   customerCreateSchema,
@@ -16,8 +17,15 @@ export const useCustomerCreate = () => {
     handleSubmit,
     control,
     formState: { errors },
+    getValues,
+    setValue,
   } = useForm<CustomerCreatePayload>({
     resolver: zodResolver(customerCreateSchema),
+  })
+
+  const { consultDocument } = useConsultDocumentNumber<CustomerCreatePayload>({
+    getValues,
+    setValue,
   })
 
   const onSubmit = async (data: CustomerCreatePayload) => {
@@ -48,5 +56,6 @@ export const useCustomerCreate = () => {
     control,
     handleSubmit: handleSubmit(onSubmit),
     errors,
+    consultDocument,
   }
 }

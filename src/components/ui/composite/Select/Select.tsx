@@ -15,11 +15,16 @@ export interface SelectProps<T extends string = string>
 }
 
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, options, error, children, ...props }, ref) => {
+  ({ label, options, error, value, onChange, defaultValue, ...props }, ref) => {
     return (
       <Field>
         {label && <Label>{label}</Label>}
-        <SelectPrimitive ref={ref} {...props}>
+        <SelectPrimitive
+          value={value} // <--- controlled usage
+          onChange={onChange} // <--- controlled usage
+          ref={ref}
+          {...props}
+        >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

@@ -1,4 +1,4 @@
-import { Field, Label } from '@/components/ui/primitives/Fieldset'
+import { ErrorMessage, Field, Label } from '@/components/ui/primitives/Fieldset'
 import { RadioField, RadioGroup } from '@/components/ui/primitives/Radio'
 import {
   Radio as RadioPrimitive,
@@ -22,6 +22,7 @@ export interface RadioProps<
   control: Control<F>
   options: Option<T>[]
   defaultValue?: T
+  error?: string
 }
 
 export const Radio = <
@@ -33,14 +34,14 @@ export const Radio = <
   control,
   options,
   defaultValue,
+  error,
   ...props
 }: RadioProps<T, F>) => {
   const valueMap = new Map<string, T>(
     options.map((option) => [String(option.value), option.value]),
   )
 
-  const serializedDefaultValue =
-    defaultValue !== undefined ? String(defaultValue) : ''
+  const serializedDefaultValue = defaultValue ?? options[0]?.value
 
   return (
     <Field>
@@ -61,18 +62,21 @@ export const Radio = <
           }
 
           return (
-            <RadioGroup
-              value={serializedValue}
-              onChange={handleChange}
-              {...props}
-            >
-              {options.map((option: Option<T>, index: number) => (
-                <RadioField key={`${option.value}-${index}`}>
-                  <RadioPrimitive value={String(option.value)} />
-                  <Label>{option.label}</Label>
-                </RadioField>
-              ))}
-            </RadioGroup>
+            <Field>
+              <RadioGroup
+                value={serializedValue}
+                onChange={handleChange}
+                {...props}
+              >
+                {options.map((option: Option<T>, index: number) => (
+                  <RadioField key={`${option.value}-${index}`}>
+                    <RadioPrimitive value={String(option.value)} />
+                    <Label>{option.label}</Label>
+                  </RadioField>
+                ))}
+              </RadioGroup>
+              {error && <ErrorMessage>{error}</ErrorMessage>}
+            </Field>
           )
         }}
       />
