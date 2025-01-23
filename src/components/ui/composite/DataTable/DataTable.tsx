@@ -63,9 +63,9 @@ export const DataTable = <T,>({
       })
 
       setData(response.data)
-      setPerPage(response.per_page)
-      setCurrentPage(response.current_page)
-      setLastPage(response.last_page)
+      setPerPage(response.meta.per_page)
+      setCurrentPage(response.meta.current_page)
+      setLastPage(response.meta.last_page)
     } catch (error) {
       toast.error(
         'Ocorreu um erro ao buscar os dados. Por favor, tente novamente mais tarde',
