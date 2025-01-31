@@ -28,7 +28,9 @@ export const DataTablePagination = ({
       <Pagination>
         <PaginationPrevious
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-        />
+        >
+          Anterior
+        </PaginationPrevious>
         <PaginationList>
           {pages.map((page) => (
             <PaginationPage
@@ -42,7 +44,9 @@ export const DataTablePagination = ({
         </PaginationList>
         <PaginationNext
           onClick={() => onPageChange(Math.min(lastPage, currentPage + 1))}
-        />
+        >
+          Próxima
+        </PaginationNext>
       </Pagination>
     )
   }
