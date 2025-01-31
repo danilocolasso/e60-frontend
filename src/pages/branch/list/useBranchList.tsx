@@ -13,6 +13,7 @@ import {
 } from '@heroicons/react/16/solid'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { Badge } from '@/components/ui/primitives/Badge'
 
 interface Filters {
   query?: string
@@ -35,29 +36,43 @@ export const useBranchList = () => {
       key: 'phone',
       label: 'Telefone',
     },
-    // {
-    //   key: '',
-    //   label: 'Filial RPS',
-    //   sortable: true,
-    // },
+    {
+      key: 'rps',
+      label: 'Filial RPS',
+      value: (row: Branch) => row.rps?.name,
+      sortable: true,
+    },
     {
       key: 'type',
       label: 'Tipo',
       sortable: true,
     },
     {
-      key: 'administered_by',
+      key: 'admin',
       label: 'Administrador',
+      value: (row: Branch) => row.admin?.name,
       sortable: true,
     },
     {
       key: 'is_advance_voucher',
       label: 'Voucher',
+      value: (row: Branch) =>
+        row.is_advance_voucher ? (
+          <Badge color={'green'}>Sim</Badge>
+        ) : (
+          <Badge color={'red'}>Não</Badge>
+        ),
       sortable: true,
     },
     {
       key: 'is_active',
       label: 'Ativo',
+      value: (row: Branch) =>
+        row.is_active ? (
+          <Badge color={'green'}>Sim</Badge>
+        ) : (
+          <Badge color={'red'}>Não</Badge>
+        ),
       sortable: true,
     },
   ]

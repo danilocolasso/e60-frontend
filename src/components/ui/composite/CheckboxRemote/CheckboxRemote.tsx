@@ -1,9 +1,9 @@
 import { Checkbox, CheckboxProps } from '@/components/ui/composite/Checkbox'
 import { Field, Label } from '@/components/ui/primitives/Fieldset'
-import { Option } from '@/types/option.ts'
+import { Option } from '@/types/option'
+import { handleApiError } from '@/util/apiErrorHandler'
 import { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
-import { toast } from 'react-toastify'
 
 type ServiceType<T> = () => Promise<Option<T>[]>
 
@@ -27,7 +27,8 @@ export const CheckboxRemote = <T, F extends FieldValues = FieldValues>({
         setOptions(data)
         setLoading(false)
       } catch (err) {
-        toast.error(
+        handleApiError(
+          err,
           'Ocorreu um erro ao buscar as opções do checkbox. Por favor, tente novamente mais tarde',
         )
       }

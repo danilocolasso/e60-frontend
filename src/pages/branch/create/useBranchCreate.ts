@@ -18,6 +18,10 @@ export const useBranchCreate = () => {
     formState: { errors },
   } = useForm<BranchCreatePayload>({
     resolver: zodResolver(branchCreateSchema),
+    defaultValues: {
+      giftcard_person_limit: 1,
+      giftcard_value_per_person: 0,
+    }
   })
 
   const onSubmit = async (data: BranchCreatePayload) => {
@@ -42,6 +46,8 @@ export const useBranchCreate = () => {
       })
     }
   }
+
+  console.log(errors)
 
   return {
     register,

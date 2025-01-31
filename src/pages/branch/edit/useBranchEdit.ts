@@ -27,7 +27,11 @@ export const useBranchEdit = () => {
   const fetch = async () => {
     try {
       const data = await branchEditService({ id: Number(id) })
-      reset(data)
+      reset({
+        ...data,
+          rps_id: data.rps?.id,
+          admin_user_id: data.admin?.id,
+      })
     } catch (error) {
       toast.error(
         'Ocorreu um erro ao buscar a filial. Por favor, tente novamente mais tarde',

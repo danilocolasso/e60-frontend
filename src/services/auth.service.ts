@@ -4,10 +4,7 @@ import { User } from '@/types/user.ts'
 
 export const login = async (data: LoginPayload) => {
   await getCsrfToken()
-  return await api.post(
-    import.meta.env.VITE_API_URL.replace('/api', '') + '/login',
-    data,
-  )
+  return await api.post('/login', data)
 }
 
 export const logout = async () => {

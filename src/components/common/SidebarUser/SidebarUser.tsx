@@ -30,11 +30,12 @@ export const SidebarUser = ({ children, ...props }: SidebarUserProps) => {
     try {
       await logout()
       setUser(null)
-      navigate('/login')
     } catch (error) {
       toast.error(
         'Ocorreu um erro ao fazer logout. Por favor, tente novamente mais tarde',
       )
+    } finally {
+      navigate('/login')
     }
   }
 

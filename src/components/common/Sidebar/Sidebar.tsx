@@ -44,7 +44,7 @@ export const Sidebar = ({ children, ...props }: SidebarProps) => {
           {data.map((item: NavigationItem) => (
             <div key={item.name}>
               {item.children ? (
-                <Disclosure as="div" className={'group relative'}>
+                <Disclosure as="div" className={'group relative'} defaultOpen={item.current}>
                   <DisclosureButton
                     className={'cursor-pointer'}
                     as={SidebarItem}

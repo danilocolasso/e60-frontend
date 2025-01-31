@@ -30,7 +30,7 @@ export const CustomerCreate = () => {
       <Title subtitle={'Criar'}>Clientes</Title>
       <Content>
         <form id={'new-customer'} onSubmit={handleSubmit}>
-          <FieldGroup className={'max-w-4xl'}>
+          <FieldGroup className={'md:px-16 md:py-8'}>
             <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
               <Input
                 label={'Nome'}

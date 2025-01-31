@@ -25,7 +25,7 @@ api.interceptors.response.use(
 )
 
 export const getCsrfToken = async () => {
-  await api.get(import.meta.env.VITE_API_URL.replace('/api', '') + '/sanctum/csrf-cookie')
+  await api.get('/sanctum/csrf-cookie')
 }
 
 export default api

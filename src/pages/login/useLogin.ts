@@ -25,7 +25,6 @@ export const useLogin = () => {
       setUser(response.data.user)
       navigate('/')
     } catch (error: any) {
-      console.log(error)
       toast.error(
         error.response?.data?.message ||
           'Ocorreu um error inesperado ao tentar realizar auth. Por favor, tente novamente mais tarde.',

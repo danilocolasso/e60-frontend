@@ -5,6 +5,7 @@ import {
   RadioProps as RadioPropsPrimitive,
 } from '@/components/ui/primitives/Radio/Radio'
 import { Option } from '@/types/option.ts'
+import clsx from 'clsx'
 import {
   Control,
   Controller,
@@ -23,6 +24,7 @@ export interface RadioProps<
   options: Option<T>[]
   defaultValue?: T
   error?: string
+  align?: 'horizontal' | 'vertical'
 }
 
 export const Radio = <
@@ -34,7 +36,9 @@ export const Radio = <
   control,
   options,
   defaultValue,
+  className,
   error,
+  align = 'horizontal',
   ...props
 }: RadioProps<T, F>) => {
   const valueMap = new Map<string, T>(
@@ -62,21 +66,29 @@ export const Radio = <
           }
 
           return (
-            <Field>
+            <>
               <RadioGroup
                 value={serializedValue}
                 onChange={handleChange}
+                className={clsx(
+                  className,
+                  'flex',
+                  align === 'horizontal' ? 'flex-row gap-4' : 'flex-col gap-2',
+                )}
                 {...props}
               >
                 {options.map((option: Option<T>, index: number) => (
-                  <RadioField key={`${option.value}-${index}`}>
+                  <RadioField
+                    key={`${option.value}-${index}`}
+                    className={'!mt-0 !gap-2'}
+                  >
                     <RadioPrimitive value={String(option.value)} />
                     <Label>{option.label}</Label>
                   </RadioField>
                 ))}
               </RadioGroup>
               {error && <ErrorMessage>{error}</ErrorMessage>}
-            </Field>
+            </>
           )
         }}
       />

@@ -1,9 +1,9 @@
 import { Radio, RadioProps } from '@/components/ui/composite/Radio'
 import { Field, Label } from '@/components/ui/primitives/Fieldset'
-import { Option } from '@/types/option.ts'
+import { Option } from '@/types/options'
+import { handleApiError } from '@/util/apiErrorHandler'
 import { useEffect, useState } from 'react'
 import { FieldValues } from 'react-hook-form'
-import { toast } from 'react-toastify'
 
 type ServiceType<T extends string> = () => Promise<Option<T>[]>
 
@@ -32,7 +32,8 @@ export const RadioRemote = <
         setOptions(data)
         setLoading(false)
       } catch (err) {
-        toast.error(
+        handleApiError(
+          err,
           'Ocorreu um erro ao buscar as opções do radio. Por favor, tente novamente mais tarde',
         )
       }

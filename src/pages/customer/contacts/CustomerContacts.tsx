@@ -37,7 +37,11 @@ export function CustomerContacts<T extends FieldValues>({
 
   return (
     <Fieldset>
-      <Disclosure as="div" className={'group relative flex flex-col gap-2'}>
+      <Disclosure
+        as="div"
+        className={'group relative flex flex-col gap-2'}
+        defaultOpen={true}
+      >
         <DisclosureButton className={'cursor-pointer'} as={SidebarItem}>
           <Legend>Contatos</Legend>
           <ChevronRightIcon

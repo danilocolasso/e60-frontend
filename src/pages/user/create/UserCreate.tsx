@@ -5,12 +5,23 @@ import { Input } from '@/components/ui/composite/Input'
 import { Radio } from '@/components/ui/composite/Radio'
 import { Select } from '@/components/ui/composite/Select'
 import { Button } from '@/components/ui/primitives/Button'
-import { FieldGroup } from '@/components/ui/primitives/Fieldset'
+import {
+  FieldGroup,
+  Fieldset,
+  Legend,
+} from '@/components/ui/primitives/Fieldset'
+import { SidebarItem } from '@/components/ui/primitives/Sidebar'
 import { Title } from '@/components/ui/primitives/Title'
 import { useUserCreate } from '@/pages/user/create/useUserCreate'
 import { branchOptionsService } from '@/services/branch/branch-options.service'
 import { roles } from '@/types/user.ts'
 import { recordToOptions } from '@/util/recordToOptions'
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from '@headlessui/react'
+import { ChevronRightIcon } from '@heroicons/react/16/solid'
 import { useNavigate } from 'react-router-dom'
 
 export const UserCreate = () => {
@@ -22,7 +33,7 @@ export const UserCreate = () => {
       <Title subtitle={'Criar'}>Usuários</Title>
       <Content>
         <form id={'new-user'} onSubmit={handleSubmit}>
-          <FieldGroup className={'max-w-4xl'}>
+          <FieldGroup className={'md:px-16 md:py-8'}>
             <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
               <Input
                 label={'Nome'}
@@ -58,13 +69,6 @@ export const UserCreate = () => {
                 error={errors.password_confirmation?.message}
                 {...register('password_confirmation')}
               />
-              <CheckboxRemote
-                label={'Filiais'}
-                name={'branches'}
-                service={branchOptionsService}
-                control={control}
-                error={errors.branches?.message}
-              />
               <Radio
                 label={'Exibir relatório de gestão'}
                 control={control}
@@ -75,6 +79,37 @@ export const UserCreate = () => {
                   { label: 'Não', value: false },
                 ]}
               />
+              <Fieldset className={'md:col-span-2'}>
+                <Disclosure
+                  as={'div'}
+                  className={'group relative flex flex-col gap-2'}
+                  defaultOpen={true}
+                >
+                  <DisclosureButton
+                    className={'cursor-pointer'}
+                    as={SidebarItem}
+                  >
+                    <Legend>Filiais</Legend>
+                    <ChevronRightIcon
+                      aria-hidden="true"
+                      className="ml-auto size-5 shrink-0 group-data-[open]:rotate-90 group-data-[open]:text-white"
+                    />
+                  </DisclosureButton>
+                  <DisclosurePanel
+                    as="ul"
+                    className={
+                      'flex flex-col gap-4 rounded-lg bg-zinc-50 p-4 dark:bg-zinc-800/40'
+                    }
+                  >
+                    <CheckboxRemote
+                      name={'branches'}
+                      service={branchOptionsService}
+                      control={control}
+                      error={errors.branches?.message}
+                    />
+                  </DisclosurePanel>
+                </Disclosure>
+              </Fieldset>
             </div>
           </FieldGroup>
         </form>

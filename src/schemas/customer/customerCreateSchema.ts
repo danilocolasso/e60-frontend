@@ -12,7 +12,7 @@ export const customerCreateSchema = z.object({
   complement: z.string().optional(),
   city: z.string().min(3),
   state: z.string().min(2).max(2),
-  zip_code: z.string().min(8),
+  zip_code: z.string().length(9),
   username: z.string().min(3),
   password: z.string().min(6),
   branch_id: z.coerce.number(),

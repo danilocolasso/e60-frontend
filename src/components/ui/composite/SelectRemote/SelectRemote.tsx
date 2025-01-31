@@ -1,36 +1,37 @@
-import {
-  Select,
-  SelectOptions,
-  SelectProps,
-} from '@/components/ui/composite/Select'
+import { Select, SelectProps } from '@/components/ui/composite/Select'
 import { Field, Label } from '@/components/ui/primitives/Fieldset'
 import { Option } from '@/types/option'
+import { handleApiError } from '@/util/apiErrorHandler'
 import { ForwardedRef, forwardRef, useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 
 type ServiceType<T> = () => Promise<Option<T>[]>
 
 export interface SelectRemoteProps<T extends string = string>
   extends Omit<SelectProps<T>, 'options'> {
   service: ServiceType<T>
+  emptyOption?: boolean
 }
 
 const SelectRemoteInner = <T extends string = string>(
-  { service, label, ...props }: SelectRemoteProps<T>,
+  { service, label, emptyOption, ...props }: SelectRemoteProps<T>,
   ref: ForwardedRef<HTMLSelectElement>,
 ) => {
-  const [options, setOptions] = useState<SelectOptions<T>[]>([])
+  const [options, setOptions] = useState<Option<T>[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchOptions = async () => {
       try {
         const data = await service()
+        if (emptyOption) {
+          data.unshift({ label: 'Selecione', value: '' as T })
+        }
         setOptions(data)
         setLoading(false)
-      } catch (err) {
-        toast.error(
-          'An error occurred while fetching select options. Please try again later.',
+      } catch (err: any) {
+        handleApiError(
+          err,
+          'Ocorreu um erro ao buscar as opções do select. Por favor, tente novamente mais tarde',
         )
       }
     }
