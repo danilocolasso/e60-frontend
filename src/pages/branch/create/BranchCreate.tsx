@@ -20,6 +20,7 @@ import { branchRpsTaxServiceInvoiceOptionsService } from '@/services/branch/bran
 import { branchTypeOptions } from '@/services/branch/branch-type-options.service.ts'
 import { userOptionsService } from '@/services/user/user-options.service.ts'
 import { useNavigate } from 'react-router-dom'
+import { Content } from '@/components/common/Content'
 
 export const BranchCreate = () => {
   const navigate = useNavigate()
@@ -28,7 +29,7 @@ export const BranchCreate = () => {
   return (
     <MainLayout>
       <Title subtitle={'Criar'}>Filiais</Title>
-      <div className={'flex flex-1 flex-col justify-between gap-4'}>
+      <Content>
         <form id={'new-branch'} onSubmit={handleSubmit}>
           <FieldGroup className={'md:px-16 md:py-8'}>
             <div className={'grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4'}>
@@ -303,7 +304,7 @@ export const BranchCreate = () => {
             Salvar
           </Button>
         </div>
-      </div>
+      </Content>
     </MainLayout>
   )
 }
