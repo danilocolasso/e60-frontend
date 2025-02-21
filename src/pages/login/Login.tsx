@@ -14,7 +14,7 @@ import React from 'react'
 import { Controller } from 'react-hook-form'
 
 export const Login: React.FC = () => {
-  const { register, control, handleSubmit, errors } = useLogin()
+  const { register, control, handleSubmit, errors, loading } = useLogin()
 
   return (
     <LoginLayout>
@@ -68,8 +68,8 @@ export const Login: React.FC = () => {
             </div>
           </Field>
         </FieldGroup>
-        <Button className={'mt-8 w-full'} type={'submit'}>
-          Sign in
+        <Button className={'mt-8 w-full'} type={'submit'} disabled={loading}>
+          { loading ? 'Entrando...' : 'Entrar' }
         </Button>
       </form>
     </LoginLayout>

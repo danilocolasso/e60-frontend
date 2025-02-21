@@ -5,10 +5,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useState } from 'react'
 
 export const useLogin = () => {
   const { setUser } = useAuth()
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -21,6 +23,7 @@ export const useLogin = () => {
 
   const onSubmit = async (data: LoginPayload) => {
     try {
+      setLoading(true)
       const response = await login(data)
       setUser(response.data.user)
       navigate('/')
@@ -29,6 +32,8 @@ export const useLogin = () => {
         error.response?.data?.message ||
           'Ocorreu um error inesperado ao tentar realizar auth. Por favor, tente novamente mais tarde.',
       )
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -37,5 +42,6 @@ export const useLogin = () => {
     control,
     handleSubmit: handleSubmit(onSubmit),
     errors,
+    loading,
   }
 }
