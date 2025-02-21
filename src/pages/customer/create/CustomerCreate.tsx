@@ -22,6 +22,7 @@ export const CustomerCreate = () => {
     control,
     handleSubmit,
     errors,
+    loading,
     consultDocument
   } = useCustomerCreate()
 
@@ -149,8 +150,8 @@ export const CustomerCreate = () => {
         </form>
         <div className={'flex justify-between'}>
           <Button onClick={() => navigate('/clientes')}>Voltar</Button>
-          <Button type={'submit'} form={'new-customer'}>
-            Salvar
+          <Button type={'submit'} form={'new-customer'} disabled={loading}>
+            {loading ? 'Salvando...' : 'Salvar'}
           </Button>
         </div>
       </Content>

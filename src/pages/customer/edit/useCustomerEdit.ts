@@ -6,7 +6,7 @@ import {
 import { customerEditService } from '@/services/customer/customer-edit.service'
 import { customerUpdateService } from '@/services/customer/customer-update.service'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -14,6 +14,7 @@ import { toast } from 'react-toastify'
 export const useCustomerEdit = () => {
   const navigate = useNavigate()
   const { id } = useParams()
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -50,6 +51,7 @@ export const useCustomerEdit = () => {
   const onSubmit = async (data: CustomerUpdatePayload) => {
     const id = toast.loading('Salvando...')
     try {
+      setLoading(true)
       await customerUpdateService(data)
       toast.update(id, {
         render: 'Cliente atualizado com sucesso',
@@ -67,6 +69,8 @@ export const useCustomerEdit = () => {
         isLoading: false,
         autoClose: 3000,
       })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -75,6 +79,7 @@ export const useCustomerEdit = () => {
     control,
     handleSubmit: handleSubmit(onSubmit),
     errors,
+    loading,
     consultDocument,
   }
 }

@@ -8,9 +8,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useState } from 'react'
 
 export const useCustomerCreate = () => {
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -31,6 +33,7 @@ export const useCustomerCreate = () => {
   const onSubmit = async (data: CustomerCreatePayload) => {
     const id = toast.loading('Criando cliente...')
     try {
+      setLoading(true)
       await customerCreateService(data)
       toast.update(id, {
         render: 'Cliente criado com sucesso',
@@ -48,6 +51,8 @@ export const useCustomerCreate = () => {
         isLoading: false,
         autoClose: 3000,
       })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -56,6 +61,7 @@ export const useCustomerCreate = () => {
     control,
     handleSubmit: handleSubmit(onSubmit),
     errors,
+    loading,
     consultDocument,
   }
 }

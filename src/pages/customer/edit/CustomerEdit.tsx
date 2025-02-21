@@ -17,8 +17,14 @@ import { useNavigate } from 'react-router-dom'
 
 export const CustomerEdit = () => {
   const navigate = useNavigate()
-  const { register, control, handleSubmit, errors, consultDocument } =
-    useCustomerEdit()
+  const {
+    register,
+    control,
+    handleSubmit,
+    errors,
+    loading,
+    consultDocument
+  } = useCustomerEdit()
 
   return (
     <MainLayout>
@@ -144,8 +150,8 @@ export const CustomerEdit = () => {
         </form>
         <div className={'flex justify-between'}>
           <Button onClick={() => navigate('/clientes')}>Voltar</Button>
-          <Button type={'submit'} form={'edit-customer'}>
-            Salvar
+          <Button type={'submit'} form={'edit-customer'} disabled={loading}>
+            {loading ? 'Salvando...' : 'Salvar'}
           </Button>
         </div>
       </Content>
