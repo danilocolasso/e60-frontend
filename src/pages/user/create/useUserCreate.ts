@@ -4,12 +4,14 @@ import {
 } from '@/schemas/user/userCreateSchema.ts'
 import { userCreateService } from '@/services/user/user-create.service.ts'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export const useUserCreate = () => {
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -23,6 +25,7 @@ export const useUserCreate = () => {
   const onSubmit = async (data: UserCreatePayload) => {
     const id = toast.loading('Criando usuário...')
     try {
+      setLoading(true)
       await userCreateService(data)
       toast.update(id, {
         render: 'Usuário criado com sucesso',
@@ -40,6 +43,8 @@ export const useUserCreate = () => {
         isLoading: false,
         autoClose: 3000,
       })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -48,5 +53,6 @@ export const useUserCreate = () => {
     control,
     handleSubmit: handleSubmit(onSubmit),
     errors,
+    loading,
   }
 }

@@ -26,7 +26,13 @@ import { useNavigate } from 'react-router-dom'
 
 export const UserCreate = () => {
   const navigate = useNavigate()
-  const { register, control, handleSubmit, errors } = useUserCreate()
+  const {
+    register,
+    control,
+    handleSubmit,
+    errors,
+    loading,
+  } = useUserCreate()
 
   return (
     <MainLayout>
@@ -117,8 +123,8 @@ export const UserCreate = () => {
           <Button onClick={() => navigate('/administracao/usuarios')}>
             Voltar
           </Button>
-          <Button type={'submit'} form={'new-user'}>
-            Salvar
+          <Button type={'submit'} form={'new-user'} disabled={loading}>
+            {loading ? 'Salvando...' : 'Salvar'}
           </Button>
         </div>
       </Content>

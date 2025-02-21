@@ -5,7 +5,7 @@ import {
 import { userEditService } from '@/services/user/user-edit.service'
 import { userUpdateService } from '@/services/user/user-update.service'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -13,6 +13,7 @@ import { toast } from 'react-toastify'
 export const useUserEdit = () => {
   const navigate = useNavigate()
   const { id } = useParams()
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -42,6 +43,7 @@ export const useUserEdit = () => {
   const onSubmit = async (data: UserUpdatePayload) => {
     const id = toast.loading('Salvando...')
     try {
+      setLoading(true)
       await userUpdateService(data)
       toast.update(id, {
         render: 'Usuário salvo com sucesso',
@@ -59,6 +61,8 @@ export const useUserEdit = () => {
         isLoading: false,
         autoClose: 3000,
       })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -67,5 +71,6 @@ export const useUserEdit = () => {
     control,
     handleSubmit: handleSubmit(onSubmit),
     errors,
+    loading,
   }
 }

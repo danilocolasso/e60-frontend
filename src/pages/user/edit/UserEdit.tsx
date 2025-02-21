@@ -26,7 +26,13 @@ import { useNavigate } from 'react-router-dom'
 
 export const UserEdit = () => {
   const navigate = useNavigate()
-  const { register, control, handleSubmit, errors } = useUserEdit()
+  const {
+    register,
+    control,
+    handleSubmit,
+    errors,
+    loading,
+  } = useUserEdit()
 
   return (
     <MainLayout>
@@ -117,8 +123,8 @@ export const UserEdit = () => {
           <Button onClick={() => navigate('/administracao/usuarios')}>
             Voltar
           </Button>
-          <Button type={'submit'} form={'new-user'}>
-            Salvar
+          <Button type={'submit'} form={'new-user'} disabled={loading}>
+            {loading ? 'Salvando...' : 'Salvar'}
           </Button>
         </div>
       </Content>
