@@ -15,7 +15,8 @@ export interface Branch {
   pagseguro?: {
     email?: string
     token?: string
-    key?: string
+    client_id?: string
+    client_secret?: string
   }
   paypal?: {
     user?: string

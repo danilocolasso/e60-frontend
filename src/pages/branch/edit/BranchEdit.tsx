@@ -171,9 +171,14 @@ export const BranchEdit = () => {
                     {...register('pagseguro.token')}
                   />
                   <Input
-                    label={'Chave'}
-                    error={errors.pagseguro?.key?.message}
-                    {...register('pagseguro.key')}
+                    label={'Client id'}
+                    error={errors.pagseguro?.client_id?.message}
+                    {...register('pagseguro.client_id')}
+                  />
+                  <Input
+                    label={'Client secret'}
+                    error={errors.pagseguro?.client_secret?.message}
+                    {...register('pagseguro.client_secret')}
                   />
                 </div>
               </Fieldset>

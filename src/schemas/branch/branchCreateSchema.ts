@@ -15,7 +15,8 @@ export const branchCreateSchema = z.object({
   pagseguro: z.object({
     email: z.union([z.string().email(), z.string().length(0)]).optional(),
     token: z.string().optional(),
-    key: z.string().optional(),
+    client_id: z.string().optional(),
+    client_secret: z.string().optional(),
   }).optional(),
   paypal: z.object({
     user: z.string().optional(),

@@ -17,7 +17,8 @@ export const branchUpdateSchema = z.object({
     .object({
       email: z.string().email().optional().nullable(),
       token: z.string().optional().nullable(),
-      key: z.string().optional().nullable(),
+      client_id: z.string().optional().nullable(),
+      client_secret: z.string().optional().nullable(),
     })
     .optional(),
   paypal: z
