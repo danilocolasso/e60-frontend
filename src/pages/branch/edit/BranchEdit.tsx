@@ -20,7 +20,13 @@ import { useNavigate } from 'react-router-dom'
 
 export const BranchEdit = () => {
   const navigate = useNavigate()
-  const { register, control, handleSubmit, errors } = useBranchEdit()
+  const {
+    register,
+    control,
+    handleSubmit,
+    errors,
+    loading,
+  } = useBranchEdit()
 
   return (
     <MainLayout>
@@ -214,8 +220,8 @@ export const BranchEdit = () => {
           <Button onClick={() => navigate('/administracao/filiais')}>
             Voltar
           </Button>
-          <Button type={'submit'} form={'edit-branch'}>
-            Salvar
+          <Button type={'submit'} form={'edit-branch'} disabled={loading}>
+            {loading ? 'Salvando...' : 'Salvar'}
           </Button>
         </div>
       </Content>

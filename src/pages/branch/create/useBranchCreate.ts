@@ -7,9 +7,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useState } from 'react'
 
 export const useBranchCreate = () => {
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -27,6 +29,7 @@ export const useBranchCreate = () => {
   const onSubmit = async (data: BranchCreatePayload) => {
     const id = toast.loading('Criando filial...')
     try {
+      setLoading(true)
       await branchCreateService(data)
       toast.update(id, {
         render: 'Filial criada com sucesso',
@@ -44,6 +47,8 @@ export const useBranchCreate = () => {
         isLoading: false,
         autoClose: 3000,
       })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -54,5 +59,6 @@ export const useBranchCreate = () => {
     control,
     handleSubmit: handleSubmit(onSubmit),
     errors,
+    loading,
   }
 }

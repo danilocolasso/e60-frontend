@@ -24,7 +24,13 @@ import { Content } from '@/components/common/Content'
 
 export const BranchCreate = () => {
   const navigate = useNavigate()
-  const { register, control, handleSubmit, errors } = useBranchCreate()
+  const {
+    register,
+    control,
+    handleSubmit,
+    errors,
+    loading,
+  } = useBranchCreate()
 
   return (
     <MainLayout>
@@ -305,8 +311,8 @@ export const BranchCreate = () => {
           <Button onClick={() => navigate('/administracao/filiais')}>
             Voltar
           </Button>
-          <Button type={'submit'} form={'new-branch'}>
-            Salvar
+          <Button type={'submit'} form={'new-branch'} disabled={loading}>
+            {loading ? 'Salvando...' : 'Salvar'}
           </Button>
         </div>
       </Content>

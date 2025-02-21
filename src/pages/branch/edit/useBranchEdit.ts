@@ -5,14 +5,15 @@ import {
 import { branchEditService } from '@/services/branch/branch-edit.service'
 import { branchUpdateService } from '@/services/branch/branch-update.service'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { useEffect } from 'react'
 
 export const useBranchEdit = () => {
   const navigate = useNavigate()
   const { id } = useParams()
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -29,8 +30,8 @@ export const useBranchEdit = () => {
       const data = await branchEditService({ id: Number(id) })
       reset({
         ...data,
-          rps_id: data.rps?.id,
-          admin_user_id: data.admin?.id,
+        rps_id: data.rps?.id,
+        admin_user_id: data.admin?.id,
       })
     } catch (error) {
       toast.error(
@@ -46,6 +47,7 @@ export const useBranchEdit = () => {
   const onSubmit = async (data: BranchUpdatePayload) => {
     const id = toast.loading('Salvando...')
     try {
+      setLoading(true)
       await branchUpdateService(data)
       toast.update(id, {
         render: 'Filial atualizada com sucesso',
@@ -63,6 +65,8 @@ export const useBranchEdit = () => {
         isLoading: false,
         autoClose: 3000,
       })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -71,5 +75,6 @@ export const useBranchEdit = () => {
     control,
     handleSubmit: handleSubmit(onSubmit),
     errors,
+    loading,
   }
 }
