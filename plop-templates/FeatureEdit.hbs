@@ -8,7 +8,13 @@ import { useNavigate } from 'react-router-dom'
 
 export const {{pascalCase featureName}}Edit = () => {
   const navigate = useNavigate()
-  const { register, control, handleSubmit, errors } = use{{pascalCase featureName}}Edit()
+  const {
+    register,
+    control,
+    handleSubmit,
+    errors,
+    loading,
+  } = use{{pascalCase featureName}}Edit()
 
   return (
     <MainLayout>
@@ -25,8 +31,8 @@ export const {{pascalCase featureName}}Edit = () => {
           <Button onClick={() => navigate('/{{routeName}}')}>
             Voltar
           </Button>
-          <Button type={'submit'} form={'edit-{{kebabCase featureName}}'}>
-            Salvar
+          <Button type={'submit'} form={'edit-{{kebabCase featureName}}'} disabled={loading}>
+            {loading ? 'Salvando...' : 'Salvar'}
           </Button>
         </div>
       </Content>

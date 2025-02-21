@@ -4,12 +4,14 @@ import {
 } from '@/schemas/{{kebabCase featureName}}/{{camelCase featureName}}CreateSchema'
 import { {{camelCase featureName}}CreateService } from '@/services/{{kebabCase featureName}}/{{kebabCase featureName}}-create.service'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export const use{{pascalCase featureName}}Create = () => {
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -23,6 +25,7 @@ export const use{{pascalCase featureName}}Create = () => {
   const onSubmit = async (data: {{pascalCase featureName}}CreatePayload) => {
     const id = toast.loading('Criando {{lowerCase displayNameSingular}}...')
     try {
+      setLoading(true)
       await {{camelCase featureName}}CreateService(data)
       toast.update(id, {
         render: '{{displayNameSingular}} criad{{article}} com sucesso',
@@ -40,6 +43,8 @@ export const use{{pascalCase featureName}}Create = () => {
         isLoading: false,
         autoClose: 3000,
       })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -48,5 +53,6 @@ export const use{{pascalCase featureName}}Create = () => {
     control,
     handleSubmit: handleSubmit(onSubmit),
     errors,
+    loading,
   }
 }
