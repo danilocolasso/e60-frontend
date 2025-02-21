@@ -13,9 +13,9 @@ export interface Customer {
   city: string
   state: string
   email: string
-  username: string
   password: string
   phone: string
+  cellphone?: string
   newsletter: boolean
   is_corporate: boolean
   image_url: string

@@ -27,6 +27,8 @@ export const CustomerShow = () => {
           <DescriptionDetails>{customer?.email}</DescriptionDetails>
           <DescriptionTerm>Telefone</DescriptionTerm>
           <DescriptionDetails>{customer?.phone}</DescriptionDetails>
+          <DescriptionTerm>Celular</DescriptionTerm>
+          <DescriptionDetails>{customer?.phone}</DescriptionDetails>
           <DescriptionTerm>Nascimento</DescriptionTerm>
           <DescriptionDetails>
             {dateFormat(customer?.birth_date)}

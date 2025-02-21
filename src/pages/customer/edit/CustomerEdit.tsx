@@ -38,11 +38,6 @@ export const CustomerEdit = () => {
                 error={errors.email?.message}
               />
               <Input
-                label={'Usuário'}
-                {...register('username')}
-                error={errors.username?.message}
-              />
-              <Input
                 label={'Senha'}
                 type={'password'}
                 {...register('password')}
@@ -52,6 +47,11 @@ export const CustomerEdit = () => {
                 label={'Telefone'}
                 {...register('phone')}
                 error={errors.phone?.message}
+              />
+              <Input
+                label={'Celular'}
+                {...register('cellphone')}
+                error={errors.cellphone?.message}
               />
               <InputGroup className={'relative'}>
                 <Button
