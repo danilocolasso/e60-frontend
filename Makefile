@@ -3,7 +3,7 @@ GREEN=\033[32m
 YELLOW=\033[33m
 RESET=\033[0m
 
-install build:
+setup:
 	@echo "$(YELLOW)Creating container network...$(RESET)"
 	@docker network create --driver bridge app-network || true
 	@echo "$(YELLOW)Copying env files...$(RESET)"
