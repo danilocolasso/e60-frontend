@@ -6,10 +6,11 @@ RESET=\033[0m
 install build:
 	@echo "$(YELLOW)Creating container network...$(RESET)"
 	@docker network create --driver bridge app-network || true
+	@echo "$(YELLOW)Copying env files...$(RESET)"
+	@cp .env.sample .env
 	@echo "$(YELLOW)Building containers...$(RESET)"
 	@docker compose up -d --build
-	@echo "$(YELLOW)Copying env files...$(RESET)"
-	@docker compose exec app cp .env.sample .env
+
 
 up start:
 	@echo "$(YELLOW)Starting containers...$(RESET)"
