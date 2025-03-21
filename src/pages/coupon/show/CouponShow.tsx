@@ -42,7 +42,11 @@ export const CouponShow = () => {
           </DescriptionDetails>
           <DescriptionTerm>Quantidade</DescriptionTerm>
           <DescriptionDetails>
-            { coupon ? ([CouponUsageType.UNLIMITED, CouponUsageType.UNIQUE].includes(coupon?.usage_type) ? '-' : coupon?.usages) : ''}
+            { coupon ? ([CouponUsageType.UNLIMITED, CouponUsageType.UNIQUE].includes(coupon?.usage_type) ? '-' : coupon?.quantity) : ''}
+          </DescriptionDetails>
+          <DescriptionTerm>Usos</DescriptionTerm>
+          <DescriptionDetails>
+            {coupon?.usages}
           </DescriptionDetails>
           <DescriptionTerm>Validade</DescriptionTerm>
           <DescriptionDetails>

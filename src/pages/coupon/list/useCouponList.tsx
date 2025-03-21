@@ -63,7 +63,7 @@ export const useCouponList = () => {
       key: 'quantity',
       label: 'Quantidade',
       sortable: true,
-      render: (item: CouponList) => ([CouponUsageType.UNLIMITED, CouponUsageType.UNIQUE].includes(item.usage_type) ? '-' : item.usages),
+      render: (item: CouponList) => ([CouponUsageType.UNLIMITED, CouponUsageType.UNIQUE].includes(item.usage_type) ? '-' : item.quantity),
     },
     {
       key: 'usages',

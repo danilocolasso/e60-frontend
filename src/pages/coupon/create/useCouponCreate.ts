@@ -3,9 +3,10 @@ import {
   couponCreateSchema,
 } from '@/schemas/coupon/couponCreateSchema'
 import { couponCreateService } from '@/services/coupon/coupon-create.service'
+import { CouponUsageType } from '@/types/coupon-usage-type'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useEffect, useMemo, useState } from 'react'
+import { useForm, useWatch } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -17,10 +18,27 @@ export const useCouponCreate = () => {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm<CouponCreatePayload>({
     resolver: zodResolver(couponCreateSchema),
   })
+
+  const usageType = useWatch({
+    control,
+    name: 'usage_type',
+    defaultValue: CouponUsageType.UNIQUE,
+  })
+
+  const isQuantityDisabled = useMemo(() => {
+    return usageType === CouponUsageType.UNLIMITED || usageType === CouponUsageType.UNIQUE
+  }, [usageType])
+
+  useEffect(() => {
+    if (isQuantityDisabled) {
+      setValue('quantity', undefined)
+    }
+  }, [isQuantityDisabled, setValue])
 
   const onSubmit = async (data: CouponCreatePayload) => {
     const id = toast.loading('Criando cupom...')
@@ -54,5 +72,6 @@ export const useCouponCreate = () => {
     handleSubmit: handleSubmit(onSubmit),
     errors,
     loading,
+    isQuantityDisabled,
   }
 }
