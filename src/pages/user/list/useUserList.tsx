@@ -39,7 +39,7 @@ export const useUserList = () => {
       key: 'role',
       label: 'Perfil',
       sortable: true,
-      value: (row: User) => <Badge>{roles[row.role]}</Badge>,
+      render: (row: User) => <Badge>{roles[row.role]}</Badge>,
     },
   ]
 

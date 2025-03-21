@@ -12,7 +12,7 @@ export interface DataTableColumn<T> {
   key: keyof T
   label: string
   sortable?: boolean
-  value?: (row: T) => string | React.ReactNode
+  render?: (row: T) => string | React.ReactNode
 }
 
 export interface DataTableAction<T>

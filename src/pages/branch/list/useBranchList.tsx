@@ -39,7 +39,7 @@ export const useBranchList = () => {
     {
       key: 'rps',
       label: 'Filial RPS',
-      value: (row: Branch) => row.rps?.name,
+      render: (row: Branch) => row.rps?.name,
       sortable: true,
     },
     {
@@ -50,13 +50,13 @@ export const useBranchList = () => {
     {
       key: 'admin',
       label: 'Administrador',
-      value: (row: Branch) => row.admin?.name,
+      render: (row: Branch) => row.admin?.name,
       sortable: true,
     },
     {
       key: 'is_advance_voucher',
       label: 'Voucher',
-      value: (row: Branch) =>
+      render: (row: Branch) =>
         row.is_advance_voucher ? (
           <Badge color={'green'}>Sim</Badge>
         ) : (
@@ -67,7 +67,7 @@ export const useBranchList = () => {
     {
       key: 'is_active',
       label: 'Ativo',
-      value: (row: Branch) =>
+      render: (row: Branch) =>
         row.is_active ? (
           <Badge color={'green'}>Sim</Badge>
         ) : (

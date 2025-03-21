@@ -19,7 +19,7 @@ export const DataTableBody = ({
         <TableRow key={index} className={'hover:bg-zinc-950/5 dark:hover:bg-white/5'}>
           {columns.map((column) => (
             <TableCell key={String(column.key)}>
-              {column.value ? column.value(row) : (row[column.key] as string)}
+              {column.render ? column.render(row) : (row[column.key] as string)}
             </TableCell>
           ))}
           {actions && <DataTableActions actions={actions} item={row} />}

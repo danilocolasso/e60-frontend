@@ -45,14 +45,14 @@ export const useCustomerList = () => {
     {
       key: 'birth_date',
       label: 'Nascimento',
-      value: (row: Customer) => dateFormat(row.birth_date),
+      render: (row: Customer) => dateFormat(row.birth_date),
       sortable: true,
     },
     {
       key: 'is_corporate',
       label: 'Corporativo',
       sortable: true,
-      value: (row: Customer) =>
+      render: (row: Customer) =>
         row.is_corporate ? (
           <Badge color={'green'}>Sim</Badge>
         ) : (
