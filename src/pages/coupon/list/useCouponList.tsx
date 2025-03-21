@@ -6,6 +6,7 @@ import {
 import { Badge } from '@/components/ui/primitives/Badge'
 import { useFilters } from '@/hooks/useFilters'
 import { couponDeleteService } from '@/services/coupon/coupon-delete.service'
+import { CouponDiscountType } from '@/types/coupon-discount-type'
 import { CouponList } from '@/types/coupon-list'
 import { CouponUsageType, CouponUsageTypeLabels } from '@/types/coupon-usage-type'
 import { currencyFormat } from '@/util/currencyFormat'
@@ -39,7 +40,8 @@ export const useCouponList = () => {
       label: 'Desconto',
       sortable: true,
       render: (item: CouponList) => {
-        return currencyFormat(item.discount, { showPrefix: false })
+        return currencyFormat(item.discount, { showPrefix: item.discount_type === CouponDiscountType.FIXED }) 
+          + (item.discount_type === CouponDiscountType.PERCENTAGE ? '%' : '')
       },
     },
     {

@@ -9,8 +9,10 @@ import {
 } from '@/components/ui/primitives/DescriptionList'
 import { Title } from '@/components/ui/primitives/Title'
 import { useCouponShow } from '@/pages/coupon/show/useCouponShow'
+import { CouponDiscountType } from '@/types/coupon-discount-type'
 import { CouponUsageType, CouponUsageTypeLabels } from '@/types/coupon-usage-type'
 import { WeekdayLabels } from '@/types/weekday'
+import { currencyFormat } from '@/util/currencyFormat'
 import { dateFormat } from '@/util/dateFormat'
 import { useNavigate } from 'react-router-dom'
 
@@ -25,6 +27,11 @@ export const CouponShow = () => {
         <DescriptionList>
           <DescriptionTerm>Código</DescriptionTerm>
           <DescriptionDetails>{coupon?.code}</DescriptionDetails>
+          <DescriptionTerm>Desconto</DescriptionTerm>
+          <DescriptionDetails>
+            {coupon ? currencyFormat(coupon.discount, { showPrefix: coupon.discount_type === CouponDiscountType.FIXED }) : '-'}
+            {coupon?.discount_type === CouponDiscountType.PERCENTAGE ? '%' : ''}
+          </DescriptionDetails>
           <DescriptionTerm>Filiais</DescriptionTerm>
           <DescriptionDetails className='flex flex-wrap gap-2'>
             {coupon?.branches.map((name) => <Badge key={name}>{name}</Badge>)}
