@@ -30,6 +30,7 @@ export const Checkbox = <T, F extends FieldValues = FieldValues>({
   return (
     <Field>
       {options && label && <Label>{label}</Label>}
+      {error && <ErrorMessage className='mb-2'>{error}</ErrorMessage>}
       <Controller
         name={name}
         control={control}
@@ -67,7 +68,6 @@ export const Checkbox = <T, F extends FieldValues = FieldValues>({
           )
         }}
       />
-      {error && <ErrorMessage>{error}</ErrorMessage>}
     </Field>
   )
 }
