@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect } from 'react'
 import { Control, FieldValues, Path } from 'react-hook-form'
 import { Option } from '@/types/option'
 import { SidebarItem } from '@/components/ui/primitives/Sidebar'
@@ -6,10 +6,10 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { ChevronRightIcon } from '@heroicons/react/16/solid'
 import { Checkbox } from '@/components/ui/composite/Checkbox'
 import { Legend } from '@/components/ui/primitives/Fieldset'
-import { useRoomSelection } from './useRoomSelection'
+import { useRoomSelectionItem } from './useRoomSelectionItem'
 import { Rooms } from './useCouponCreate'
 
-export const BranchItem = memo(<T extends FieldValues & Rooms>({
+export const RoomSelectionItem = memo(<T extends FieldValues & Rooms>({
   branch,
   control,
 }: {
@@ -17,20 +17,8 @@ export const BranchItem = memo(<T extends FieldValues & Rooms>({
   control: Control<T>
 }) => {
   const branchId = Number(branch.value)
-  const [loading, setLoading] = useState(false)
-  const [rooms, setRooms] = useState<Option<string>[] | null>(null)
-  const [isOpen, setIsOpen] = useState(false)
 
-  const { fetchRooms } = useRoomSelection()
-
-  const handleOpen = async () => {
-    setIsOpen(true)
-    if (rooms !== null) return
-    setLoading(true)
-    const response = await fetchRooms(branchId)
-    setRooms(response)
-    setLoading(false)
-  }
+  const { handleOpen, isOpen, rooms, loading } = useRoomSelectionItem()
 
   return (
     <Disclosure
@@ -40,10 +28,7 @@ export const BranchItem = memo(<T extends FieldValues & Rooms>({
     >
       {({ open }) => {
         useEffect(() => {
-          if (open !== isOpen) {
-            setIsOpen(open);
-            if (open) handleOpen();
-          }
+          handleOpen(branchId, open);
         }, [open])
 
         return (

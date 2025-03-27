@@ -4,7 +4,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { ChevronRightIcon } from '@heroicons/react/16/solid'
 import { useRoomSelection } from './useRoomSelection'
 import { Control, FieldError, FieldValues } from 'react-hook-form'
-import { BranchItem } from './RoomSelectionItem'
+import { RoomSelectionItem } from './RoomSelectionItem'
 import { Rooms } from './useCouponCreate'
 
 interface RoomSelectionProps<T extends FieldValues & Rooms> {
@@ -47,7 +47,7 @@ export const RoomSelection = <T extends FieldValues & Rooms>(
           <Field>
             {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
             {branches.map((branch) => (
-              <BranchItem key={branch.value} branch={branch} control={props.control as Control<FieldValues & Rooms>} />
+              <RoomSelectionItem key={branch.value} branch={branch} control={props.control as Control<FieldValues & Rooms>} />
             ))}
           </Field>
         </DisclosurePanel>
