@@ -5,7 +5,7 @@ import { z } from 'zod'
 
 export const couponCreateSchema = z.object({
   code: z.string().min(1),
-  discount: z.coerce.number().min(0).max(100).default(0),
+  discount: z.coerce.number().positive(),
   discount_type: z.nativeEnum(CouponDiscountType),
   usage_type: z.nativeEnum(CouponUsageType),
   quantity: z.coerce.number().int().min(1).default(1).optional(),
@@ -16,6 +16,11 @@ export const couponCreateSchema = z.object({
   valid_days: z.array(z.nativeEnum(Weekday)),
   booking_start_date: z.coerce.date().nullable().optional(),
   booking_end_date: z.coerce.date().nullable().optional(),
+  rooms: z.array(z.array(z.number()).optional()).transform(rooms => 
+    rooms?.map(roomArray => 
+      roomArray?.filter(room => room !== null && room !== undefined)
+    ).filter(roomArray => roomArray && roomArray.length > 0) || []
+  ),
 })
 
 export type CouponCreatePayload = z.infer<typeof couponCreateSchema>

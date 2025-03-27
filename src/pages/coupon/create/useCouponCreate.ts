@@ -10,6 +10,10 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+export interface Rooms {
+  rooms: Record<string, string[]>
+}
+
 export const useCouponCreate = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
@@ -20,7 +24,7 @@ export const useCouponCreate = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm<CouponCreatePayload>({
+  } = useForm<CouponCreatePayload & Rooms>({
     resolver: zodResolver(couponCreateSchema),
   })
 

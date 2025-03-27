@@ -16,6 +16,7 @@ import { SidebarItem } from '@/components/ui/primitives/Sidebar'
 import { recordToOptions } from '@/util/recordToOptions'
 import { CouponUsageTypeLabels } from '@/types/coupon-usage-type'
 import { InputDate } from '@/components/ui/composite/InputDate/InputDate'
+import { RoomSelection } from './RoomSelection'
 export const CouponCreate = () => {
   const navigate = useNavigate()
   const {
@@ -41,6 +42,8 @@ export const CouponCreate = () => {
               />
               <div className={'flex gap-2'}>
                 <Input
+                  type={'number'}
+                  step={0.01}
                   label={'Desconto'}
                   className={'w-full'}
                   {...register('discount')}
@@ -86,11 +89,13 @@ export const CouponCreate = () => {
                 error={errors.partner_name?.message}
               />
               <Input
+                type={'time'}
                 label={'Horário de início'}
                 {...register('start_time')}
                 error={errors.start_time?.message}
               />
               <Input
+                type={'time'}
                 label={'Horário de término'}
                 {...register('end_time')}
                 error={errors.end_time?.message}
@@ -105,6 +110,7 @@ export const CouponCreate = () => {
                 {...register('booking_end_date')}
                 error={errors.booking_end_date?.message}
               />
+              <RoomSelection control={control} error={errors.rooms?.message} />
               <Fieldset>
                 <Disclosure
                   as={'div'}
