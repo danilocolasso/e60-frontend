@@ -5,6 +5,7 @@ import {
 } from '@/components/ui/primitives/Checkbox'
 import { ErrorMessage, Field, Label } from '@/components/ui/primitives/Fieldset'
 import { Option } from '@/types/option.ts'
+import clsx from 'clsx'
 import { Control, Controller, FieldValues, Path } from 'react-hook-form'
 
 export interface CheckboxProps<T, F extends FieldValues = FieldValues> {
@@ -13,6 +14,7 @@ export interface CheckboxProps<T, F extends FieldValues = FieldValues> {
   control: Control<F>
   options?: Option<T>[]
   error?: string
+  align?: 'horizontal' | 'vertical'
 }
 
 const toggleValue = <T,>(selectedValues: T[], val: T): T[] =>
@@ -26,6 +28,7 @@ export const Checkbox = <T, F extends FieldValues = FieldValues>({
   control,
   options,
   error,
+  align = 'vertical',
 }: CheckboxProps<T, F>) => {
   return (
     <Field>
@@ -37,12 +40,17 @@ export const Checkbox = <T, F extends FieldValues = FieldValues>({
         render={({ field }) => {
           const selectedValues: T[] = field.value || []
           return (
-            <CheckboxGroup>
+            <CheckboxGroup
+              className={clsx(
+              'flex',
+              align === 'horizontal' ? 'flex-row gap-4 items-start' : 'flex-col',
+            )}
+            >
               {options ? (
                 options.map((option: Option<T>, index: number) => {
                   const isChecked = selectedValues.includes(option.value)
                   return (
-                    <CheckboxField key={option.value + '-' + index}>
+                    <CheckboxField key={option.value + '-' + index} style={align === 'horizontal' ? { marginTop: '0px' } : {}}>
                       <CheckboxPrimitive
                         checked={isChecked}
                         onChange={() =>
@@ -56,7 +64,7 @@ export const Checkbox = <T, F extends FieldValues = FieldValues>({
                   )
                 })
               ) : (
-                <CheckboxField key={field.name} className={'md:mt-9 !gap-x-2'}>
+                <CheckboxField key={field.name} className={'!gap-x-2'}>
                   <CheckboxPrimitive
                     checked={field.value || false}
                     onChange={() => field.onChange(!field.value)}
