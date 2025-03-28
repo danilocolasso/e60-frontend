@@ -31,23 +31,6 @@ import {
 export const navigation: NavigationItem[] = [
   { name: 'Home', href: '/', icon: HomeIcon, current: true },
   { name: 'Clientes', href: '/clientes', icon: UserGroupIcon, current: false },
-  {
-    name: 'e60 Play',
-    href: '#',
-    icon: PlayIcon,
-    current: false,
-    children: [
-      { name: 'Jogos', href: '/e60-play/jogos', icon: PuzzlePieceIcon },
-      { name: 'Jogadores', href: '/e60-play/jogadores', icon: UserGroupIcon },
-      { name: 'Sessões', href: '/e60-play/sessoes', icon: ClockIcon },
-      {
-        name: 'Grupo de Cupons',
-        href: '/e60-play/grupo-de-cupons',
-        icon: TicketIcon,
-      },
-      { name: 'Cupons', href: '/e60-play/cupons', icon: TagIcon },
-    ],
-  },
   { name: 'Reservas', href: '/reservas', icon: CalendarIcon, current: false },
   {
     name: 'Propostas',
@@ -58,14 +41,7 @@ export const navigation: NavigationItem[] = [
   { name: 'Presentes', href: '/presentes', icon: GiftIcon, current: false },
   { name: 'Horários', href: '/horarios', icon: ClockIcon, current: false },
   { name: 'Salas', href: '/salas', icon: BuildingOfficeIcon, current: false },
-  {
-    name: 'Comentários',
-    href: '/comentarios',
-    icon: ChatBubbleLeftIcon,
-    current: false,
-  },
   { name: 'Cupons', href: '/cupons', icon: TagIcon, current: false },
-  { name: 'Conteúdo', href: '/conteudo', icon: BookOpenIcon, current: false },
   {
     name: 'Workshops',
     href: '#',
@@ -116,11 +92,6 @@ export const navigation: NavigationItem[] = [
         name: 'Interessados franquias',
         href: '/administracao/interessados-franquia',
         icon: InboxIcon,
-      },
-      {
-        name: 'Desconto progressivo',
-        href: '/administracao/desconto-progressivo',
-        icon: TagIcon,
       },
     ],
   },
