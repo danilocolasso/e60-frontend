@@ -110,7 +110,10 @@ export const CouponCreate = () => {
                 {...register('booking_end_date')}
                 error={errors.booking_end_date?.message}
               />
-              <RoomSelection control={control} error={errors.rooms?.message} />
+              <RoomSelection
+                control={control}
+                error={errors.rooms?.message}
+              />
               <Fieldset>
                 <Disclosure
                   as={'div'}
