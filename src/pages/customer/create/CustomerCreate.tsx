@@ -122,12 +122,14 @@ export const CustomerCreate = () => {
                 {...register('branch_id')}
                 error={errors.branch_id?.message}
               />
-              <Checkbox
-                name={'is_corporate'}
-                control={control}
-                label={'Corporativo'}
-                error={errors.is_corporate?.message}
-              />
+              <div className={'md:mt-9'}>
+                <Checkbox
+                  name={'is_corporate'}
+                  control={control}
+                  label={'Corporativo'}
+                  error={errors.is_corporate?.message}
+                />
+              </div>
               <Radio
                 label={'Newsletter'}
                 control={control}

@@ -20,6 +20,13 @@ export const useRoomCreate = () => {
     formState: { errors },
   } = useForm<RoomCreatePayload>({
     resolver: zodResolver(roomCreateSchema),
+    defaultValues: {
+      min_participants: 1,
+      max_participants: 1,
+      duration_in_minutes: 1,
+      is_multi_participants: true,
+      is_delivery: false,
+    },
   })
 
   const onSubmit = async (data: RoomCreatePayload) => {
@@ -51,7 +58,9 @@ export const useRoomCreate = () => {
   return {
     register,
     control,
-    handleSubmit: handleSubmit(onSubmit),
+    handleSubmit: handleSubmit(onSubmit, (errors) => {
+      console.log(errors)
+    }),
     errors,
     loading,
   }
