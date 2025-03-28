@@ -4,6 +4,7 @@ import { userRoutes } from '@/routes/private/userRoutes'
 import { lazy } from 'react'
 import { RouteObject } from 'react-router-dom'
 import { couponRoutes } from '@/routes/private/couponRoutes.tsx'
+import { roomRoutes } from './private/roomRoutes'
 
 export const privateRoutes: RouteObject[] = [
   {
@@ -14,4 +15,5 @@ export const privateRoutes: RouteObject[] = [
   ...branchRoutes,
   ...customerRoutes,
   ...couponRoutes,
+  ...roomRoutes,
 ]
