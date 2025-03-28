@@ -17,9 +17,9 @@ export const couponCreateSchema = z.object({
   booking_start_date: z.coerce.date().nullable().optional(),
   booking_end_date: z.coerce.date().nullable().optional(),
   rooms: z.array(z.array(z.number()).optional()).transform(rooms => 
-    rooms?.map(roomArray => 
-      roomArray?.filter(room => room !== null && room !== undefined)
-    ).filter(roomArray => roomArray && roomArray.length > 0) || []
+    Object.values(rooms)
+      .flat()
+      .filter(room => room !== null && room !== undefined)
   ),
 })
 

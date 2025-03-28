@@ -7,14 +7,16 @@ import { ChevronRightIcon } from '@heroicons/react/16/solid'
 import { Checkbox } from '@/components/ui/composite/Checkbox'
 import { Legend } from '@/components/ui/primitives/Fieldset'
 import { useRoomSelectionItem } from './useRoomSelectionItem'
-import { Rooms } from './useCouponCreate'
+import { Rooms } from './useRoomSelection'
 
 export const RoomSelectionItem = memo(<T extends FieldValues & Rooms>({
   branch,
   control,
+  defaultOpen = false,
 }: {
   branch: Option<string>,
-  control: Control<T>
+  control: Control<T>,
+  defaultOpen?: boolean
 }) => {
   const branchId = Number(branch.value)
 
@@ -24,7 +26,7 @@ export const RoomSelectionItem = memo(<T extends FieldValues & Rooms>({
     <Disclosure
       as={'div'}
       className={'group/branch relative flex flex-col gap-2'}
-      defaultOpen={false}
+      defaultOpen={defaultOpen}
     >
       {({ open }) => {
         useEffect(() => {

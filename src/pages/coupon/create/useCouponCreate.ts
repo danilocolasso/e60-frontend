@@ -9,10 +9,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-
-export interface Rooms {
-  rooms: Record<string, string[]>
-}
+import { Rooms } from './useRoomSelection'
 
 export const useCouponCreate = () => {
   const navigate = useNavigate()

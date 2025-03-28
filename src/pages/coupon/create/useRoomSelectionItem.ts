@@ -30,7 +30,6 @@ export const useRoomSelectionItem = () => {
 
   return {
     loading,
-    fetchRooms,
     handleOpen,
     rooms,
     isOpen,

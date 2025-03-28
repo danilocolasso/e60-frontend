@@ -1,12 +1,13 @@
 import { CouponDiscountType } from './coupon-discount-type'
 import { CouponUsageType } from './coupon-usage-type'
+import { Room } from './room'
 
 export interface Coupon {
   id: number
   code: string
   discount: number
   discount_type: CouponDiscountType
-  branches: string[]
+  rooms: Room[]
   usages: number
   usage_type: CouponUsageType
   quantity: number
