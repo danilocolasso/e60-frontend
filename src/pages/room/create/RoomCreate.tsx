@@ -1,7 +1,7 @@
 import { Content } from '@/components/common/Content'
 import { MainLayout } from '@/components/layouts/MainLayout'
 import { Title } from '@/components/ui/primitives/Title'
-import { FieldGroup, Fieldset, Legend } from '@/components/ui/primitives/Fieldset'
+import { Description, Field, FieldGroup, Fieldset, Legend } from '@/components/ui/primitives/Fieldset'
 import { Button } from '@/components/ui/primitives/Button'
 import { useRoomCreate } from '@/pages/room/create/useRoomCreate'
 import { useNavigate } from 'react-router-dom'
@@ -129,11 +129,17 @@ export const RoomCreate = () => {
                 error={errors.duration_in_minutes?.message}
                 {...register('duration_in_minutes')}
               />
-              <Input
-                label={'URL'}
-                error={errors.url?.message}
-                {...register('url')}
-              />
+              <Field>
+                <Input
+                  label={'URL'}
+                  error={errors.url?.message}
+                  {...register('url')}
+                />
+                <Description>
+                  Digitar somente o nome da sala como está no link com a barra '/' no inicio.
+                  Exemplo: /corredor-da-morte-3
+                </Description>
+              </Field>
               <Radio
                 label={'Delivery'}
                 name={'is_delivery'}
