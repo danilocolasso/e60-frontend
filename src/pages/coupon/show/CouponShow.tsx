@@ -34,7 +34,11 @@ export const CouponShow = () => {
           </DescriptionDetails>
           <DescriptionTerm>Filiais</DescriptionTerm>
           <DescriptionDetails className='flex flex-wrap gap-2'>
-            {coupon?.branches.map((name) => <Badge key={name}>{name}</Badge>)}
+            {coupon?.rooms.map((room) => <Badge key={room.branch.id}>{room.branch.name}</Badge>)}
+          </DescriptionDetails>
+          <DescriptionTerm>Salas</DescriptionTerm>
+          <DescriptionDetails className='flex flex-wrap gap-2'>
+            {coupon?.rooms.map((room) => <Badge key={room.id}>{room.name}</Badge>)}
           </DescriptionDetails>
           <DescriptionTerm>Tipo de uso</DescriptionTerm>
           <DescriptionDetails>
